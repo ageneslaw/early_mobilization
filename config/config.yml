@@ -1,0 +1,27 @@
+---
+data_path: C:/Users/Andy/OneDrive - Columbia University Irving Medical Center/Research/data/early_mobilization/
+data_path_chony: C:/Users/asg2195/OneDrive - Columbia University Irving Medical Center/Research/data/early_mobilization/
+fname_encounter: Report 1 - Hospital Encounters.txt
+fname_race:
+fname_address:
+fname_insurance:
+fname_adt: Report 2 - ADT Events.txt
+fname_icd_dx: Report 3 - ICD-10-CM Diagnosis Codes.txt
+fname_vitals:
+fname_ecmo_vad: Report 8B - ECMO and VAD.txt
+fname_advanced_monitoring:
+fname_sedation_delirium: Report 8D - Sedation and Delirium.txt
+fname_labs:
+fname_imv: Report 8E - Mechanical Ventilation.txt
+fname_icd_pcs: Report 4 - ICD-10-PCS Procedure Codes.txt
+fname_ip_meds: Report 6 - Medications.txt
+fname_lda: Report 7 - LDAs.txt
+fname_cpt: Report 5 - CPT Codes.txt
+fname_op_encounters:
+fname_op_notes:
+fname_op_diagnoses:
+fname_op_meds:
+fname_pt: Report 8F - Physical Therapy.txt
+fname_cpb: Report 9 - CPB On and Off Times.txt
+fname_mortality:
+---

@@ -1,0 +1,53 @@
+---
+title: "Early mobilization"
+# bibliography: 
+# csl: 
+prefer-html: true
+author: 
+     - name: Andrew Geneslaw
+       degrees:
+          - MD
+          - MS
+       orcid: 0000-0003-1859-2369
+       email: asg2195@cumc.columbia.edu
+       affiliations:
+        - name: Columbia University Irving Medical Center
+          department: Department of Pediatrics
+          city: New York
+          state: NY
+          country: USA
+          postal-code: 10032
+format: 
+     html:
+          code-fold: true
+          toc: true
+          crossrefs-hover: true
+          citations-hover: true
+          code-tools:
+               source: true
+               toggle: false
+               caption: none
+     gfm:
+          codeBlock: true
+          toc: true
+          crossref-hover: true
+          citation: true
+          codeTools:
+               source: true
+               toggle: false
+               caption: none 
+execute:
+     echo: true
+     warning: false
+     cache: true
+editor_options: 
+  chunk_output_type: inline
+---
+
+## Description
+
+This project will assess the delivery of physical therapy to critically ill children at the Morgan Stanley Children's Hospital in New York City. We are interested in whether physical therapy is being delivered within 72 hours of admission to the PICU (hereby referred to )
+
+```{r}
+1 + 1
+```

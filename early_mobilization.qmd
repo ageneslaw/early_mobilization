@@ -44,10 +44,88 @@ editor_options:
   chunk_output_type: inline
 ---
 
-## Description
+# Early mobilization retrospective analysis
 
-This project will assess the delivery of physical therapy to critically ill children at the Morgan Stanley Children's Hospital in New York City. We are interested in whether physical therapy is being delivered within 72 hours of admission to the PICU (hereby referred to )
+This project will assess the delivery of physical therapy to critically ill children at the Morgan Stanley Children's Hospital in New York City. We are interested in whether physical therapy is being delivered within 72 hours of admission to the PICU. Physical therapy within 72 hours will be referred to from here out as "Early mobilization" or EM.
+
+# Initial setup
+
+## Loading libraries and data paths
 
 ```{r}
-1 + 1
+#| label: setup
+
+library(chonyepicdata)
+library(tidyverse)
+library(lubridate)
+library(janitor)
+library(stringr)
+
+options(scipen = 3)
+
+# Load configuration files. You may need to edit the file (located in a config folder) with your own filepath.
+# Alternately you can just send in the correct filename.
+load_config(yml_path = 'config/config.yml', useglobal = TRUE)
+data_path <- data_path_chony
+
+```
+
+## Loading patients, encounters and PICU start/stop times
+
+A patient has a medical record number (MRN) which is persistent across time.
+
+A unique patient MRN can have multiple encounters. An encounter is defined by the variable \code{PAT_ENC_CSN_ID}, which has been renamed \code{PAT_ENC} for easier typing throughout this project. A patient encounter is a distinct encounter with the CHONY hospital system. An encounter can be inpatient, outpatient, ED, virtual, or not even involve patient contact (such as an attempt to call a patient that fails). For the purposes of this project, all encounters are an inpatient hospitalization. All encounters will have a start and stop date.
+
+During a given hospital encounter ("admission"), a patient may move between multiple inpatient locations. These involve floor locations, PICUs, and operative areas. It also includes "virtual" areas, such as changing locations to a radiology area during a portable x-ray. The patient does not physically move in these circumstances and so we will mostly ignore them.
+
+Because a patient can move multiple times between floor and PICU locations, a given hospital encounter might have multiple PICU admissions. We will break hospital encounters into individual PICU encounters, and each get a unique ID.
+
+```{r}
+#| label: load-data
+
+# load all encounters
+df_encounters <- load_encounters(paste0(data_path, fname_encounter))
+
+# Now get a set of all PICU start/stop datetimes for these encounters
+df_picu_startstop <- get_picu_intervals(paste0(data_path, fname_adt)) %>%
+     arrange(mrn, enc_id, icu_start_date)
+
+n_mrn <- distinct(df_encounters, mrn) %>% nrow()
+n_encounters <- distinct(df_encounters, enc_id) %>% nrow()
+n_picu <- distinct(df_picu_startstop, mrn, icu_start_date) %>% nrow() 
+
+```
+
+|       | Patients    | Encounters         | PICU         |
+|-------|-------------|--------------------|--------------|
+| **n** | `{r} n_mrn` | `{r} n_encounters` | `{r} n_picu` |
+
+## Invasive mechanical ventilation (IMV)
+
+Understanding the numbers of patients receiving IMV, and the timing of IMV, is essential to the study.
+
+```{r}
+#| label: load-vent
+
+# Get ventilator data and just limit to patient encounters we are interested in
+df_vent <- load_resp_support(paste0(data_path, fname_imv))
+df_vent_wide <- clean_resp_support(df_vent)
+df_vent_episodes <- classify_resp_support(df_vent_wide)
+df_vent_episodes <- df_vent_episodes %>% filter(current_support == 'imv') %>%
+     rename(vent_time_start = support_time_start,
+            vent_time_stop = support_time_stop,
+            vent_episode = support_episode) %>%
+     group_by(enc_id) %>%
+     arrange(vent_episode) %>%
+     mutate(vent_episode = row_number()) %>%
+     ungroup()
+
+# Join based on encounter ID, and whether the intervals for (vent start, vent stop) and (icu start, icu stop) have any overlap. This ensures we include patients intubated in the ED or a procedural area
+by <- join_by(enc_id, 
+              overlaps(x$vent_time_start, x$vent_time_stop,
+                       y$icu_start_date, y$icu_stop_date))
+
+df_vent_episodes <- left_join(df_vent_episodes, df_picu_startstop, by) %>%
+     inner_join(df_encounters, by = c('mrn', 'enc_id')) 
+
 ```

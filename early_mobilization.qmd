@@ -246,10 +246,68 @@ df_pt <- read_delim(paste0(data_path, '/Report 8F - Physical Therapy.txt'),
      mutate(across(where(is.character), ~ str_remove_all(.x, '^r rhb '))) %>%
      mutate(across(where(is.character), ~ str_remove_all(.x, '^rhb ')))
 
+```
+
+There is a kind of variable called "PT received on" which is where the PT entered the date they supposedly provided PT. However, they always log PT when provided and there are multiple instances of the incorrect date being logged (such as a date in the future). Because of this, we will only use the date at the time PT was logged, rather than what the therapist manually entered. If we do need to use it, the date is recorded as the number of days after 12/31/1840 (unclear why). To convert this to a date, you can use:
+
+``` r
+mutate(pt_received_on = days(pt_received_on) + ymd('1840-12-31'))
+```
+
+There are also many kinds flowsheet rows being documented on. Not all are really relevant to our purposes. They are:
+
+```{r}
+#| label: PT flowsheet types
 
 
-# The variable "IP PT TIME CALCULATION" appears to be the total of all other
-# types of PT being provided. The other units specify the PT being provided.
+# Print all flowsheet names
+df_pt %>% distinct(flowsheet_name) %>% print(n=Inf) %>% 
+     kable(format = 'markdown')
+
+```
+
+Most of these differentiate the amount of time spent on a given task. It's not always clear which of these are active versus passive in terms of participation of the patient. Some also seem irrelevant. We will dictate all of the relevant ones as:
+
+-   therapeutic activity time entry
+
+-   ip pt time calculation
+
+-   pt re-evaluation time entry
+
+-   gait training time entry
+
+-   neuromuscular re-education time entry
+
+-   self care/home management (adls) time entry
+
+-   therapeutic exercise time entry
+
+-   therapeutic activity comments
+
+-   therapeutic exercise comments
+
+-   gait training comments
+
+-   manual therapy time entry
+
+-   orthotic/prosthetic management and/or training time entry
+
+-   wheelchair management time entry
+
+-   pt eval treat tolerance
+
+-   prosthetic training time entry
+
+-   therapeutic massage time entry
+
+(It might seem odd that we are keeping "comments." The reason is that in a subsequentstep, we enforce that only numeric values are retained. Often the amount of time spent is erroneously entered as a "comment" so we will keep these.)
+
+In the next step, we save all of these types of PT as a wide format data frame. Now we have access to each type of PT in case we need it for later.
+
+The variable `ip_pt_time_calculation` appears to be the total of all other types of PT being provided. The other units specify the PT being provided, which all sum to this variable. Therefore `ip_pt_time_calculation` is the most important variable here and the one we will use as the basis for how much PT is provided.
+
+```{r}
+#| label: PT types
 
 # Relevant types of PT rows...
 relevant_pt <- c('therapeutic activity time entry',
@@ -285,7 +343,6 @@ df_pt <- df_pt %>% mutate(measure_value = as.numeric(measure_value))
 # Remove any 0-time units
 df_pt <- df_pt %>% filter(measure_value > 0)
 
-
 # Convert to wide format
 df_pt_wide <- df_pt %>%
      pivot_wider(id_cols = c('mrn', 'enc_id', 'recorded_time'),
@@ -296,6 +353,15 @@ df_pt_wide <- df_pt %>%
 # Just keep a version with total time
 df_pt_total <- df_pt_wide %>%
      select(mrn, enc_id, recorded_time, pt_time = ip_pt_time_calculation)
+
+```
+
+### Amount of PT
+
+First we will describe, in general, how much PT is being delivered. We need to make sure that we only sum up PT that was delivered after the start of a PICU stay. To do this we take the `df_picu_startstop` data frame, which contains ICU admit and discharge times. Create a few windows of time spanning 0-24 hours, 24-48 hours, and 48-72 hours. Also create an interval that spans 0-72 hours.
+
+```{r}
+#| label: PT / PICU time joins
 
 # Update the PICU start/stop so that it has a timestamp and intervals
 # for 24, 48, and 72 hours
@@ -315,8 +381,12 @@ pt_join_by <- join_by(mrn, enc_id, y$recorded_time > x$icu_start_date)
 df_pt_picu <- left_join(df_temp, df_pt_total, by = pt_join_by, relationship = "many-to-many")
 
 # Determine whether patients had PT in each of the intervals
-df_early_pt <- df_pt_picu %>%
-     mutate(early_pt = if_else(recorded_time %within% int0_72, TRUE, FALSE)) %>%
+df_pt_timing <- df_pt_picu %>%
+     mutate(early_pt = recorded_time %within% int0_72,
+            any_pt = recorded_time > icu_start_date,
+            icu_pt = recorded_time %within% interval(icu_start_date, icu_stop_date))
+
+%>%
      group_by(mrn, enc_id, icu_start_date) %>%
      filter(early_pt == max(early_pt)) %>%
      ungroup() %>%
@@ -357,22 +427,5 @@ df_early_pt_active <- df_pt_active_picu %>%
      distinct(mrn, enc_id, icu_start_date, early_pt_active)
 
 tabyl(df_early_pt_active, early_pt_active)
-
-```
-
-There is a kind of variable called "PT received on" which is where the PT entered the date they supposedly provided PT. However, they always log PT when provided and there are multiple instances of the incorrect date being logged (such as a date in the future). Because of this, we will only use the date at the time PT was logged, rather than what the therapist manually entered. If we do need to use it, the date is recorded as the number of days after 12/31/1840 (unclear why). To convert this to a date, you can use:
-
-``` R
-mutate(pt_received_on = days(pt_received_on) + ymd('1840-12-31'))
-```
-
-There are also many kinds flowsheet rows being documented on. Not all are really relevant to our purposes. They are:
-
-```{r}
-#| label: PT flowsheet types
-
-
-# Print all flowsheet names
-df_pt %>% distinct(flowsheet_name) %>% print(n=Inf)
 
 ```

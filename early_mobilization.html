@@ -92,8 +92,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#imv-within-24-and-72-hours-of-picu-hospitalization" id="toc-imv-within-24-and-72-hours-of-picu-hospitalization" class="nav-link" data-scroll-target="#imv-within-24-and-72-hours-of-picu-hospitalization">IMV within 24 (and 72) hours of PICU hospitalization</a></li>
   </ul></li>
+  <li><a href="#table-1" id="toc-table-1" class="nav-link" data-scroll-target="#table-1">Table 1</a></li>
   </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="early_mobilization.md"><i class="bi bi-file-code"></i>Github (GFM)</a></li></ul></div></nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="early_mobilization.md"><i class="bi bi-file-code"></i>Github (GFM)</a></li><li><a href="early_mobilization.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
 </div>
 <main class="content" id="quarto-document-content">
 
@@ -2785,6 +2786,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+</section>
+</section>
+<section id="table-1" class="level1">
+<h1>Table 1</h1>
+<p>We will now begin generating some basic tables</p>
 <p>Not used</p>
 <div class="cell">
 <details class="code-fold">
@@ -2817,7 +2823,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <!-- -->
 
-</section>
 </section>
 
 </main>
@@ -3320,537 +3325,545 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb24-36"><a href="#cb24-36" aria-hidden="true" tabindex="-1"></a><span class="co">               source: true</span></span>
 <span id="cb24-37"><a href="#cb24-37" aria-hidden="true" tabindex="-1"></a><span class="co">               toggle: false</span></span>
 <span id="cb24-38"><a href="#cb24-38" aria-hidden="true" tabindex="-1"></a><span class="co">               caption: none </span></span>
-<span id="cb24-39"><a href="#cb24-39" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
-<span id="cb24-40"><a href="#cb24-40" aria-hidden="true" tabindex="-1"></a><span class="co">     echo: true</span></span>
-<span id="cb24-41"><a href="#cb24-41" aria-hidden="true" tabindex="-1"></a><span class="co">     warning: false</span></span>
-<span id="cb24-42"><a href="#cb24-42" aria-hidden="true" tabindex="-1"></a><span class="co">     cache: true</span></span>
-<span id="cb24-43"><a href="#cb24-43" aria-hidden="true" tabindex="-1"></a><span class="co">     </span></span>
-<span id="cb24-44"><a href="#cb24-44" aria-hidden="true" tabindex="-1"></a><span class="an">editor_options:</span><span class="co"> </span></span>
-<span id="cb24-45"><a href="#cb24-45" aria-hidden="true" tabindex="-1"></a><span class="co">  chunk_output_type: inline</span></span>
-<span id="cb24-46"><a href="#cb24-46" aria-hidden="true" tabindex="-1"></a><span class="co">  </span></span>
-<span id="cb24-47"><a href="#cb24-47" aria-hidden="true" tabindex="-1"></a><span class="an">engine:</span><span class="co"> knitr</span></span>
-<span id="cb24-48"><a href="#cb24-48" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb24-49"><a href="#cb24-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-50"><a href="#cb24-50" aria-hidden="true" tabindex="-1"></a><span class="fu"># Early mobilization retrospective analysis</span></span>
-<span id="cb24-51"><a href="#cb24-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-52"><a href="#cb24-52" aria-hidden="true" tabindex="-1"></a>This project will assess the delivery of physical therapy to critically ill children at the Morgan Stanley Children's Hospital in New York City. We are interested in whether physical therapy is being delivered within 72 hours of admission to the PICU. Physical therapy within 72 hours will be referred to from here out as "Early mobilization" or EM.</span>
+<span id="cb24-39"><a href="#cb24-39" aria-hidden="true" tabindex="-1"></a><span class="co">     pdf:</span></span>
+<span id="cb24-40"><a href="#cb24-40" aria-hidden="true" tabindex="-1"></a><span class="co">          toc: true</span></span>
+<span id="cb24-41"><a href="#cb24-41" aria-hidden="true" tabindex="-1"></a><span class="co">          pdf-engine: pdflatex</span></span>
+<span id="cb24-42"><a href="#cb24-42" aria-hidden="true" tabindex="-1"></a><span class="co">          </span></span>
+<span id="cb24-43"><a href="#cb24-43" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
+<span id="cb24-44"><a href="#cb24-44" aria-hidden="true" tabindex="-1"></a><span class="co">     echo: true</span></span>
+<span id="cb24-45"><a href="#cb24-45" aria-hidden="true" tabindex="-1"></a><span class="co">     warning: false</span></span>
+<span id="cb24-46"><a href="#cb24-46" aria-hidden="true" tabindex="-1"></a><span class="co">     cache: true</span></span>
+<span id="cb24-47"><a href="#cb24-47" aria-hidden="true" tabindex="-1"></a><span class="co">     </span></span>
+<span id="cb24-48"><a href="#cb24-48" aria-hidden="true" tabindex="-1"></a><span class="an">editor_options:</span><span class="co"> </span></span>
+<span id="cb24-49"><a href="#cb24-49" aria-hidden="true" tabindex="-1"></a><span class="co">  chunk_output_type: inline</span></span>
+<span id="cb24-50"><a href="#cb24-50" aria-hidden="true" tabindex="-1"></a><span class="co">  </span></span>
+<span id="cb24-51"><a href="#cb24-51" aria-hidden="true" tabindex="-1"></a><span class="an">engine:</span><span class="co"> knitr</span></span>
+<span id="cb24-52"><a href="#cb24-52" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb24-53"><a href="#cb24-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-54"><a href="#cb24-54" aria-hidden="true" tabindex="-1"></a><span class="fu"># Initial setup</span></span>
+<span id="cb24-54"><a href="#cb24-54" aria-hidden="true" tabindex="-1"></a><span class="fu"># Early mobilization retrospective analysis</span></span>
 <span id="cb24-55"><a href="#cb24-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-56"><a href="#cb24-56" aria-hidden="true" tabindex="-1"></a><span class="fu">## Loading libraries and data paths</span></span>
+<span id="cb24-56"><a href="#cb24-56" aria-hidden="true" tabindex="-1"></a>This project will assess the delivery of physical therapy to critically ill children at the Morgan Stanley Children's Hospital in New York City. We are interested in whether physical therapy is being delivered within 72 hours of admission to the PICU. Physical therapy within 72 hours will be referred to from here out as "Early mobilization" or EM.</span>
 <span id="cb24-57"><a href="#cb24-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-60"><a href="#cb24-60" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb24-61"><a href="#cb24-61" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
-<span id="cb24-62"><a href="#cb24-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-63"><a href="#cb24-63" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(chonyepicdata)</span>
-<span id="cb24-64"><a href="#cb24-64" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb24-65"><a href="#cb24-65" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb24-66"><a href="#cb24-66" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span>
-<span id="cb24-67"><a href="#cb24-67" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
-<span id="cb24-68"><a href="#cb24-68" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span>
-<span id="cb24-69"><a href="#cb24-69" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
-<span id="cb24-70"><a href="#cb24-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-71"><a href="#cb24-71" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">3</span>)</span>
-<span id="cb24-72"><a href="#cb24-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-73"><a href="#cb24-73" aria-hidden="true" tabindex="-1"></a><span class="co"># Load configuration files. You may need to edit the file (located in a config folder) with your own filepath.</span></span>
-<span id="cb24-74"><a href="#cb24-74" aria-hidden="true" tabindex="-1"></a><span class="co"># Alternately you can just send in the correct filename.</span></span>
-<span id="cb24-75"><a href="#cb24-75" aria-hidden="true" tabindex="-1"></a><span class="fu">load_config</span>(<span class="at">yml_path =</span> <span class="st">'config/config.yml'</span>, <span class="at">useglobal =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb24-76"><a href="#cb24-76" aria-hidden="true" tabindex="-1"></a>data_path <span class="ot">&lt;-</span> data_path_chony</span>
-<span id="cb24-77"><a href="#cb24-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-78"><a href="#cb24-78" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb24-79"><a href="#cb24-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-80"><a href="#cb24-80" aria-hidden="true" tabindex="-1"></a><span class="fu">## Loading patients, encounters and PICU start/stop times</span></span>
+<span id="cb24-58"><a href="#cb24-58" aria-hidden="true" tabindex="-1"></a><span class="fu"># Initial setup</span></span>
+<span id="cb24-59"><a href="#cb24-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-60"><a href="#cb24-60" aria-hidden="true" tabindex="-1"></a><span class="fu">## Loading libraries and data paths</span></span>
+<span id="cb24-61"><a href="#cb24-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-64"><a href="#cb24-64" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-65"><a href="#cb24-65" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
+<span id="cb24-66"><a href="#cb24-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-67"><a href="#cb24-67" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(chonyepicdata)</span>
+<span id="cb24-68"><a href="#cb24-68" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb24-69"><a href="#cb24-69" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb24-70"><a href="#cb24-70" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span>
+<span id="cb24-71"><a href="#cb24-71" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb24-72"><a href="#cb24-72" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span>
+<span id="cb24-73"><a href="#cb24-73" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb24-74"><a href="#cb24-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-75"><a href="#cb24-75" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">3</span>)</span>
+<span id="cb24-76"><a href="#cb24-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-77"><a href="#cb24-77" aria-hidden="true" tabindex="-1"></a><span class="co"># Load configuration files. You may need to edit the file (located in a config folder) with your own filepath.</span></span>
+<span id="cb24-78"><a href="#cb24-78" aria-hidden="true" tabindex="-1"></a><span class="co"># Alternately you can just send in the correct filename.</span></span>
+<span id="cb24-79"><a href="#cb24-79" aria-hidden="true" tabindex="-1"></a><span class="fu">load_config</span>(<span class="at">yml_path =</span> <span class="st">'config/config.yml'</span>, <span class="at">useglobal =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb24-80"><a href="#cb24-80" aria-hidden="true" tabindex="-1"></a>data_path <span class="ot">&lt;-</span> data_path_chony</span>
 <span id="cb24-81"><a href="#cb24-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-82"><a href="#cb24-82" aria-hidden="true" tabindex="-1"></a>A patient has a medical record number (MRN) which is persistent across time.</span>
+<span id="cb24-82"><a href="#cb24-82" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb24-83"><a href="#cb24-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-84"><a href="#cb24-84" aria-hidden="true" tabindex="-1"></a>A unique patient MRN can have multiple encounters. An encounter is defined by the variable \code{PAT_ENC_CSN_ID}, which has been renamed \code{PAT_ENC} for easier typing throughout this project. A patient encounter is a distinct encounter with the CHONY hospital system. An encounter can be inpatient, outpatient, ED, virtual, or not even involve patient contact (such as an attempt to call a patient that fails). For the purposes of this project, all encounters are an inpatient hospitalization. All encounters will have a start and stop date.</span>
+<span id="cb24-84"><a href="#cb24-84" aria-hidden="true" tabindex="-1"></a><span class="fu">## Loading patients, encounters and PICU start/stop times</span></span>
 <span id="cb24-85"><a href="#cb24-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-86"><a href="#cb24-86" aria-hidden="true" tabindex="-1"></a>During a given hospital encounter ("admission"), a patient may move between multiple inpatient locations. These involve floor locations, PICUs, and operative areas. It also includes "virtual" areas, such as changing locations to a radiology area during a portable x-ray. The patient does not physically move in these circumstances and so we will mostly ignore them.</span>
+<span id="cb24-86"><a href="#cb24-86" aria-hidden="true" tabindex="-1"></a>A patient has a medical record number (MRN) which is persistent across time.</span>
 <span id="cb24-87"><a href="#cb24-87" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-88"><a href="#cb24-88" aria-hidden="true" tabindex="-1"></a>Because a patient can move multiple times between floor and PICU locations, a given hospital encounter might have multiple PICU admissions. We will break hospital encounters into individual PICU encounters, and each get a unique ID.</span>
+<span id="cb24-88"><a href="#cb24-88" aria-hidden="true" tabindex="-1"></a>A unique patient MRN can have multiple encounters. An encounter is defined by the variable \code{PAT_ENC_CSN_ID}, which has been renamed \code{PAT_ENC} for easier typing throughout this project. A patient encounter is a distinct encounter with the CHONY hospital system. An encounter can be inpatient, outpatient, ED, virtual, or not even involve patient contact (such as an attempt to call a patient that fails). For the purposes of this project, all encounters are an inpatient hospitalization. All encounters will have a start and stop date.</span>
 <span id="cb24-89"><a href="#cb24-89" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-92"><a href="#cb24-92" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb24-93"><a href="#cb24-93" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: load-data</span></span>
-<span id="cb24-94"><a href="#cb24-94" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-95"><a href="#cb24-95" aria-hidden="true" tabindex="-1"></a><span class="co"># load all encounters</span></span>
-<span id="cb24-96"><a href="#cb24-96" aria-hidden="true" tabindex="-1"></a>df_encounters <span class="ot">&lt;-</span> <span class="fu">load_encounters</span>(<span class="fu">paste0</span>(data_path, fname_encounter))</span>
-<span id="cb24-97"><a href="#cb24-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-98"><a href="#cb24-98" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove any encounters that were for less than 24 hours</span></span>
-<span id="cb24-99"><a href="#cb24-99" aria-hidden="true" tabindex="-1"></a>df_encounters <span class="ot">&lt;-</span> df_encounters <span class="sc">%&gt;%</span> </span>
-<span id="cb24-100"><a href="#cb24-100" aria-hidden="true" tabindex="-1"></a>     <span class="fu">filter</span>((hospital_discharge_date <span class="sc">-</span> hospital_admission_date)<span class="sc">/</span><span class="fu">ddays</span>(<span class="dv">1</span>) <span class="sc">&gt;=</span> <span class="dv">1</span>)</span>
+<span id="cb24-90"><a href="#cb24-90" aria-hidden="true" tabindex="-1"></a>During a given hospital encounter ("admission"), a patient may move between multiple inpatient locations. These involve floor locations, PICUs, and operative areas. It also includes "virtual" areas, such as changing locations to a radiology area during a portable x-ray. The patient does not physically move in these circumstances and so we will mostly ignore them.</span>
+<span id="cb24-91"><a href="#cb24-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-92"><a href="#cb24-92" aria-hidden="true" tabindex="-1"></a>Because a patient can move multiple times between floor and PICU locations, a given hospital encounter might have multiple PICU admissions. We will break hospital encounters into individual PICU encounters, and each get a unique ID.</span>
+<span id="cb24-93"><a href="#cb24-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-96"><a href="#cb24-96" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-97"><a href="#cb24-97" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: load-data</span></span>
+<span id="cb24-98"><a href="#cb24-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-99"><a href="#cb24-99" aria-hidden="true" tabindex="-1"></a><span class="co"># load all encounters</span></span>
+<span id="cb24-100"><a href="#cb24-100" aria-hidden="true" tabindex="-1"></a>df_encounters <span class="ot">&lt;-</span> <span class="fu">load_encounters</span>(<span class="fu">paste0</span>(data_path, fname_encounter))</span>
 <span id="cb24-101"><a href="#cb24-101" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-102"><a href="#cb24-102" aria-hidden="true" tabindex="-1"></a>enc_valid <span class="ot">&lt;-</span> df_encounters <span class="sc">%&gt;%</span> <span class="fu">distinct</span>(enc_id) <span class="sc">%&gt;%</span> <span class="fu">pull</span>()</span>
-<span id="cb24-103"><a href="#cb24-103" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-104"><a href="#cb24-104" aria-hidden="true" tabindex="-1"></a><span class="co"># Now get a set of all PICU start/stop datetimes for these encounters</span></span>
-<span id="cb24-105"><a href="#cb24-105" aria-hidden="true" tabindex="-1"></a>df_picu_startstop <span class="ot">&lt;-</span> <span class="fu">get_picu_intervals</span>(<span class="fu">paste0</span>(data_path, fname_adt)) <span class="sc">%&gt;%</span></span>
-<span id="cb24-106"><a href="#cb24-106" aria-hidden="true" tabindex="-1"></a>     <span class="fu">arrange</span>(mrn, enc_id, icu_start_date)</span>
+<span id="cb24-102"><a href="#cb24-102" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove any encounters that were for less than 24 hours</span></span>
+<span id="cb24-103"><a href="#cb24-103" aria-hidden="true" tabindex="-1"></a>df_encounters <span class="ot">&lt;-</span> df_encounters <span class="sc">%&gt;%</span> </span>
+<span id="cb24-104"><a href="#cb24-104" aria-hidden="true" tabindex="-1"></a>     <span class="fu">filter</span>((hospital_discharge_date <span class="sc">-</span> hospital_admission_date)<span class="sc">/</span><span class="fu">ddays</span>(<span class="dv">1</span>) <span class="sc">&gt;=</span> <span class="dv">1</span>)</span>
+<span id="cb24-105"><a href="#cb24-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-106"><a href="#cb24-106" aria-hidden="true" tabindex="-1"></a>enc_valid <span class="ot">&lt;-</span> df_encounters <span class="sc">%&gt;%</span> <span class="fu">distinct</span>(enc_id) <span class="sc">%&gt;%</span> <span class="fu">pull</span>()</span>
 <span id="cb24-107"><a href="#cb24-107" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-108"><a href="#cb24-108" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove encounters that were less than 24 hours</span></span>
-<span id="cb24-109"><a href="#cb24-109" aria-hidden="true" tabindex="-1"></a>df_picu_startstop <span class="ot">&lt;-</span> df_picu_startstop <span class="sc">%&gt;%</span> </span>
-<span id="cb24-110"><a href="#cb24-110" aria-hidden="true" tabindex="-1"></a>     <span class="fu">filter</span>(enc_id <span class="sc">%in%</span> enc_valid)</span>
+<span id="cb24-108"><a href="#cb24-108" aria-hidden="true" tabindex="-1"></a><span class="co"># Now get a set of all PICU start/stop datetimes for these encounters</span></span>
+<span id="cb24-109"><a href="#cb24-109" aria-hidden="true" tabindex="-1"></a>df_picu_startstop <span class="ot">&lt;-</span> <span class="fu">get_picu_intervals</span>(<span class="fu">paste0</span>(data_path, fname_adt)) <span class="sc">%&gt;%</span></span>
+<span id="cb24-110"><a href="#cb24-110" aria-hidden="true" tabindex="-1"></a>     <span class="fu">arrange</span>(mrn, enc_id, icu_start_date)</span>
 <span id="cb24-111"><a href="#cb24-111" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-112"><a href="#cb24-112" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove PICU episodes that were less than 24 hours</span></span>
+<span id="cb24-112"><a href="#cb24-112" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove encounters that were less than 24 hours</span></span>
 <span id="cb24-113"><a href="#cb24-113" aria-hidden="true" tabindex="-1"></a>df_picu_startstop <span class="ot">&lt;-</span> df_picu_startstop <span class="sc">%&gt;%</span> </span>
-<span id="cb24-114"><a href="#cb24-114" aria-hidden="true" tabindex="-1"></a>     <span class="fu">filter</span>((icu_stop_date <span class="sc">-</span> icu_start_date)<span class="sc">/</span><span class="fu">ddays</span>(<span class="dv">1</span>) <span class="sc">&gt;=</span> <span class="dv">1</span>)</span>
+<span id="cb24-114"><a href="#cb24-114" aria-hidden="true" tabindex="-1"></a>     <span class="fu">filter</span>(enc_id <span class="sc">%in%</span> enc_valid)</span>
 <span id="cb24-115"><a href="#cb24-115" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-116"><a href="#cb24-116" aria-hidden="true" tabindex="-1"></a>n_mrn <span class="ot">&lt;-</span> <span class="fu">distinct</span>(df_encounters, mrn) <span class="sc">%&gt;%</span> <span class="fu">nrow</span>()</span>
-<span id="cb24-117"><a href="#cb24-117" aria-hidden="true" tabindex="-1"></a>n_encounters <span class="ot">&lt;-</span> <span class="fu">distinct</span>(df_encounters, enc_id) <span class="sc">%&gt;%</span> <span class="fu">nrow</span>()</span>
-<span id="cb24-118"><a href="#cb24-118" aria-hidden="true" tabindex="-1"></a>n_picu <span class="ot">&lt;-</span> <span class="fu">distinct</span>(df_picu_startstop, mrn, icu_start_date) <span class="sc">%&gt;%</span> <span class="fu">nrow</span>() </span>
+<span id="cb24-116"><a href="#cb24-116" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove PICU episodes that were less than 24 hours</span></span>
+<span id="cb24-117"><a href="#cb24-117" aria-hidden="true" tabindex="-1"></a>df_picu_startstop <span class="ot">&lt;-</span> df_picu_startstop <span class="sc">%&gt;%</span> </span>
+<span id="cb24-118"><a href="#cb24-118" aria-hidden="true" tabindex="-1"></a>     <span class="fu">filter</span>((icu_stop_date <span class="sc">-</span> icu_start_date)<span class="sc">/</span><span class="fu">ddays</span>(<span class="dv">1</span>) <span class="sc">&gt;=</span> <span class="dv">1</span>)</span>
 <span id="cb24-119"><a href="#cb24-119" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-120"><a href="#cb24-120" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb24-121"><a href="#cb24-121" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-122"><a href="#cb24-122" aria-hidden="true" tabindex="-1"></a>|       | PICU       | Encounters       | Patients  |</span>
-<span id="cb24-123"><a href="#cb24-123" aria-hidden="true" tabindex="-1"></a>|-------|------------|------------------|-----------|</span>
-<span id="cb24-124"><a href="#cb24-124" aria-hidden="true" tabindex="-1"></a>| **n** | <span class="in">`r n_picu`</span> | <span class="in">`r n_encounters`</span> | <span class="in">`r n_mrn`</span> |</span>
+<span id="cb24-120"><a href="#cb24-120" aria-hidden="true" tabindex="-1"></a>n_mrn <span class="ot">&lt;-</span> <span class="fu">distinct</span>(df_encounters, mrn) <span class="sc">%&gt;%</span> <span class="fu">nrow</span>()</span>
+<span id="cb24-121"><a href="#cb24-121" aria-hidden="true" tabindex="-1"></a>n_encounters <span class="ot">&lt;-</span> <span class="fu">distinct</span>(df_encounters, enc_id) <span class="sc">%&gt;%</span> <span class="fu">nrow</span>()</span>
+<span id="cb24-122"><a href="#cb24-122" aria-hidden="true" tabindex="-1"></a>n_picu <span class="ot">&lt;-</span> <span class="fu">distinct</span>(df_picu_startstop, mrn, icu_start_date) <span class="sc">%&gt;%</span> <span class="fu">nrow</span>() </span>
+<span id="cb24-123"><a href="#cb24-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-124"><a href="#cb24-124" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb24-125"><a href="#cb24-125" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-126"><a href="#cb24-126" aria-hidden="true" tabindex="-1"></a>Since we are interested primarily in mobilization within the first 72 hours of ICU hospitalization, we should determine how many patients stayed for this long.</span>
-<span id="cb24-127"><a href="#cb24-127" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-130"><a href="#cb24-130" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb24-131"><a href="#cb24-131" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: 72 hour LOS</span></span>
-<span id="cb24-132"><a href="#cb24-132" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-133"><a href="#cb24-133" aria-hidden="true" tabindex="-1"></a>df_picu_stats <span class="ot">&lt;-</span> df_picu_startstop <span class="sc">%&gt;%</span> </span>
-<span id="cb24-134"><a href="#cb24-134" aria-hidden="true" tabindex="-1"></a>     <span class="fu">mutate</span>(<span class="at">los_picu =</span> (icu_stop_date <span class="sc">-</span> icu_start_date)<span class="sc">/</span><span class="fu">ddays</span>(<span class="dv">1</span>),</span>
-<span id="cb24-135"><a href="#cb24-135" aria-hidden="true" tabindex="-1"></a>            <span class="at">los_picu_3days =</span> <span class="fu">if_else</span>(los_picu <span class="sc">&gt;=</span> <span class="dv">3</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>))</span>
+<span id="cb24-126"><a href="#cb24-126" aria-hidden="true" tabindex="-1"></a>|       | PICU       | Encounters       | Patients  |</span>
+<span id="cb24-127"><a href="#cb24-127" aria-hidden="true" tabindex="-1"></a>|-------|------------|------------------|-----------|</span>
+<span id="cb24-128"><a href="#cb24-128" aria-hidden="true" tabindex="-1"></a>| **n** | <span class="in">`r n_picu`</span> | <span class="in">`r n_encounters`</span> | <span class="in">`r n_mrn`</span> |</span>
+<span id="cb24-129"><a href="#cb24-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-130"><a href="#cb24-130" aria-hidden="true" tabindex="-1"></a>Since we are interested primarily in mobilization within the first 72 hours of ICU hospitalization, we should determine how many patients stayed for this long.</span>
+<span id="cb24-131"><a href="#cb24-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-134"><a href="#cb24-134" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-135"><a href="#cb24-135" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: 72 hour LOS</span></span>
 <span id="cb24-136"><a href="#cb24-136" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-137"><a href="#cb24-137" aria-hidden="true" tabindex="-1"></a>df_encounter_stats <span class="ot">&lt;-</span> df_encounters <span class="sc">%&gt;%</span> </span>
-<span id="cb24-138"><a href="#cb24-138" aria-hidden="true" tabindex="-1"></a>     <span class="fu">mutate</span>(<span class="at">los_hosp =</span> (hospital_discharge_date <span class="sc">-</span> hospital_admission_date)<span class="sc">/</span><span class="fu">ddays</span>(<span class="dv">1</span>),</span>
-<span id="cb24-139"><a href="#cb24-139" aria-hidden="true" tabindex="-1"></a>            <span class="at">los_hosp_3days =</span> <span class="fu">if_else</span>(los_hosp <span class="sc">&gt;=</span><span class="dv">3</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>))</span>
+<span id="cb24-137"><a href="#cb24-137" aria-hidden="true" tabindex="-1"></a>df_picu_stats <span class="ot">&lt;-</span> df_picu_startstop <span class="sc">%&gt;%</span> </span>
+<span id="cb24-138"><a href="#cb24-138" aria-hidden="true" tabindex="-1"></a>     <span class="fu">mutate</span>(<span class="at">los_picu =</span> (icu_stop_date <span class="sc">-</span> icu_start_date)<span class="sc">/</span><span class="fu">ddays</span>(<span class="dv">1</span>),</span>
+<span id="cb24-139"><a href="#cb24-139" aria-hidden="true" tabindex="-1"></a>            <span class="at">los_picu_3days =</span> <span class="fu">if_else</span>(los_picu <span class="sc">&gt;=</span> <span class="dv">3</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>))</span>
 <span id="cb24-140"><a href="#cb24-140" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-141"><a href="#cb24-141" aria-hidden="true" tabindex="-1"></a>df_picu_stats <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> los_picu)) <span class="sc">+</span> </span>
-<span id="cb24-142"><a href="#cb24-142" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_histogram</span>() <span class="sc">+</span> </span>
-<span id="cb24-143"><a href="#cb24-143" aria-hidden="true" tabindex="-1"></a>     <span class="fu">scale_x_log10</span>(<span class="at">n.breaks =</span> <span class="dv">8</span>) <span class="sc">+</span> </span>
-<span id="cb24-144"><a href="#cb24-144" aria-hidden="true" tabindex="-1"></a>     <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">'Days (log10 axis)'</span>,</span>
-<span id="cb24-145"><a href="#cb24-145" aria-hidden="true" tabindex="-1"></a>          <span class="at">y =</span> <span class="st">'N'</span>,</span>
-<span id="cb24-146"><a href="#cb24-146" aria-hidden="true" tabindex="-1"></a>          <span class="at">title =</span> <span class="st">'PICU LOS'</span>)</span>
-<span id="cb24-147"><a href="#cb24-147" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-148"><a href="#cb24-148" aria-hidden="true" tabindex="-1"></a>df_encounter_stats <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> los_hosp)) <span class="sc">+</span> </span>
-<span id="cb24-149"><a href="#cb24-149" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_histogram</span>() <span class="sc">+</span> </span>
-<span id="cb24-150"><a href="#cb24-150" aria-hidden="true" tabindex="-1"></a>     <span class="fu">scale_x_log10</span>(<span class="at">n.breaks =</span> <span class="dv">8</span>) <span class="sc">+</span> </span>
-<span id="cb24-151"><a href="#cb24-151" aria-hidden="true" tabindex="-1"></a>     <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">'Days (log10 axis)'</span>,</span>
-<span id="cb24-152"><a href="#cb24-152" aria-hidden="true" tabindex="-1"></a>          <span class="at">y =</span> <span class="st">'N'</span>,</span>
-<span id="cb24-153"><a href="#cb24-153" aria-hidden="true" tabindex="-1"></a>          <span class="at">title =</span> <span class="st">'Hospital LOS'</span>)</span>
-<span id="cb24-154"><a href="#cb24-154" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-155"><a href="#cb24-155" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">tabyl</span>(df_picu_stats, los_picu_3days),</span>
-<span id="cb24-156"><a href="#cb24-156" aria-hidden="true" tabindex="-1"></a>      <span class="at">format =</span> <span class="st">"markdown"</span>, </span>
-<span id="cb24-157"><a href="#cb24-157" aria-hidden="true" tabindex="-1"></a>      <span class="at">align =</span> <span class="st">"c"</span>,</span>
-<span id="cb24-158"><a href="#cb24-158" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption =</span> <span class="st">"PICU admissions with PICU LOS at least 72 hours"</span>)</span>
-<span id="cb24-159"><a href="#cb24-159" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-160"><a href="#cb24-160" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">tabyl</span>(df_encounter_stats, los_hosp_3days), </span>
-<span id="cb24-161"><a href="#cb24-161" aria-hidden="true" tabindex="-1"></a>      <span class="at">format =</span> <span class="st">"markdown"</span>, </span>
-<span id="cb24-162"><a href="#cb24-162" aria-hidden="true" tabindex="-1"></a>      <span class="at">align =</span> <span class="st">"c"</span>,</span>
-<span id="cb24-163"><a href="#cb24-163" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption =</span> <span class="st">"Encounters with hospital LOS at least 72 hours"</span>)</span>
-<span id="cb24-164"><a href="#cb24-164" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-165"><a href="#cb24-165" aria-hidden="true" tabindex="-1"></a><span class="co"># df_stats &lt;- left_join(df_picu_stats, df_encounter_stats)</span></span>
-<span id="cb24-166"><a href="#cb24-166" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-167"><a href="#cb24-167" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-141"><a href="#cb24-141" aria-hidden="true" tabindex="-1"></a>df_encounter_stats <span class="ot">&lt;-</span> df_encounters <span class="sc">%&gt;%</span> </span>
+<span id="cb24-142"><a href="#cb24-142" aria-hidden="true" tabindex="-1"></a>     <span class="fu">mutate</span>(<span class="at">los_hosp =</span> (hospital_discharge_date <span class="sc">-</span> hospital_admission_date)<span class="sc">/</span><span class="fu">ddays</span>(<span class="dv">1</span>),</span>
+<span id="cb24-143"><a href="#cb24-143" aria-hidden="true" tabindex="-1"></a>            <span class="at">los_hosp_3days =</span> <span class="fu">if_else</span>(los_hosp <span class="sc">&gt;=</span><span class="dv">3</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>))</span>
+<span id="cb24-144"><a href="#cb24-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-145"><a href="#cb24-145" aria-hidden="true" tabindex="-1"></a>df_picu_stats <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> los_picu)) <span class="sc">+</span> </span>
+<span id="cb24-146"><a href="#cb24-146" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_histogram</span>() <span class="sc">+</span> </span>
+<span id="cb24-147"><a href="#cb24-147" aria-hidden="true" tabindex="-1"></a>     <span class="fu">scale_x_log10</span>(<span class="at">n.breaks =</span> <span class="dv">8</span>) <span class="sc">+</span> </span>
+<span id="cb24-148"><a href="#cb24-148" aria-hidden="true" tabindex="-1"></a>     <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">'Days (log10 axis)'</span>,</span>
+<span id="cb24-149"><a href="#cb24-149" aria-hidden="true" tabindex="-1"></a>          <span class="at">y =</span> <span class="st">'N'</span>,</span>
+<span id="cb24-150"><a href="#cb24-150" aria-hidden="true" tabindex="-1"></a>          <span class="at">title =</span> <span class="st">'PICU LOS'</span>)</span>
+<span id="cb24-151"><a href="#cb24-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-152"><a href="#cb24-152" aria-hidden="true" tabindex="-1"></a>df_encounter_stats <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> los_hosp)) <span class="sc">+</span> </span>
+<span id="cb24-153"><a href="#cb24-153" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_histogram</span>() <span class="sc">+</span> </span>
+<span id="cb24-154"><a href="#cb24-154" aria-hidden="true" tabindex="-1"></a>     <span class="fu">scale_x_log10</span>(<span class="at">n.breaks =</span> <span class="dv">8</span>) <span class="sc">+</span> </span>
+<span id="cb24-155"><a href="#cb24-155" aria-hidden="true" tabindex="-1"></a>     <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">'Days (log10 axis)'</span>,</span>
+<span id="cb24-156"><a href="#cb24-156" aria-hidden="true" tabindex="-1"></a>          <span class="at">y =</span> <span class="st">'N'</span>,</span>
+<span id="cb24-157"><a href="#cb24-157" aria-hidden="true" tabindex="-1"></a>          <span class="at">title =</span> <span class="st">'Hospital LOS'</span>)</span>
+<span id="cb24-158"><a href="#cb24-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-159"><a href="#cb24-159" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">tabyl</span>(df_picu_stats, los_picu_3days),</span>
+<span id="cb24-160"><a href="#cb24-160" aria-hidden="true" tabindex="-1"></a>      <span class="at">format =</span> <span class="st">"markdown"</span>, </span>
+<span id="cb24-161"><a href="#cb24-161" aria-hidden="true" tabindex="-1"></a>      <span class="at">align =</span> <span class="st">"c"</span>,</span>
+<span id="cb24-162"><a href="#cb24-162" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption =</span> <span class="st">"PICU admissions with PICU LOS at least 72 hours"</span>)</span>
+<span id="cb24-163"><a href="#cb24-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-164"><a href="#cb24-164" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">tabyl</span>(df_encounter_stats, los_hosp_3days), </span>
+<span id="cb24-165"><a href="#cb24-165" aria-hidden="true" tabindex="-1"></a>      <span class="at">format =</span> <span class="st">"markdown"</span>, </span>
+<span id="cb24-166"><a href="#cb24-166" aria-hidden="true" tabindex="-1"></a>      <span class="at">align =</span> <span class="st">"c"</span>,</span>
+<span id="cb24-167"><a href="#cb24-167" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption =</span> <span class="st">"Encounters with hospital LOS at least 72 hours"</span>)</span>
 <span id="cb24-168"><a href="#cb24-168" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-169"><a href="#cb24-169" aria-hidden="true" tabindex="-1"></a><span class="fu">## Invasive mechanical ventilation (IMV)</span></span>
+<span id="cb24-169"><a href="#cb24-169" aria-hidden="true" tabindex="-1"></a><span class="co"># df_stats &lt;- left_join(df_picu_stats, df_encounter_stats)</span></span>
 <span id="cb24-170"><a href="#cb24-170" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-171"><a href="#cb24-171" aria-hidden="true" tabindex="-1"></a>Understanding the numbers of patients receiving IMV, and the timing of IMV, is essential to the study.</span>
+<span id="cb24-171"><a href="#cb24-171" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb24-172"><a href="#cb24-172" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-173"><a href="#cb24-173" aria-hidden="true" tabindex="-1"></a>First we will load data. This takes time, so we will separate it from other processing so it can be cached.</span>
+<span id="cb24-173"><a href="#cb24-173" aria-hidden="true" tabindex="-1"></a><span class="fu">## Invasive mechanical ventilation (IMV)</span></span>
 <span id="cb24-174"><a href="#cb24-174" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-177"><a href="#cb24-177" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb24-178"><a href="#cb24-178" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: load respiratory support</span></span>
-<span id="cb24-179"><a href="#cb24-179" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-180"><a href="#cb24-180" aria-hidden="true" tabindex="-1"></a><span class="co"># Get ventilator data and just limit to patient encounters we are interested in</span></span>
-<span id="cb24-181"><a href="#cb24-181" aria-hidden="true" tabindex="-1"></a>df_vent <span class="ot">&lt;-</span> <span class="fu">load_resp_support</span>(<span class="fu">paste0</span>(data_path, fname_imv))</span>
-<span id="cb24-182"><a href="#cb24-182" aria-hidden="true" tabindex="-1"></a>df_vent_wide <span class="ot">&lt;-</span> <span class="fu">clean_resp_support</span>(df_vent)</span>
-<span id="cb24-183"><a href="#cb24-183" aria-hidden="true" tabindex="-1"></a>df_resp_episodes <span class="ot">&lt;-</span> <span class="fu">classify_resp_support</span>(df_vent_wide)</span>
-<span id="cb24-184"><a href="#cb24-184" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-185"><a href="#cb24-185" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb24-186"><a href="#cb24-186" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-187"><a href="#cb24-187" aria-hidden="true" tabindex="-1"></a>Now, we will get some counts.</span>
+<span id="cb24-175"><a href="#cb24-175" aria-hidden="true" tabindex="-1"></a>Understanding the numbers of patients receiving IMV, and the timing of IMV, is essential to the study.</span>
+<span id="cb24-176"><a href="#cb24-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-177"><a href="#cb24-177" aria-hidden="true" tabindex="-1"></a>First we will load data. This takes time, so we will separate it from other processing so it can be cached.</span>
+<span id="cb24-178"><a href="#cb24-178" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-181"><a href="#cb24-181" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-182"><a href="#cb24-182" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: load respiratory support</span></span>
+<span id="cb24-183"><a href="#cb24-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-184"><a href="#cb24-184" aria-hidden="true" tabindex="-1"></a><span class="co"># Get ventilator data and just limit to patient encounters we are interested in</span></span>
+<span id="cb24-185"><a href="#cb24-185" aria-hidden="true" tabindex="-1"></a>df_vent <span class="ot">&lt;-</span> <span class="fu">load_resp_support</span>(<span class="fu">paste0</span>(data_path, fname_imv))</span>
+<span id="cb24-186"><a href="#cb24-186" aria-hidden="true" tabindex="-1"></a>df_vent_wide <span class="ot">&lt;-</span> <span class="fu">clean_resp_support</span>(df_vent)</span>
+<span id="cb24-187"><a href="#cb24-187" aria-hidden="true" tabindex="-1"></a>df_resp_episodes <span class="ot">&lt;-</span> <span class="fu">classify_resp_support</span>(df_vent_wide)</span>
 <span id="cb24-188"><a href="#cb24-188" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-191"><a href="#cb24-191" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb24-192"><a href="#cb24-192" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: count IMV</span></span>
-<span id="cb24-193"><a href="#cb24-193" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-194"><a href="#cb24-194" aria-hidden="true" tabindex="-1"></a><span class="co"># Only keep IMV data, and relabel each episode number</span></span>
-<span id="cb24-195"><a href="#cb24-195" aria-hidden="true" tabindex="-1"></a>df_vent_episodes <span class="ot">&lt;-</span> df_resp_episodes <span class="sc">%&gt;%</span> <span class="fu">filter</span>(current_support <span class="sc">==</span> <span class="st">'imv'</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb24-196"><a href="#cb24-196" aria-hidden="true" tabindex="-1"></a>     <span class="fu">rename</span>(<span class="at">vent_time_start =</span> support_time_start,</span>
-<span id="cb24-197"><a href="#cb24-197" aria-hidden="true" tabindex="-1"></a>            <span class="at">vent_time_stop =</span> support_time_stop,</span>
-<span id="cb24-198"><a href="#cb24-198" aria-hidden="true" tabindex="-1"></a>            <span class="at">vent_episode =</span> support_episode) </span>
-<span id="cb24-199"><a href="#cb24-199" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-200"><a href="#cb24-200" aria-hidden="true" tabindex="-1"></a><span class="co"># Only keep vent episodes for at least 24 hours</span></span>
-<span id="cb24-201"><a href="#cb24-201" aria-hidden="true" tabindex="-1"></a>df_vent_episodes <span class="ot">&lt;-</span> df_vent_episodes <span class="sc">%&gt;%</span> </span>
-<span id="cb24-202"><a href="#cb24-202" aria-hidden="true" tabindex="-1"></a>     <span class="fu">filter</span>(timediff <span class="sc">&gt;=</span> <span class="fu">hours</span>(<span class="dv">24</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb24-203"><a href="#cb24-203" aria-hidden="true" tabindex="-1"></a>     <span class="fu">group_by</span>(enc_id) <span class="sc">%&gt;%</span></span>
-<span id="cb24-204"><a href="#cb24-204" aria-hidden="true" tabindex="-1"></a>     <span class="fu">arrange</span>(vent_episode) <span class="sc">%&gt;%</span></span>
-<span id="cb24-205"><a href="#cb24-205" aria-hidden="true" tabindex="-1"></a>     <span class="fu">mutate</span>(<span class="at">vent_episode =</span> <span class="fu">row_number</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb24-206"><a href="#cb24-206" aria-hidden="true" tabindex="-1"></a>     <span class="fu">ungroup</span>()</span>
-<span id="cb24-207"><a href="#cb24-207" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-208"><a href="#cb24-208" aria-hidden="true" tabindex="-1"></a><span class="co"># Join based on encounter ID, and whether the intervals for (vent start, vent stop) and (icu start, icu stop) have any overlap. This ensures we include patients intubated in the ED or a procedural area</span></span>
-<span id="cb24-209"><a href="#cb24-209" aria-hidden="true" tabindex="-1"></a>by <span class="ot">&lt;-</span> <span class="fu">join_by</span>(enc_id, </span>
-<span id="cb24-210"><a href="#cb24-210" aria-hidden="true" tabindex="-1"></a>              <span class="fu">overlaps</span>(x<span class="sc">$</span>vent_time_start, x<span class="sc">$</span>vent_time_stop,</span>
-<span id="cb24-211"><a href="#cb24-211" aria-hidden="true" tabindex="-1"></a>                       y<span class="sc">$</span>icu_start_date, y<span class="sc">$</span>icu_stop_date))</span>
-<span id="cb24-212"><a href="#cb24-212" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-213"><a href="#cb24-213" aria-hidden="true" tabindex="-1"></a>df_vent_episodes <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(df_vent_episodes, df_picu_startstop, by) <span class="sc">%&gt;%</span></span>
-<span id="cb24-214"><a href="#cb24-214" aria-hidden="true" tabindex="-1"></a>     <span class="fu">inner_join</span>(df_encounters, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">'mrn'</span>, <span class="st">'enc_id'</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb24-215"><a href="#cb24-215" aria-hidden="true" tabindex="-1"></a>     <span class="fu">relocate</span>(mrn, enc_id)</span>
+<span id="cb24-189"><a href="#cb24-189" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-190"><a href="#cb24-190" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-191"><a href="#cb24-191" aria-hidden="true" tabindex="-1"></a>Now, we will get some counts.</span>
+<span id="cb24-192"><a href="#cb24-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-195"><a href="#cb24-195" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-196"><a href="#cb24-196" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: count IMV</span></span>
+<span id="cb24-197"><a href="#cb24-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-198"><a href="#cb24-198" aria-hidden="true" tabindex="-1"></a><span class="co"># Only keep IMV data, and relabel each episode number</span></span>
+<span id="cb24-199"><a href="#cb24-199" aria-hidden="true" tabindex="-1"></a>df_vent_episodes <span class="ot">&lt;-</span> df_resp_episodes <span class="sc">%&gt;%</span> <span class="fu">filter</span>(current_support <span class="sc">==</span> <span class="st">'imv'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb24-200"><a href="#cb24-200" aria-hidden="true" tabindex="-1"></a>     <span class="fu">rename</span>(<span class="at">vent_time_start =</span> support_time_start,</span>
+<span id="cb24-201"><a href="#cb24-201" aria-hidden="true" tabindex="-1"></a>            <span class="at">vent_time_stop =</span> support_time_stop,</span>
+<span id="cb24-202"><a href="#cb24-202" aria-hidden="true" tabindex="-1"></a>            <span class="at">vent_episode =</span> support_episode) </span>
+<span id="cb24-203"><a href="#cb24-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-204"><a href="#cb24-204" aria-hidden="true" tabindex="-1"></a><span class="co"># Only keep vent episodes for at least 24 hours</span></span>
+<span id="cb24-205"><a href="#cb24-205" aria-hidden="true" tabindex="-1"></a>df_vent_episodes <span class="ot">&lt;-</span> df_vent_episodes <span class="sc">%&gt;%</span> </span>
+<span id="cb24-206"><a href="#cb24-206" aria-hidden="true" tabindex="-1"></a>     <span class="fu">filter</span>(timediff <span class="sc">&gt;=</span> <span class="fu">hours</span>(<span class="dv">24</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb24-207"><a href="#cb24-207" aria-hidden="true" tabindex="-1"></a>     <span class="fu">group_by</span>(enc_id) <span class="sc">%&gt;%</span></span>
+<span id="cb24-208"><a href="#cb24-208" aria-hidden="true" tabindex="-1"></a>     <span class="fu">arrange</span>(vent_episode) <span class="sc">%&gt;%</span></span>
+<span id="cb24-209"><a href="#cb24-209" aria-hidden="true" tabindex="-1"></a>     <span class="fu">mutate</span>(<span class="at">vent_episode =</span> <span class="fu">row_number</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb24-210"><a href="#cb24-210" aria-hidden="true" tabindex="-1"></a>     <span class="fu">ungroup</span>()</span>
+<span id="cb24-211"><a href="#cb24-211" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-212"><a href="#cb24-212" aria-hidden="true" tabindex="-1"></a><span class="co"># Join based on encounter ID, and whether the intervals for (vent start, vent stop) and (icu start, icu stop) have any overlap. This ensures we include patients intubated in the ED or a procedural area</span></span>
+<span id="cb24-213"><a href="#cb24-213" aria-hidden="true" tabindex="-1"></a>by <span class="ot">&lt;-</span> <span class="fu">join_by</span>(enc_id, </span>
+<span id="cb24-214"><a href="#cb24-214" aria-hidden="true" tabindex="-1"></a>              <span class="fu">overlaps</span>(x<span class="sc">$</span>vent_time_start, x<span class="sc">$</span>vent_time_stop,</span>
+<span id="cb24-215"><a href="#cb24-215" aria-hidden="true" tabindex="-1"></a>                       y<span class="sc">$</span>icu_start_date, y<span class="sc">$</span>icu_stop_date))</span>
 <span id="cb24-216"><a href="#cb24-216" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-217"><a href="#cb24-217" aria-hidden="true" tabindex="-1"></a><span class="co"># How many ventilator episodes, encounters, and among unique patients?</span></span>
-<span id="cb24-218"><a href="#cb24-218" aria-hidden="true" tabindex="-1"></a>n_vent_ep <span class="ot">&lt;-</span> df_vent_episodes <span class="sc">%&gt;%</span> <span class="fu">nrow</span>()</span>
-<span id="cb24-219"><a href="#cb24-219" aria-hidden="true" tabindex="-1"></a>n_vent_picu <span class="ot">&lt;-</span> df_vent_episodes <span class="sc">%&gt;%</span> <span class="fu">distinct</span>(icu_start_date) <span class="sc">%&gt;%</span> <span class="fu">nrow</span>()</span>
-<span id="cb24-220"><a href="#cb24-220" aria-hidden="true" tabindex="-1"></a>n_vent_mrn <span class="ot">&lt;-</span> df_vent_episodes <span class="sc">%&gt;%</span> <span class="fu">distinct</span>(mrn) <span class="sc">%&gt;%</span> <span class="fu">nrow</span>()</span>
-<span id="cb24-221"><a href="#cb24-221" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-222"><a href="#cb24-222" aria-hidden="true" tabindex="-1"></a>display_array <span class="ot">&lt;-</span> <span class="fu">c</span>(n_vent_ep, n_vent_picu, n_vent_mrn)</span>
-<span id="cb24-223"><a href="#cb24-223" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(display_array) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'Episodes of IMV'</span>, <span class="st">'PICU stays with IMV'</span>, <span class="st">'Unique patients requiring IMV'</span>)</span>
-<span id="cb24-224"><a href="#cb24-224" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-225"><a href="#cb24-225" aria-hidden="true" tabindex="-1"></a><span class="co"># display_table &lt;- tibble(`Episodes of IMV` = n_vent_ep, </span></span>
-<span id="cb24-226"><a href="#cb24-226" aria-hidden="true" tabindex="-1"></a>       <span class="co"># `PICU stays with IMV` = n_vent_picu,</span></span>
-<span id="cb24-227"><a href="#cb24-227" aria-hidden="true" tabindex="-1"></a>       <span class="co"># `Unique patients requiring IMV` = n_vent_mrn)</span></span>
+<span id="cb24-217"><a href="#cb24-217" aria-hidden="true" tabindex="-1"></a>df_vent_episodes <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(df_vent_episodes, df_picu_startstop, by) <span class="sc">%&gt;%</span></span>
+<span id="cb24-218"><a href="#cb24-218" aria-hidden="true" tabindex="-1"></a>     <span class="fu">inner_join</span>(df_encounters, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">'mrn'</span>, <span class="st">'enc_id'</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb24-219"><a href="#cb24-219" aria-hidden="true" tabindex="-1"></a>     <span class="fu">relocate</span>(mrn, enc_id)</span>
+<span id="cb24-220"><a href="#cb24-220" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-221"><a href="#cb24-221" aria-hidden="true" tabindex="-1"></a><span class="co"># How many ventilator episodes, encounters, and among unique patients?</span></span>
+<span id="cb24-222"><a href="#cb24-222" aria-hidden="true" tabindex="-1"></a>n_vent_ep <span class="ot">&lt;-</span> df_vent_episodes <span class="sc">%&gt;%</span> <span class="fu">nrow</span>()</span>
+<span id="cb24-223"><a href="#cb24-223" aria-hidden="true" tabindex="-1"></a>n_vent_picu <span class="ot">&lt;-</span> df_vent_episodes <span class="sc">%&gt;%</span> <span class="fu">distinct</span>(icu_start_date) <span class="sc">%&gt;%</span> <span class="fu">nrow</span>()</span>
+<span id="cb24-224"><a href="#cb24-224" aria-hidden="true" tabindex="-1"></a>n_vent_mrn <span class="ot">&lt;-</span> df_vent_episodes <span class="sc">%&gt;%</span> <span class="fu">distinct</span>(mrn) <span class="sc">%&gt;%</span> <span class="fu">nrow</span>()</span>
+<span id="cb24-225"><a href="#cb24-225" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-226"><a href="#cb24-226" aria-hidden="true" tabindex="-1"></a>display_array <span class="ot">&lt;-</span> <span class="fu">c</span>(n_vent_ep, n_vent_picu, n_vent_mrn)</span>
+<span id="cb24-227"><a href="#cb24-227" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(display_array) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'Episodes of IMV'</span>, <span class="st">'PICU stays with IMV'</span>, <span class="st">'Unique patients requiring IMV'</span>)</span>
 <span id="cb24-228"><a href="#cb24-228" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-229"><a href="#cb24-229" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(display_array, </span>
-<span id="cb24-230"><a href="#cb24-230" aria-hidden="true" tabindex="-1"></a>      <span class="at">format =</span> <span class="st">"markdown"</span>, </span>
-<span id="cb24-231"><a href="#cb24-231" aria-hidden="true" tabindex="-1"></a>      <span class="at">align =</span> <span class="st">"c"</span>,</span>
-<span id="cb24-232"><a href="#cb24-232" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption =</span> <span class="cn">NULL</span>,</span>
-<span id="cb24-233"><a href="#cb24-233" aria-hidden="true" tabindex="-1"></a>      <span class="at">col.names =</span> <span class="st">'N'</span>)</span>
-<span id="cb24-234"><a href="#cb24-234" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb24-235"><a href="#cb24-235" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-236"><a href="#cb24-236" aria-hidden="true" tabindex="-1"></a><span class="fu">## Physical therapy</span></span>
-<span id="cb24-237"><a href="#cb24-237" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-238"><a href="#cb24-238" aria-hidden="true" tabindex="-1"></a>Physical therapy is logged in flowsheets. For the most part, the physical therapists log the total amount of time they worked. Some physical therapists also log the specific activities they performed (such as gait training, wheel chair training, etc). This may or may not be consistent and will need some QAing.</span>
+<span id="cb24-229"><a href="#cb24-229" aria-hidden="true" tabindex="-1"></a><span class="co"># display_table &lt;- tibble(`Episodes of IMV` = n_vent_ep, </span></span>
+<span id="cb24-230"><a href="#cb24-230" aria-hidden="true" tabindex="-1"></a>       <span class="co"># `PICU stays with IMV` = n_vent_picu,</span></span>
+<span id="cb24-231"><a href="#cb24-231" aria-hidden="true" tabindex="-1"></a>       <span class="co"># `Unique patients requiring IMV` = n_vent_mrn)</span></span>
+<span id="cb24-232"><a href="#cb24-232" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-233"><a href="#cb24-233" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(display_array, </span>
+<span id="cb24-234"><a href="#cb24-234" aria-hidden="true" tabindex="-1"></a>      <span class="at">format =</span> <span class="st">"markdown"</span>, </span>
+<span id="cb24-235"><a href="#cb24-235" aria-hidden="true" tabindex="-1"></a>      <span class="at">align =</span> <span class="st">"c"</span>,</span>
+<span id="cb24-236"><a href="#cb24-236" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption =</span> <span class="cn">NULL</span>,</span>
+<span id="cb24-237"><a href="#cb24-237" aria-hidden="true" tabindex="-1"></a>      <span class="at">col.names =</span> <span class="st">'N'</span>)</span>
+<span id="cb24-238"><a href="#cb24-238" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb24-239"><a href="#cb24-239" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-242"><a href="#cb24-242" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb24-243"><a href="#cb24-243" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: load PT</span></span>
-<span id="cb24-244"><a href="#cb24-244" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-245"><a href="#cb24-245" aria-hidden="true" tabindex="-1"></a>df_pt <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="fu">paste0</span>(data_path, <span class="st">'/Report 8F - Physical Therapy.txt'</span>),</span>
-<span id="cb24-246"><a href="#cb24-246" aria-hidden="true" tabindex="-1"></a>                    <span class="at">delim =</span> <span class="st">"|"</span>,</span>
-<span id="cb24-247"><a href="#cb24-247" aria-hidden="true" tabindex="-1"></a>                    <span class="at">escape_double =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb24-248"><a href="#cb24-248" aria-hidden="true" tabindex="-1"></a>                    <span class="at">col_types =</span> <span class="fu">cols</span>(<span class="at">PAT_ENC_CSN_ID =</span> <span class="fu">col_character</span>(),</span>
-<span id="cb24-249"><a href="#cb24-249" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">MRN =</span> <span class="fu">col_character</span>(),</span>
-<span id="cb24-250"><a href="#cb24-250" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">FLOWSHEET_NAME =</span> <span class="fu">col_character</span>(),</span>
-<span id="cb24-251"><a href="#cb24-251" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">MEASURE_VALUE =</span> <span class="fu">col_number</span>(),</span>
-<span id="cb24-252"><a href="#cb24-252" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">RECORDED_TIME =</span> <span class="fu">col_datetime</span>(<span class="at">format =</span> <span class="st">"%Y-%m-%d %H:%M:%S"</span>)),</span>
-<span id="cb24-253"><a href="#cb24-253" aria-hidden="true" tabindex="-1"></a>                    <span class="at">trim_ws =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb24-254"><a href="#cb24-254" aria-hidden="true" tabindex="-1"></a>     <span class="fu">clean_names</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb24-255"><a href="#cb24-255" aria-hidden="true" tabindex="-1"></a>     <span class="fu">select</span>(mrn, <span class="at">enc_id =</span> pat_enc_csn_id, <span class="fu">everything</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb24-256"><a href="#cb24-256" aria-hidden="true" tabindex="-1"></a>     <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.character), str_to_lower)) <span class="sc">%&gt;%</span></span>
-<span id="cb24-257"><a href="#cb24-257" aria-hidden="true" tabindex="-1"></a>     <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.character), <span class="sc">~</span> <span class="fu">str_remove_all</span>(.x, <span class="st">'^r nyc '</span>))) <span class="sc">%&gt;%</span></span>
-<span id="cb24-258"><a href="#cb24-258" aria-hidden="true" tabindex="-1"></a>     <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.character), <span class="sc">~</span> <span class="fu">str_remove_all</span>(.x, <span class="st">'^r rhb '</span>))) <span class="sc">%&gt;%</span></span>
-<span id="cb24-259"><a href="#cb24-259" aria-hidden="true" tabindex="-1"></a>     <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.character), <span class="sc">~</span> <span class="fu">str_remove_all</span>(.x, <span class="st">'^rhb '</span>)))</span>
-<span id="cb24-260"><a href="#cb24-260" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-261"><a href="#cb24-261" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb24-262"><a href="#cb24-262" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-263"><a href="#cb24-263" aria-hidden="true" tabindex="-1"></a>There is a kind of variable called "PT received on" which is where the PT entered the date they supposedly provided PT. However, they always log PT when provided and there are multiple instances of the incorrect date being logged (such as a date in the future). Because of this, we will only use the date at the time PT was logged, rather than what the therapist manually entered. If we do need to use it, the date is recorded as the number of days after 12/31/1840 (unclear why). To convert this to a date, you can use:</span>
+<span id="cb24-240"><a href="#cb24-240" aria-hidden="true" tabindex="-1"></a><span class="fu">## Physical therapy</span></span>
+<span id="cb24-241"><a href="#cb24-241" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-242"><a href="#cb24-242" aria-hidden="true" tabindex="-1"></a>Physical therapy is logged in flowsheets. For the most part, the physical therapists log the total amount of time they worked. Some physical therapists also log the specific activities they performed (such as gait training, wheel chair training, etc). This may or may not be consistent and will need some QAing.</span>
+<span id="cb24-243"><a href="#cb24-243" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-246"><a href="#cb24-246" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-247"><a href="#cb24-247" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: load PT</span></span>
+<span id="cb24-248"><a href="#cb24-248" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-249"><a href="#cb24-249" aria-hidden="true" tabindex="-1"></a>df_pt <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="fu">paste0</span>(data_path, <span class="st">'/Report 8F - Physical Therapy.txt'</span>),</span>
+<span id="cb24-250"><a href="#cb24-250" aria-hidden="true" tabindex="-1"></a>                    <span class="at">delim =</span> <span class="st">"|"</span>,</span>
+<span id="cb24-251"><a href="#cb24-251" aria-hidden="true" tabindex="-1"></a>                    <span class="at">escape_double =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb24-252"><a href="#cb24-252" aria-hidden="true" tabindex="-1"></a>                    <span class="at">col_types =</span> <span class="fu">cols</span>(<span class="at">PAT_ENC_CSN_ID =</span> <span class="fu">col_character</span>(),</span>
+<span id="cb24-253"><a href="#cb24-253" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">MRN =</span> <span class="fu">col_character</span>(),</span>
+<span id="cb24-254"><a href="#cb24-254" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">FLOWSHEET_NAME =</span> <span class="fu">col_character</span>(),</span>
+<span id="cb24-255"><a href="#cb24-255" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">MEASURE_VALUE =</span> <span class="fu">col_number</span>(),</span>
+<span id="cb24-256"><a href="#cb24-256" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">RECORDED_TIME =</span> <span class="fu">col_datetime</span>(<span class="at">format =</span> <span class="st">"%Y-%m-%d %H:%M:%S"</span>)),</span>
+<span id="cb24-257"><a href="#cb24-257" aria-hidden="true" tabindex="-1"></a>                    <span class="at">trim_ws =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb24-258"><a href="#cb24-258" aria-hidden="true" tabindex="-1"></a>     <span class="fu">clean_names</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb24-259"><a href="#cb24-259" aria-hidden="true" tabindex="-1"></a>     <span class="fu">select</span>(mrn, <span class="at">enc_id =</span> pat_enc_csn_id, <span class="fu">everything</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb24-260"><a href="#cb24-260" aria-hidden="true" tabindex="-1"></a>     <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.character), str_to_lower)) <span class="sc">%&gt;%</span></span>
+<span id="cb24-261"><a href="#cb24-261" aria-hidden="true" tabindex="-1"></a>     <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.character), <span class="sc">~</span> <span class="fu">str_remove_all</span>(.x, <span class="st">'^r nyc '</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb24-262"><a href="#cb24-262" aria-hidden="true" tabindex="-1"></a>     <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.character), <span class="sc">~</span> <span class="fu">str_remove_all</span>(.x, <span class="st">'^r rhb '</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb24-263"><a href="#cb24-263" aria-hidden="true" tabindex="-1"></a>     <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.character), <span class="sc">~</span> <span class="fu">str_remove_all</span>(.x, <span class="st">'^rhb '</span>)))</span>
 <span id="cb24-264"><a href="#cb24-264" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-265"><a href="#cb24-265" aria-hidden="true" tabindex="-1"></a><span class="in">``` r</span></span>
-<span id="cb24-266"><a href="#cb24-266" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(<span class="at">pt_received_on =</span> <span class="fu">days</span>(pt_received_on) <span class="sc">+</span> <span class="fu">ymd</span>(<span class="st">'1840-12-31'</span>))</span>
-<span id="cb24-267"><a href="#cb24-267" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-265"><a href="#cb24-265" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-266"><a href="#cb24-266" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-267"><a href="#cb24-267" aria-hidden="true" tabindex="-1"></a>There is a kind of variable called "PT received on" which is where the PT entered the date they supposedly provided PT. However, they always log PT when provided and there are multiple instances of the incorrect date being logged (such as a date in the future). Because of this, we will only use the date at the time PT was logged, rather than what the therapist manually entered. If we do need to use it, the date is recorded as the number of days after 12/31/1840 (unclear why). To convert this to a date, you can use:</span>
 <span id="cb24-268"><a href="#cb24-268" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-269"><a href="#cb24-269" aria-hidden="true" tabindex="-1"></a>There are also many kinds flowsheet rows being documented on. Not all are really relevant to our purposes. They are:</span>
-<span id="cb24-270"><a href="#cb24-270" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-273"><a href="#cb24-273" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb24-274"><a href="#cb24-274" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: PT flowsheet types</span></span>
-<span id="cb24-275"><a href="#cb24-275" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-276"><a href="#cb24-276" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-277"><a href="#cb24-277" aria-hidden="true" tabindex="-1"></a><span class="co"># Print all flowsheet names</span></span>
-<span id="cb24-278"><a href="#cb24-278" aria-hidden="true" tabindex="-1"></a>df_pt <span class="sc">%&gt;%</span> <span class="fu">distinct</span>(flowsheet_name) <span class="sc">%&gt;%</span> <span class="fu">print</span>(<span class="at">n=</span><span class="cn">Inf</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb24-279"><a href="#cb24-279" aria-hidden="true" tabindex="-1"></a>     <span class="fu">kable</span>(<span class="at">format =</span> <span class="st">'markdown'</span>)</span>
+<span id="cb24-269"><a href="#cb24-269" aria-hidden="true" tabindex="-1"></a><span class="in">``` r</span></span>
+<span id="cb24-270"><a href="#cb24-270" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(<span class="at">pt_received_on =</span> <span class="fu">days</span>(pt_received_on) <span class="sc">+</span> <span class="fu">ymd</span>(<span class="st">'1840-12-31'</span>))</span>
+<span id="cb24-271"><a href="#cb24-271" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-272"><a href="#cb24-272" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-273"><a href="#cb24-273" aria-hidden="true" tabindex="-1"></a>There are also many kinds flowsheet rows being documented on. Not all are really relevant to our purposes. They are:</span>
+<span id="cb24-274"><a href="#cb24-274" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-277"><a href="#cb24-277" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-278"><a href="#cb24-278" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: PT flowsheet types</span></span>
+<span id="cb24-279"><a href="#cb24-279" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-280"><a href="#cb24-280" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-281"><a href="#cb24-281" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb24-282"><a href="#cb24-282" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-283"><a href="#cb24-283" aria-hidden="true" tabindex="-1"></a>Most of these differentiate the amount of time spent on a given task. It's not always clear which of these are active versus passive in terms of participation of the patient. Some also seem irrelevant. We will dictate all of the relevant ones as:</span>
+<span id="cb24-281"><a href="#cb24-281" aria-hidden="true" tabindex="-1"></a><span class="co"># Print all flowsheet names</span></span>
+<span id="cb24-282"><a href="#cb24-282" aria-hidden="true" tabindex="-1"></a>df_pt <span class="sc">%&gt;%</span> <span class="fu">distinct</span>(flowsheet_name) <span class="sc">%&gt;%</span> <span class="fu">print</span>(<span class="at">n=</span><span class="cn">Inf</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb24-283"><a href="#cb24-283" aria-hidden="true" tabindex="-1"></a>     <span class="fu">kable</span>(<span class="at">format =</span> <span class="st">'markdown'</span>)</span>
 <span id="cb24-284"><a href="#cb24-284" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-285"><a href="#cb24-285" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>therapeutic activity time entry</span>
+<span id="cb24-285"><a href="#cb24-285" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb24-286"><a href="#cb24-286" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-287"><a href="#cb24-287" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>ip pt time calculation</span>
+<span id="cb24-287"><a href="#cb24-287" aria-hidden="true" tabindex="-1"></a>Most of these differentiate the amount of time spent on a given task. It's not always clear which of these are active versus passive in terms of participation of the patient. Some also seem irrelevant. We will dictate all of the relevant ones as:</span>
 <span id="cb24-288"><a href="#cb24-288" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-289"><a href="#cb24-289" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>pt re-evaluation time entry</span>
+<span id="cb24-289"><a href="#cb24-289" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>therapeutic activity time entry</span>
 <span id="cb24-290"><a href="#cb24-290" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-291"><a href="#cb24-291" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>gait training time entry</span>
+<span id="cb24-291"><a href="#cb24-291" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>ip pt time calculation</span>
 <span id="cb24-292"><a href="#cb24-292" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-293"><a href="#cb24-293" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>neuromuscular re-education time entry</span>
+<span id="cb24-293"><a href="#cb24-293" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>pt re-evaluation time entry</span>
 <span id="cb24-294"><a href="#cb24-294" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-295"><a href="#cb24-295" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>self care/home management (adls) time entry</span>
+<span id="cb24-295"><a href="#cb24-295" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>gait training time entry</span>
 <span id="cb24-296"><a href="#cb24-296" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-297"><a href="#cb24-297" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>therapeutic exercise time entry</span>
+<span id="cb24-297"><a href="#cb24-297" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>neuromuscular re-education time entry</span>
 <span id="cb24-298"><a href="#cb24-298" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-299"><a href="#cb24-299" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>therapeutic activity comments</span>
+<span id="cb24-299"><a href="#cb24-299" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>self care/home management (adls) time entry</span>
 <span id="cb24-300"><a href="#cb24-300" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-301"><a href="#cb24-301" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>therapeutic exercise comments</span>
+<span id="cb24-301"><a href="#cb24-301" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>therapeutic exercise time entry</span>
 <span id="cb24-302"><a href="#cb24-302" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-303"><a href="#cb24-303" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>gait training comments</span>
+<span id="cb24-303"><a href="#cb24-303" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>therapeutic activity comments</span>
 <span id="cb24-304"><a href="#cb24-304" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-305"><a href="#cb24-305" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>manual therapy time entry</span>
+<span id="cb24-305"><a href="#cb24-305" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>therapeutic exercise comments</span>
 <span id="cb24-306"><a href="#cb24-306" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-307"><a href="#cb24-307" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>orthotic/prosthetic management and/or training time entry</span>
+<span id="cb24-307"><a href="#cb24-307" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>gait training comments</span>
 <span id="cb24-308"><a href="#cb24-308" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-309"><a href="#cb24-309" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>wheelchair management time entry</span>
+<span id="cb24-309"><a href="#cb24-309" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>manual therapy time entry</span>
 <span id="cb24-310"><a href="#cb24-310" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-311"><a href="#cb24-311" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>pt eval treat tolerance</span>
+<span id="cb24-311"><a href="#cb24-311" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>orthotic/prosthetic management and/or training time entry</span>
 <span id="cb24-312"><a href="#cb24-312" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-313"><a href="#cb24-313" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>prosthetic training time entry</span>
+<span id="cb24-313"><a href="#cb24-313" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>wheelchair management time entry</span>
 <span id="cb24-314"><a href="#cb24-314" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-315"><a href="#cb24-315" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>therapeutic massage time entry</span>
+<span id="cb24-315"><a href="#cb24-315" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>pt eval treat tolerance</span>
 <span id="cb24-316"><a href="#cb24-316" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-317"><a href="#cb24-317" aria-hidden="true" tabindex="-1"></a>(It might seem odd that we are keeping "comments." The reason is that in a subsequentstep, we enforce that only numeric values are retained. Often the amount of time spent is erroneously entered as a "comment" so we will keep these.)</span>
+<span id="cb24-317"><a href="#cb24-317" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>prosthetic training time entry</span>
 <span id="cb24-318"><a href="#cb24-318" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-319"><a href="#cb24-319" aria-hidden="true" tabindex="-1"></a>In the next step, we save all of these types of PT as a wide format data frame. Now we have access to each type of PT in case we need it for later.</span>
+<span id="cb24-319"><a href="#cb24-319" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>therapeutic massage time entry</span>
 <span id="cb24-320"><a href="#cb24-320" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-321"><a href="#cb24-321" aria-hidden="true" tabindex="-1"></a>The variable <span class="in">`ip_pt_time_calculation`</span> appears to be the total of all other types of PT being provided. The other units specify the PT being provided, which all sum to this variable. Therefore <span class="in">`ip_pt_time_calculation`</span> is the most important variable here and the one we will use as the basis for how much PT is provided.</span>
+<span id="cb24-321"><a href="#cb24-321" aria-hidden="true" tabindex="-1"></a>(It might seem odd that we are keeping "comments." The reason is that in a subsequentstep, we enforce that only numeric values are retained. Often the amount of time spent is erroneously entered as a "comment" so we will keep these.)</span>
 <span id="cb24-322"><a href="#cb24-322" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-325"><a href="#cb24-325" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb24-326"><a href="#cb24-326" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: PT types</span></span>
-<span id="cb24-327"><a href="#cb24-327" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-328"><a href="#cb24-328" aria-hidden="true" tabindex="-1"></a><span class="co"># Relevant types of PT rows...</span></span>
-<span id="cb24-329"><a href="#cb24-329" aria-hidden="true" tabindex="-1"></a>relevant_pt <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'therapeutic activity time entry'</span>,</span>
-<span id="cb24-330"><a href="#cb24-330" aria-hidden="true" tabindex="-1"></a>                 <span class="st">'ip pt time calculation'</span>,</span>
-<span id="cb24-331"><a href="#cb24-331" aria-hidden="true" tabindex="-1"></a>                 <span class="co"># 'pt received on',</span></span>
-<span id="cb24-332"><a href="#cb24-332" aria-hidden="true" tabindex="-1"></a>                 <span class="st">'pt re-evaluation time entry'</span>,</span>
-<span id="cb24-333"><a href="#cb24-333" aria-hidden="true" tabindex="-1"></a>                 <span class="st">'gait training time entry'</span>,</span>
-<span id="cb24-334"><a href="#cb24-334" aria-hidden="true" tabindex="-1"></a>                 <span class="st">'neuromuscular re-education time entry'</span>,</span>
-<span id="cb24-335"><a href="#cb24-335" aria-hidden="true" tabindex="-1"></a>                 <span class="st">'self care/home management (adls) time entry'</span>,</span>
-<span id="cb24-336"><a href="#cb24-336" aria-hidden="true" tabindex="-1"></a>                 <span class="st">'therapeutic exercise time entry'</span>,</span>
-<span id="cb24-337"><a href="#cb24-337" aria-hidden="true" tabindex="-1"></a>                 <span class="st">'therapeutic activity comments'</span>,</span>
-<span id="cb24-338"><a href="#cb24-338" aria-hidden="true" tabindex="-1"></a>                 <span class="st">'therapeutic exercise comments'</span>,</span>
-<span id="cb24-339"><a href="#cb24-339" aria-hidden="true" tabindex="-1"></a>                 <span class="co"># 'orthotic management training time entry',</span></span>
-<span id="cb24-340"><a href="#cb24-340" aria-hidden="true" tabindex="-1"></a>                  <span class="st">'gait training comments'</span>,</span>
-<span id="cb24-341"><a href="#cb24-341" aria-hidden="true" tabindex="-1"></a>                 <span class="co"># 'cognitive function direct pt contact',</span></span>
-<span id="cb24-342"><a href="#cb24-342" aria-hidden="true" tabindex="-1"></a>                 <span class="st">'manual therapy time entry'</span>,</span>
-<span id="cb24-343"><a href="#cb24-343" aria-hidden="true" tabindex="-1"></a>                 <span class="st">'orthotic/prosthetic management and/or training time entry'</span>,</span>
-<span id="cb24-344"><a href="#cb24-344" aria-hidden="true" tabindex="-1"></a>                 <span class="co"># 'canalith repositioning time entry',</span></span>
-<span id="cb24-345"><a href="#cb24-345" aria-hidden="true" tabindex="-1"></a>                 <span class="st">'wheelchair management time entry'</span>,</span>
-<span id="cb24-346"><a href="#cb24-346" aria-hidden="true" tabindex="-1"></a>                 <span class="st">'pt eval treat tolerance'</span>,</span>
-<span id="cb24-347"><a href="#cb24-347" aria-hidden="true" tabindex="-1"></a>                 <span class="co"># 'group therapy time entry',</span></span>
-<span id="cb24-348"><a href="#cb24-348" aria-hidden="true" tabindex="-1"></a>                 <span class="st">'prosthetic training time entry'</span>,</span>
-<span id="cb24-349"><a href="#cb24-349" aria-hidden="true" tabindex="-1"></a>                 <span class="st">'therapeutic massage time entry'</span></span>
-<span id="cb24-350"><a href="#cb24-350" aria-hidden="true" tabindex="-1"></a>                 )</span>
-<span id="cb24-351"><a href="#cb24-351" aria-hidden="true" tabindex="-1"></a>relevant_pt_str <span class="ot">&lt;-</span> <span class="fu">str_flatten</span>(relevant_pt, <span class="at">collapse =</span> <span class="st">'|'</span>)</span>
-<span id="cb24-352"><a href="#cb24-352" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-353"><a href="#cb24-353" aria-hidden="true" tabindex="-1"></a><span class="co"># Keep only relevant kinds of PT</span></span>
-<span id="cb24-354"><a href="#cb24-354" aria-hidden="true" tabindex="-1"></a>df_pt <span class="ot">&lt;-</span> df_pt <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="fu">str_detect</span>(flowsheet_name, relevant_pt_str))</span>
-<span id="cb24-355"><a href="#cb24-355" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-356"><a href="#cb24-356" aria-hidden="true" tabindex="-1"></a><span class="co"># Make sure all types are numeric</span></span>
-<span id="cb24-357"><a href="#cb24-357" aria-hidden="true" tabindex="-1"></a>df_pt <span class="ot">&lt;-</span> df_pt <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">measure_value =</span> <span class="fu">as.numeric</span>(measure_value))</span>
-<span id="cb24-358"><a href="#cb24-358" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-359"><a href="#cb24-359" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove any 0-time units</span></span>
-<span id="cb24-360"><a href="#cb24-360" aria-hidden="true" tabindex="-1"></a>df_pt <span class="ot">&lt;-</span> df_pt <span class="sc">%&gt;%</span> <span class="fu">filter</span>(measure_value <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
-<span id="cb24-361"><a href="#cb24-361" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-362"><a href="#cb24-362" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to wide format</span></span>
-<span id="cb24-363"><a href="#cb24-363" aria-hidden="true" tabindex="-1"></a>df_pt_wide <span class="ot">&lt;-</span> df_pt <span class="sc">%&gt;%</span></span>
-<span id="cb24-364"><a href="#cb24-364" aria-hidden="true" tabindex="-1"></a>     <span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> <span class="fu">c</span>(<span class="st">'mrn'</span>, <span class="st">'enc_id'</span>, <span class="st">'recorded_time'</span>),</span>
-<span id="cb24-365"><a href="#cb24-365" aria-hidden="true" tabindex="-1"></a>                 <span class="at">names_from =</span> flowsheet_name,</span>
-<span id="cb24-366"><a href="#cb24-366" aria-hidden="true" tabindex="-1"></a>                 <span class="at">values_from =</span> measure_value) <span class="sc">%&gt;%</span></span>
-<span id="cb24-367"><a href="#cb24-367" aria-hidden="true" tabindex="-1"></a>     <span class="fu">clean_names</span>()</span>
-<span id="cb24-368"><a href="#cb24-368" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-369"><a href="#cb24-369" aria-hidden="true" tabindex="-1"></a><span class="co"># Just keep a version with total time</span></span>
-<span id="cb24-370"><a href="#cb24-370" aria-hidden="true" tabindex="-1"></a>df_pt_total <span class="ot">&lt;-</span> df_pt_wide <span class="sc">%&gt;%</span></span>
-<span id="cb24-371"><a href="#cb24-371" aria-hidden="true" tabindex="-1"></a>     <span class="fu">select</span>(mrn, enc_id, recorded_time, <span class="at">pt_time =</span> ip_pt_time_calculation) <span class="sc">%&gt;%</span> </span>
-<span id="cb24-372"><a href="#cb24-372" aria-hidden="true" tabindex="-1"></a>     <span class="fu">distinct</span>()</span>
-<span id="cb24-373"><a href="#cb24-373" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-374"><a href="#cb24-374" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb24-375"><a href="#cb24-375" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-376"><a href="#cb24-376" aria-hidden="true" tabindex="-1"></a><span class="fu">### Amount of PT</span></span>
+<span id="cb24-323"><a href="#cb24-323" aria-hidden="true" tabindex="-1"></a>In the next step, we save all of these types of PT as a wide format data frame. Now we have access to each type of PT in case we need it for later.</span>
+<span id="cb24-324"><a href="#cb24-324" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-325"><a href="#cb24-325" aria-hidden="true" tabindex="-1"></a>The variable <span class="in">`ip_pt_time_calculation`</span> appears to be the total of all other types of PT being provided. The other units specify the PT being provided, which all sum to this variable. Therefore <span class="in">`ip_pt_time_calculation`</span> is the most important variable here and the one we will use as the basis for how much PT is provided.</span>
+<span id="cb24-326"><a href="#cb24-326" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-329"><a href="#cb24-329" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-330"><a href="#cb24-330" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: PT types</span></span>
+<span id="cb24-331"><a href="#cb24-331" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-332"><a href="#cb24-332" aria-hidden="true" tabindex="-1"></a><span class="co"># Relevant types of PT rows...</span></span>
+<span id="cb24-333"><a href="#cb24-333" aria-hidden="true" tabindex="-1"></a>relevant_pt <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'therapeutic activity time entry'</span>,</span>
+<span id="cb24-334"><a href="#cb24-334" aria-hidden="true" tabindex="-1"></a>                 <span class="st">'ip pt time calculation'</span>,</span>
+<span id="cb24-335"><a href="#cb24-335" aria-hidden="true" tabindex="-1"></a>                 <span class="co"># 'pt received on',</span></span>
+<span id="cb24-336"><a href="#cb24-336" aria-hidden="true" tabindex="-1"></a>                 <span class="st">'pt re-evaluation time entry'</span>,</span>
+<span id="cb24-337"><a href="#cb24-337" aria-hidden="true" tabindex="-1"></a>                 <span class="st">'gait training time entry'</span>,</span>
+<span id="cb24-338"><a href="#cb24-338" aria-hidden="true" tabindex="-1"></a>                 <span class="st">'neuromuscular re-education time entry'</span>,</span>
+<span id="cb24-339"><a href="#cb24-339" aria-hidden="true" tabindex="-1"></a>                 <span class="st">'self care/home management (adls) time entry'</span>,</span>
+<span id="cb24-340"><a href="#cb24-340" aria-hidden="true" tabindex="-1"></a>                 <span class="st">'therapeutic exercise time entry'</span>,</span>
+<span id="cb24-341"><a href="#cb24-341" aria-hidden="true" tabindex="-1"></a>                 <span class="st">'therapeutic activity comments'</span>,</span>
+<span id="cb24-342"><a href="#cb24-342" aria-hidden="true" tabindex="-1"></a>                 <span class="st">'therapeutic exercise comments'</span>,</span>
+<span id="cb24-343"><a href="#cb24-343" aria-hidden="true" tabindex="-1"></a>                 <span class="co"># 'orthotic management training time entry',</span></span>
+<span id="cb24-344"><a href="#cb24-344" aria-hidden="true" tabindex="-1"></a>                  <span class="st">'gait training comments'</span>,</span>
+<span id="cb24-345"><a href="#cb24-345" aria-hidden="true" tabindex="-1"></a>                 <span class="co"># 'cognitive function direct pt contact',</span></span>
+<span id="cb24-346"><a href="#cb24-346" aria-hidden="true" tabindex="-1"></a>                 <span class="st">'manual therapy time entry'</span>,</span>
+<span id="cb24-347"><a href="#cb24-347" aria-hidden="true" tabindex="-1"></a>                 <span class="st">'orthotic/prosthetic management and/or training time entry'</span>,</span>
+<span id="cb24-348"><a href="#cb24-348" aria-hidden="true" tabindex="-1"></a>                 <span class="co"># 'canalith repositioning time entry',</span></span>
+<span id="cb24-349"><a href="#cb24-349" aria-hidden="true" tabindex="-1"></a>                 <span class="st">'wheelchair management time entry'</span>,</span>
+<span id="cb24-350"><a href="#cb24-350" aria-hidden="true" tabindex="-1"></a>                 <span class="st">'pt eval treat tolerance'</span>,</span>
+<span id="cb24-351"><a href="#cb24-351" aria-hidden="true" tabindex="-1"></a>                 <span class="co"># 'group therapy time entry',</span></span>
+<span id="cb24-352"><a href="#cb24-352" aria-hidden="true" tabindex="-1"></a>                 <span class="st">'prosthetic training time entry'</span>,</span>
+<span id="cb24-353"><a href="#cb24-353" aria-hidden="true" tabindex="-1"></a>                 <span class="st">'therapeutic massage time entry'</span></span>
+<span id="cb24-354"><a href="#cb24-354" aria-hidden="true" tabindex="-1"></a>                 )</span>
+<span id="cb24-355"><a href="#cb24-355" aria-hidden="true" tabindex="-1"></a>relevant_pt_str <span class="ot">&lt;-</span> <span class="fu">str_flatten</span>(relevant_pt, <span class="at">collapse =</span> <span class="st">'|'</span>)</span>
+<span id="cb24-356"><a href="#cb24-356" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-357"><a href="#cb24-357" aria-hidden="true" tabindex="-1"></a><span class="co"># Keep only relevant kinds of PT</span></span>
+<span id="cb24-358"><a href="#cb24-358" aria-hidden="true" tabindex="-1"></a>df_pt <span class="ot">&lt;-</span> df_pt <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="fu">str_detect</span>(flowsheet_name, relevant_pt_str))</span>
+<span id="cb24-359"><a href="#cb24-359" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-360"><a href="#cb24-360" aria-hidden="true" tabindex="-1"></a><span class="co"># Make sure all types are numeric</span></span>
+<span id="cb24-361"><a href="#cb24-361" aria-hidden="true" tabindex="-1"></a>df_pt <span class="ot">&lt;-</span> df_pt <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">measure_value =</span> <span class="fu">as.numeric</span>(measure_value))</span>
+<span id="cb24-362"><a href="#cb24-362" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-363"><a href="#cb24-363" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove any 0-time units</span></span>
+<span id="cb24-364"><a href="#cb24-364" aria-hidden="true" tabindex="-1"></a>df_pt <span class="ot">&lt;-</span> df_pt <span class="sc">%&gt;%</span> <span class="fu">filter</span>(measure_value <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb24-365"><a href="#cb24-365" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-366"><a href="#cb24-366" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to wide format</span></span>
+<span id="cb24-367"><a href="#cb24-367" aria-hidden="true" tabindex="-1"></a>df_pt_wide <span class="ot">&lt;-</span> df_pt <span class="sc">%&gt;%</span></span>
+<span id="cb24-368"><a href="#cb24-368" aria-hidden="true" tabindex="-1"></a>     <span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> <span class="fu">c</span>(<span class="st">'mrn'</span>, <span class="st">'enc_id'</span>, <span class="st">'recorded_time'</span>),</span>
+<span id="cb24-369"><a href="#cb24-369" aria-hidden="true" tabindex="-1"></a>                 <span class="at">names_from =</span> flowsheet_name,</span>
+<span id="cb24-370"><a href="#cb24-370" aria-hidden="true" tabindex="-1"></a>                 <span class="at">values_from =</span> measure_value) <span class="sc">%&gt;%</span></span>
+<span id="cb24-371"><a href="#cb24-371" aria-hidden="true" tabindex="-1"></a>     <span class="fu">clean_names</span>()</span>
+<span id="cb24-372"><a href="#cb24-372" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-373"><a href="#cb24-373" aria-hidden="true" tabindex="-1"></a><span class="co"># Just keep a version with total time</span></span>
+<span id="cb24-374"><a href="#cb24-374" aria-hidden="true" tabindex="-1"></a>df_pt_total <span class="ot">&lt;-</span> df_pt_wide <span class="sc">%&gt;%</span></span>
+<span id="cb24-375"><a href="#cb24-375" aria-hidden="true" tabindex="-1"></a>     <span class="fu">select</span>(mrn, enc_id, recorded_time, <span class="at">pt_time =</span> ip_pt_time_calculation) <span class="sc">%&gt;%</span> </span>
+<span id="cb24-376"><a href="#cb24-376" aria-hidden="true" tabindex="-1"></a>     <span class="fu">distinct</span>()</span>
 <span id="cb24-377"><a href="#cb24-377" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-378"><a href="#cb24-378" aria-hidden="true" tabindex="-1"></a>First we will describe, in general, how much PT is being delivered. We need to make sure that we only sum up PT that was delivered after the start of a PICU stay. To do this we take the <span class="in">`df_picu_startstop`</span> data frame, which contains ICU admit and discharge times. Create a few windows of time spanning 0-24 hours, 24-48 hours, and 48-72 hours. Also create an interval that spans 0-72 hours.</span>
+<span id="cb24-378"><a href="#cb24-378" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb24-379"><a href="#cb24-379" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-382"><a href="#cb24-382" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb24-383"><a href="#cb24-383" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: PT and PICU time joins</span></span>
-<span id="cb24-384"><a href="#cb24-384" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-385"><a href="#cb24-385" aria-hidden="true" tabindex="-1"></a><span class="co"># Update the PICU start/stop so that it has a timestamp and intervals</span></span>
-<span id="cb24-386"><a href="#cb24-386" aria-hidden="true" tabindex="-1"></a><span class="co"># for 24, 48, and 72 hours</span></span>
-<span id="cb24-387"><a href="#cb24-387" aria-hidden="true" tabindex="-1"></a>df_temp <span class="ot">&lt;-</span> df_picu_startstop <span class="sc">%&gt;%</span></span>
-<span id="cb24-388"><a href="#cb24-388" aria-hidden="true" tabindex="-1"></a>     <span class="fu">mutate</span>(<span class="at">t24 =</span> icu_start_date <span class="sc">+</span> <span class="fu">hours</span>(<span class="dv">24</span>),</span>
-<span id="cb24-389"><a href="#cb24-389" aria-hidden="true" tabindex="-1"></a>            <span class="at">t48 =</span> icu_start_date <span class="sc">+</span> <span class="fu">hours</span>(<span class="dv">48</span>),</span>
-<span id="cb24-390"><a href="#cb24-390" aria-hidden="true" tabindex="-1"></a>            <span class="at">t72 =</span> icu_start_date <span class="sc">+</span> <span class="fu">hours</span>(<span class="dv">72</span>),</span>
-<span id="cb24-391"><a href="#cb24-391" aria-hidden="true" tabindex="-1"></a>            <span class="at">int0_72 =</span> <span class="fu">interval</span>(icu_start_date, t72),</span>
-<span id="cb24-392"><a href="#cb24-392" aria-hidden="true" tabindex="-1"></a>            <span class="at">int0_24 =</span> <span class="fu">interval</span>(icu_start_date, t24),</span>
-<span id="cb24-393"><a href="#cb24-393" aria-hidden="true" tabindex="-1"></a>            <span class="at">int24_48 =</span> <span class="fu">interval</span>(t24, t48),</span>
-<span id="cb24-394"><a href="#cb24-394" aria-hidden="true" tabindex="-1"></a>            <span class="at">int48_72 =</span> <span class="fu">interval</span>(t48, t72)</span>
-<span id="cb24-395"><a href="#cb24-395" aria-hidden="true" tabindex="-1"></a>            )</span>
-<span id="cb24-396"><a href="#cb24-396" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-397"><a href="#cb24-397" aria-hidden="true" tabindex="-1"></a><span class="co"># Label the 1st hospitalization</span></span>
-<span id="cb24-398"><a href="#cb24-398" aria-hidden="true" tabindex="-1"></a>df_temp <span class="ot">&lt;-</span> df_temp <span class="sc">%&gt;%</span> </span>
-<span id="cb24-399"><a href="#cb24-399" aria-hidden="true" tabindex="-1"></a>     <span class="fu">group_by</span>(mrn, enc_id) <span class="sc">%&gt;%</span> </span>
-<span id="cb24-400"><a href="#cb24-400" aria-hidden="true" tabindex="-1"></a>     <span class="fu">arrange</span>(mrn, enc_id, icu_start_date) <span class="sc">%&gt;%</span> </span>
-<span id="cb24-401"><a href="#cb24-401" aria-hidden="true" tabindex="-1"></a>     <span class="fu">mutate</span>(<span class="at">icu_stay =</span> <span class="fu">row_number</span>()) <span class="sc">%&gt;%</span> </span>
-<span id="cb24-402"><a href="#cb24-402" aria-hidden="true" tabindex="-1"></a>     <span class="fu">ungroup</span>()</span>
-<span id="cb24-403"><a href="#cb24-403" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-404"><a href="#cb24-404" aria-hidden="true" tabindex="-1"></a><span class="co"># Create an inequality join so we make sure to only match PT that occurred after</span></span>
-<span id="cb24-405"><a href="#cb24-405" aria-hidden="true" tabindex="-1"></a><span class="co"># the PICU start</span></span>
-<span id="cb24-406"><a href="#cb24-406" aria-hidden="true" tabindex="-1"></a>pt_join_by <span class="ot">&lt;-</span> <span class="fu">join_by</span>(mrn, enc_id, x<span class="sc">$</span>icu_start_date <span class="sc">&lt;</span> y<span class="sc">$</span>recorded_time)</span>
-<span id="cb24-407"><a href="#cb24-407" aria-hidden="true" tabindex="-1"></a>df_pt_picu <span class="ot">&lt;-</span> <span class="fu">left_join</span>(df_temp, df_pt_total, <span class="at">by =</span> pt_join_by, <span class="at">relationship =</span> <span class="st">"many-to-many"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb24-408"><a href="#cb24-408" aria-hidden="true" tabindex="-1"></a>     <span class="fu">relocate</span>(mrn, enc_id, icu_stay, icu_start_date, icu_stop_date, recorded_time, pt_time)</span>
-<span id="cb24-409"><a href="#cb24-409" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-410"><a href="#cb24-410" aria-hidden="true" tabindex="-1"></a><span class="co"># Only keep 1st hospitalization</span></span>
-<span id="cb24-411"><a href="#cb24-411" aria-hidden="true" tabindex="-1"></a><span class="co"># df_pt_picu &lt;- df_pt_picu %&gt;% filter(icu_stay == 1)</span></span>
-<span id="cb24-412"><a href="#cb24-412" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-413"><a href="#cb24-413" aria-hidden="true" tabindex="-1"></a><span class="co"># Determine whether each episode of PT fell in a given interval</span></span>
-<span id="cb24-414"><a href="#cb24-414" aria-hidden="true" tabindex="-1"></a>df_pt_timing <span class="ot">&lt;-</span> df_pt_picu <span class="sc">%&gt;%</span></span>
-<span id="cb24-415"><a href="#cb24-415" aria-hidden="true" tabindex="-1"></a>     <span class="fu">mutate</span>(<span class="at">early_pt =</span> <span class="fu">if_else</span>(recorded_time <span class="sc">%within%</span> int0_72, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>),</span>
-<span id="cb24-416"><a href="#cb24-416" aria-hidden="true" tabindex="-1"></a>            <span class="at">any_pt =</span> <span class="fu">if_else</span>(recorded_time <span class="sc">&gt;</span> icu_start_date, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>),</span>
-<span id="cb24-417"><a href="#cb24-417" aria-hidden="true" tabindex="-1"></a>            <span class="at">icu_pt =</span> <span class="fu">if_else</span>(recorded_time <span class="sc">%within%</span> <span class="fu">interval</span>(icu_start_date, icu_stop_date), <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>),</span>
-<span id="cb24-418"><a href="#cb24-418" aria-hidden="true" tabindex="-1"></a>            <span class="at">pt0_24 =</span> <span class="fu">if_else</span>(recorded_time  <span class="sc">%within%</span> int0_24, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>),</span>
-<span id="cb24-419"><a href="#cb24-419" aria-hidden="true" tabindex="-1"></a>            <span class="at">pt24_48 =</span> <span class="fu">if_else</span>(recorded_time <span class="sc">%within%</span> int24_48, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>),</span>
-<span id="cb24-420"><a href="#cb24-420" aria-hidden="true" tabindex="-1"></a>            <span class="at">pt48_72 =</span> <span class="fu">if_else</span>(recorded_time <span class="sc">%within%</span> int48_72, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>))</span>
-<span id="cb24-421"><a href="#cb24-421" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-422"><a href="#cb24-422" aria-hidden="true" tabindex="-1"></a><span class="co"># Get counts of PT in each interval.</span></span>
-<span id="cb24-423"><a href="#cb24-423" aria-hidden="true" tabindex="-1"></a>df_pt_counts <span class="ot">&lt;-</span> df_pt_timing <span class="sc">%&gt;%</span>  </span>
-<span id="cb24-424"><a href="#cb24-424" aria-hidden="true" tabindex="-1"></a>     <span class="fu">group_by</span>(mrn, enc_id, icu_start_date) <span class="sc">%&gt;%</span> </span>
-<span id="cb24-425"><a href="#cb24-425" aria-hidden="true" tabindex="-1"></a>     <span class="fu">summarize</span>(<span class="at">n_early_pt =</span> <span class="fu">sum</span>(early_pt), </span>
-<span id="cb24-426"><a href="#cb24-426" aria-hidden="true" tabindex="-1"></a>               <span class="at">n_icu_pt =</span> <span class="fu">sum</span>(icu_pt), </span>
-<span id="cb24-427"><a href="#cb24-427" aria-hidden="true" tabindex="-1"></a>               <span class="at">n_any_pt =</span> <span class="fu">sum</span>(any_pt), </span>
-<span id="cb24-428"><a href="#cb24-428" aria-hidden="true" tabindex="-1"></a>               <span class="at">n_pt0_24 =</span> <span class="fu">sum</span>(pt0_24), </span>
-<span id="cb24-429"><a href="#cb24-429" aria-hidden="true" tabindex="-1"></a>               <span class="at">n_pt24_48 =</span> <span class="fu">sum</span>(pt24_48), </span>
-<span id="cb24-430"><a href="#cb24-430" aria-hidden="true" tabindex="-1"></a>               <span class="at">n_pt48_72 =</span> <span class="fu">sum</span>(pt48_72),</span>
-<span id="cb24-431"><a href="#cb24-431" aria-hidden="true" tabindex="-1"></a>               <span class="at">n_pt_each =</span> <span class="fu">sum</span>(<span class="fu">if_else</span>((pt0_24 <span class="sc">&amp;</span> pt24_48) <span class="sc">|</span> (pt0_24 <span class="sc">&amp;</span> pt48_72) <span class="sc">|</span> (pt24_48 <span class="sc">&amp;</span> pt48_72), <span class="cn">TRUE</span>, <span class="cn">FALSE</span>)),</span>
-<span id="cb24-432"><a href="#cb24-432" aria-hidden="true" tabindex="-1"></a>               <span class="at">.groups =</span> <span class="st">'drop'</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb24-433"><a href="#cb24-433" aria-hidden="true" tabindex="-1"></a>     <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">starts_with</span>(<span class="st">'n_'</span>), <span class="sc">~</span> <span class="fu">if_else</span>(.x <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>)))</span>
-<span id="cb24-434"><a href="#cb24-434" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-435"><a href="#cb24-435" aria-hidden="true" tabindex="-1"></a><span class="co"># Get aggregate time of PT delivered in each interval. Need to do this separately because they all have different denominators</span></span>
-<span id="cb24-436"><a href="#cb24-436" aria-hidden="true" tabindex="-1"></a>df_early_pt_timesum <span class="ot">&lt;-</span> df_pt_timing <span class="sc">%&gt;%</span> </span>
-<span id="cb24-437"><a href="#cb24-437" aria-hidden="true" tabindex="-1"></a>     <span class="fu">filter</span>(early_pt) <span class="sc">%&gt;%</span> </span>
-<span id="cb24-438"><a href="#cb24-438" aria-hidden="true" tabindex="-1"></a>     <span class="fu">group_by</span>(mrn, enc_id, icu_start_date) <span class="sc">%&gt;%</span> </span>
-<span id="cb24-439"><a href="#cb24-439" aria-hidden="true" tabindex="-1"></a>     <span class="fu">summarize</span>(<span class="at">early_pt_time =</span> <span class="fu">sum</span>(pt_time))</span>
-<span id="cb24-440"><a href="#cb24-440" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-441"><a href="#cb24-441" aria-hidden="true" tabindex="-1"></a>df_icu_pt_timesum <span class="ot">&lt;-</span> df_pt_timing <span class="sc">%&gt;%</span> </span>
-<span id="cb24-442"><a href="#cb24-442" aria-hidden="true" tabindex="-1"></a>     <span class="fu">filter</span>(icu_pt) <span class="sc">%&gt;%</span> </span>
-<span id="cb24-443"><a href="#cb24-443" aria-hidden="true" tabindex="-1"></a>     <span class="fu">group_by</span>(mrn, enc_id, icu_start_date) <span class="sc">%&gt;%</span> </span>
-<span id="cb24-444"><a href="#cb24-444" aria-hidden="true" tabindex="-1"></a>     <span class="fu">summarize</span>(<span class="at">icu_pt_time =</span> <span class="fu">sum</span>(pt_time))</span>
-<span id="cb24-445"><a href="#cb24-445" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-446"><a href="#cb24-446" aria-hidden="true" tabindex="-1"></a>df_any_pt_timesum <span class="ot">&lt;-</span> df_pt_timing <span class="sc">%&gt;%</span> </span>
-<span id="cb24-447"><a href="#cb24-447" aria-hidden="true" tabindex="-1"></a>     <span class="fu">filter</span>(any_pt) <span class="sc">%&gt;%</span> </span>
-<span id="cb24-448"><a href="#cb24-448" aria-hidden="true" tabindex="-1"></a>     <span class="fu">group_by</span>(mrn, enc_id, icu_start_date) <span class="sc">%&gt;%</span> </span>
-<span id="cb24-449"><a href="#cb24-449" aria-hidden="true" tabindex="-1"></a>     <span class="fu">summarize</span>(<span class="at">any_pt_time =</span> <span class="fu">sum</span>(pt_time))</span>
-<span id="cb24-450"><a href="#cb24-450" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-451"><a href="#cb24-451" aria-hidden="true" tabindex="-1"></a><span class="co"># Bind the 3 times together. </span></span>
-<span id="cb24-452"><a href="#cb24-452" aria-hidden="true" tabindex="-1"></a>df_pt_timesums <span class="ot">&lt;-</span> <span class="fu">full_join</span>(df_early_pt_timesum, df_icu_pt_timesum) <span class="sc">%&gt;%</span> </span>
-<span id="cb24-453"><a href="#cb24-453" aria-hidden="true" tabindex="-1"></a>     <span class="fu">full_join</span>(df_any_pt_timesum)</span>
+<span id="cb24-380"><a href="#cb24-380" aria-hidden="true" tabindex="-1"></a><span class="fu">### Amount of PT</span></span>
+<span id="cb24-381"><a href="#cb24-381" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-382"><a href="#cb24-382" aria-hidden="true" tabindex="-1"></a>First we will describe, in general, how much PT is being delivered. We need to make sure that we only sum up PT that was delivered after the start of a PICU stay. To do this we take the <span class="in">`df_picu_startstop`</span> data frame, which contains ICU admit and discharge times. Create a few windows of time spanning 0-24 hours, 24-48 hours, and 48-72 hours. Also create an interval that spans 0-72 hours.</span>
+<span id="cb24-383"><a href="#cb24-383" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-386"><a href="#cb24-386" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-387"><a href="#cb24-387" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: PT and PICU time joins</span></span>
+<span id="cb24-388"><a href="#cb24-388" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-389"><a href="#cb24-389" aria-hidden="true" tabindex="-1"></a><span class="co"># Update the PICU start/stop so that it has a timestamp and intervals</span></span>
+<span id="cb24-390"><a href="#cb24-390" aria-hidden="true" tabindex="-1"></a><span class="co"># for 24, 48, and 72 hours</span></span>
+<span id="cb24-391"><a href="#cb24-391" aria-hidden="true" tabindex="-1"></a>df_temp <span class="ot">&lt;-</span> df_picu_startstop <span class="sc">%&gt;%</span></span>
+<span id="cb24-392"><a href="#cb24-392" aria-hidden="true" tabindex="-1"></a>     <span class="fu">mutate</span>(<span class="at">t24 =</span> icu_start_date <span class="sc">+</span> <span class="fu">hours</span>(<span class="dv">24</span>),</span>
+<span id="cb24-393"><a href="#cb24-393" aria-hidden="true" tabindex="-1"></a>            <span class="at">t48 =</span> icu_start_date <span class="sc">+</span> <span class="fu">hours</span>(<span class="dv">48</span>),</span>
+<span id="cb24-394"><a href="#cb24-394" aria-hidden="true" tabindex="-1"></a>            <span class="at">t72 =</span> icu_start_date <span class="sc">+</span> <span class="fu">hours</span>(<span class="dv">72</span>),</span>
+<span id="cb24-395"><a href="#cb24-395" aria-hidden="true" tabindex="-1"></a>            <span class="at">int0_72 =</span> <span class="fu">interval</span>(icu_start_date, t72),</span>
+<span id="cb24-396"><a href="#cb24-396" aria-hidden="true" tabindex="-1"></a>            <span class="at">int0_24 =</span> <span class="fu">interval</span>(icu_start_date, t24),</span>
+<span id="cb24-397"><a href="#cb24-397" aria-hidden="true" tabindex="-1"></a>            <span class="at">int24_48 =</span> <span class="fu">interval</span>(t24, t48),</span>
+<span id="cb24-398"><a href="#cb24-398" aria-hidden="true" tabindex="-1"></a>            <span class="at">int48_72 =</span> <span class="fu">interval</span>(t48, t72)</span>
+<span id="cb24-399"><a href="#cb24-399" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb24-400"><a href="#cb24-400" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-401"><a href="#cb24-401" aria-hidden="true" tabindex="-1"></a><span class="co"># Label the 1st hospitalization</span></span>
+<span id="cb24-402"><a href="#cb24-402" aria-hidden="true" tabindex="-1"></a>df_temp <span class="ot">&lt;-</span> df_temp <span class="sc">%&gt;%</span> </span>
+<span id="cb24-403"><a href="#cb24-403" aria-hidden="true" tabindex="-1"></a>     <span class="fu">group_by</span>(mrn, enc_id) <span class="sc">%&gt;%</span> </span>
+<span id="cb24-404"><a href="#cb24-404" aria-hidden="true" tabindex="-1"></a>     <span class="fu">arrange</span>(mrn, enc_id, icu_start_date) <span class="sc">%&gt;%</span> </span>
+<span id="cb24-405"><a href="#cb24-405" aria-hidden="true" tabindex="-1"></a>     <span class="fu">mutate</span>(<span class="at">icu_stay =</span> <span class="fu">row_number</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb24-406"><a href="#cb24-406" aria-hidden="true" tabindex="-1"></a>     <span class="fu">ungroup</span>()</span>
+<span id="cb24-407"><a href="#cb24-407" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-408"><a href="#cb24-408" aria-hidden="true" tabindex="-1"></a><span class="co"># Create an inequality join so we make sure to only match PT that occurred after</span></span>
+<span id="cb24-409"><a href="#cb24-409" aria-hidden="true" tabindex="-1"></a><span class="co"># the PICU start</span></span>
+<span id="cb24-410"><a href="#cb24-410" aria-hidden="true" tabindex="-1"></a>pt_join_by <span class="ot">&lt;-</span> <span class="fu">join_by</span>(mrn, enc_id, x<span class="sc">$</span>icu_start_date <span class="sc">&lt;</span> y<span class="sc">$</span>recorded_time)</span>
+<span id="cb24-411"><a href="#cb24-411" aria-hidden="true" tabindex="-1"></a>df_pt_picu <span class="ot">&lt;-</span> <span class="fu">left_join</span>(df_temp, df_pt_total, <span class="at">by =</span> pt_join_by, <span class="at">relationship =</span> <span class="st">"many-to-many"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb24-412"><a href="#cb24-412" aria-hidden="true" tabindex="-1"></a>     <span class="fu">relocate</span>(mrn, enc_id, icu_stay, icu_start_date, icu_stop_date, recorded_time, pt_time)</span>
+<span id="cb24-413"><a href="#cb24-413" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-414"><a href="#cb24-414" aria-hidden="true" tabindex="-1"></a><span class="co"># Only keep 1st hospitalization</span></span>
+<span id="cb24-415"><a href="#cb24-415" aria-hidden="true" tabindex="-1"></a><span class="co"># df_pt_picu &lt;- df_pt_picu %&gt;% filter(icu_stay == 1)</span></span>
+<span id="cb24-416"><a href="#cb24-416" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-417"><a href="#cb24-417" aria-hidden="true" tabindex="-1"></a><span class="co"># Determine whether each episode of PT fell in a given interval</span></span>
+<span id="cb24-418"><a href="#cb24-418" aria-hidden="true" tabindex="-1"></a>df_pt_timing <span class="ot">&lt;-</span> df_pt_picu <span class="sc">%&gt;%</span></span>
+<span id="cb24-419"><a href="#cb24-419" aria-hidden="true" tabindex="-1"></a>     <span class="fu">mutate</span>(<span class="at">early_pt =</span> <span class="fu">if_else</span>(recorded_time <span class="sc">%within%</span> int0_72, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>),</span>
+<span id="cb24-420"><a href="#cb24-420" aria-hidden="true" tabindex="-1"></a>            <span class="at">any_pt =</span> <span class="fu">if_else</span>(recorded_time <span class="sc">&gt;</span> icu_start_date, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>),</span>
+<span id="cb24-421"><a href="#cb24-421" aria-hidden="true" tabindex="-1"></a>            <span class="at">icu_pt =</span> <span class="fu">if_else</span>(recorded_time <span class="sc">%within%</span> <span class="fu">interval</span>(icu_start_date, icu_stop_date), <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>),</span>
+<span id="cb24-422"><a href="#cb24-422" aria-hidden="true" tabindex="-1"></a>            <span class="at">pt0_24 =</span> <span class="fu">if_else</span>(recorded_time  <span class="sc">%within%</span> int0_24, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>),</span>
+<span id="cb24-423"><a href="#cb24-423" aria-hidden="true" tabindex="-1"></a>            <span class="at">pt24_48 =</span> <span class="fu">if_else</span>(recorded_time <span class="sc">%within%</span> int24_48, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>),</span>
+<span id="cb24-424"><a href="#cb24-424" aria-hidden="true" tabindex="-1"></a>            <span class="at">pt48_72 =</span> <span class="fu">if_else</span>(recorded_time <span class="sc">%within%</span> int48_72, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>))</span>
+<span id="cb24-425"><a href="#cb24-425" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-426"><a href="#cb24-426" aria-hidden="true" tabindex="-1"></a><span class="co"># Get counts of PT in each interval.</span></span>
+<span id="cb24-427"><a href="#cb24-427" aria-hidden="true" tabindex="-1"></a>df_pt_counts <span class="ot">&lt;-</span> df_pt_timing <span class="sc">%&gt;%</span>  </span>
+<span id="cb24-428"><a href="#cb24-428" aria-hidden="true" tabindex="-1"></a>     <span class="fu">group_by</span>(mrn, enc_id, icu_start_date) <span class="sc">%&gt;%</span> </span>
+<span id="cb24-429"><a href="#cb24-429" aria-hidden="true" tabindex="-1"></a>     <span class="fu">summarize</span>(<span class="at">n_early_pt =</span> <span class="fu">sum</span>(early_pt), </span>
+<span id="cb24-430"><a href="#cb24-430" aria-hidden="true" tabindex="-1"></a>               <span class="at">n_icu_pt =</span> <span class="fu">sum</span>(icu_pt), </span>
+<span id="cb24-431"><a href="#cb24-431" aria-hidden="true" tabindex="-1"></a>               <span class="at">n_any_pt =</span> <span class="fu">sum</span>(any_pt), </span>
+<span id="cb24-432"><a href="#cb24-432" aria-hidden="true" tabindex="-1"></a>               <span class="at">n_pt0_24 =</span> <span class="fu">sum</span>(pt0_24), </span>
+<span id="cb24-433"><a href="#cb24-433" aria-hidden="true" tabindex="-1"></a>               <span class="at">n_pt24_48 =</span> <span class="fu">sum</span>(pt24_48), </span>
+<span id="cb24-434"><a href="#cb24-434" aria-hidden="true" tabindex="-1"></a>               <span class="at">n_pt48_72 =</span> <span class="fu">sum</span>(pt48_72),</span>
+<span id="cb24-435"><a href="#cb24-435" aria-hidden="true" tabindex="-1"></a>               <span class="at">n_pt_each =</span> <span class="fu">sum</span>(<span class="fu">if_else</span>((pt0_24 <span class="sc">&amp;</span> pt24_48) <span class="sc">|</span> (pt0_24 <span class="sc">&amp;</span> pt48_72) <span class="sc">|</span> (pt24_48 <span class="sc">&amp;</span> pt48_72), <span class="cn">TRUE</span>, <span class="cn">FALSE</span>)),</span>
+<span id="cb24-436"><a href="#cb24-436" aria-hidden="true" tabindex="-1"></a>               <span class="at">.groups =</span> <span class="st">'drop'</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb24-437"><a href="#cb24-437" aria-hidden="true" tabindex="-1"></a>     <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">starts_with</span>(<span class="st">'n_'</span>), <span class="sc">~</span> <span class="fu">if_else</span>(.x <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>)))</span>
+<span id="cb24-438"><a href="#cb24-438" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-439"><a href="#cb24-439" aria-hidden="true" tabindex="-1"></a><span class="co"># Get aggregate time of PT delivered in each interval. Need to do this separately because they all have different denominators</span></span>
+<span id="cb24-440"><a href="#cb24-440" aria-hidden="true" tabindex="-1"></a>df_early_pt_timesum <span class="ot">&lt;-</span> df_pt_timing <span class="sc">%&gt;%</span> </span>
+<span id="cb24-441"><a href="#cb24-441" aria-hidden="true" tabindex="-1"></a>     <span class="fu">filter</span>(early_pt) <span class="sc">%&gt;%</span> </span>
+<span id="cb24-442"><a href="#cb24-442" aria-hidden="true" tabindex="-1"></a>     <span class="fu">group_by</span>(mrn, enc_id, icu_start_date) <span class="sc">%&gt;%</span> </span>
+<span id="cb24-443"><a href="#cb24-443" aria-hidden="true" tabindex="-1"></a>     <span class="fu">summarize</span>(<span class="at">early_pt_time =</span> <span class="fu">sum</span>(pt_time))</span>
+<span id="cb24-444"><a href="#cb24-444" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-445"><a href="#cb24-445" aria-hidden="true" tabindex="-1"></a>df_icu_pt_timesum <span class="ot">&lt;-</span> df_pt_timing <span class="sc">%&gt;%</span> </span>
+<span id="cb24-446"><a href="#cb24-446" aria-hidden="true" tabindex="-1"></a>     <span class="fu">filter</span>(icu_pt) <span class="sc">%&gt;%</span> </span>
+<span id="cb24-447"><a href="#cb24-447" aria-hidden="true" tabindex="-1"></a>     <span class="fu">group_by</span>(mrn, enc_id, icu_start_date) <span class="sc">%&gt;%</span> </span>
+<span id="cb24-448"><a href="#cb24-448" aria-hidden="true" tabindex="-1"></a>     <span class="fu">summarize</span>(<span class="at">icu_pt_time =</span> <span class="fu">sum</span>(pt_time))</span>
+<span id="cb24-449"><a href="#cb24-449" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-450"><a href="#cb24-450" aria-hidden="true" tabindex="-1"></a>df_any_pt_timesum <span class="ot">&lt;-</span> df_pt_timing <span class="sc">%&gt;%</span> </span>
+<span id="cb24-451"><a href="#cb24-451" aria-hidden="true" tabindex="-1"></a>     <span class="fu">filter</span>(any_pt) <span class="sc">%&gt;%</span> </span>
+<span id="cb24-452"><a href="#cb24-452" aria-hidden="true" tabindex="-1"></a>     <span class="fu">group_by</span>(mrn, enc_id, icu_start_date) <span class="sc">%&gt;%</span> </span>
+<span id="cb24-453"><a href="#cb24-453" aria-hidden="true" tabindex="-1"></a>     <span class="fu">summarize</span>(<span class="at">any_pt_time =</span> <span class="fu">sum</span>(pt_time))</span>
 <span id="cb24-454"><a href="#cb24-454" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-455"><a href="#cb24-455" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-456"><a href="#cb24-456" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb24-457"><a href="#cb24-457" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-458"><a href="#cb24-458" aria-hidden="true" tabindex="-1"></a>Now let's display some findings. First, display counts of ICU stays involving PT at varying time points. Note that that the sum of PT in the 0-24, 24-48, and 42-72 hour ranges can sum to more than the number of patients who received early PT (0-72 hours). This is because a patient could receive PT multiple times in the early range, e.g. at 0-24 and 24-48 hours. They would be counted in each range, but only once total for the 0-72 hour range.</span>
+<span id="cb24-455"><a href="#cb24-455" aria-hidden="true" tabindex="-1"></a><span class="co"># Bind the 3 times together. </span></span>
+<span id="cb24-456"><a href="#cb24-456" aria-hidden="true" tabindex="-1"></a>df_pt_timesums <span class="ot">&lt;-</span> <span class="fu">full_join</span>(df_early_pt_timesum, df_icu_pt_timesum) <span class="sc">%&gt;%</span> </span>
+<span id="cb24-457"><a href="#cb24-457" aria-hidden="true" tabindex="-1"></a>     <span class="fu">full_join</span>(df_any_pt_timesum)</span>
+<span id="cb24-458"><a href="#cb24-458" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-459"><a href="#cb24-459" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-462"><a href="#cb24-462" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb24-463"><a href="#cb24-463" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: display PT counts</span></span>
-<span id="cb24-464"><a href="#cb24-464" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-465"><a href="#cb24-465" aria-hidden="true" tabindex="-1"></a><span class="co"># Now display tables of each.</span></span>
-<span id="cb24-466"><a href="#cb24-466" aria-hidden="true" tabindex="-1"></a>df_pt_counts <span class="sc">%&gt;%</span> </span>
-<span id="cb24-467"><a href="#cb24-467" aria-hidden="true" tabindex="-1"></a>     <span class="fu">tbl_summary</span>(<span class="at">include =</span> <span class="fu">starts_with</span>(<span class="st">'n_'</span>),</span>
-<span id="cb24-468"><a href="#cb24-468" aria-hidden="true" tabindex="-1"></a>                 <span class="at">label =</span> <span class="fu">list</span>(n_early_pt <span class="sc">~</span> <span class="st">'Early PT (within 72 hours)'</span>,</span>
-<span id="cb24-469"><a href="#cb24-469" aria-hidden="true" tabindex="-1"></a>                              n_icu_pt <span class="sc">~</span> <span class="st">'PT any time in the ICU'</span>,</span>
-<span id="cb24-470"><a href="#cb24-470" aria-hidden="true" tabindex="-1"></a>                              n_any_pt <span class="sc">~</span> <span class="st">'PT any time in the hospital'</span>,</span>
-<span id="cb24-471"><a href="#cb24-471" aria-hidden="true" tabindex="-1"></a>                              n_pt0_24 <span class="sc">~</span> <span class="st">'PT within 0-24 hours'</span>,</span>
-<span id="cb24-472"><a href="#cb24-472" aria-hidden="true" tabindex="-1"></a>                              n_pt24_48 <span class="sc">~</span> <span class="st">'PT within 24-48 hours'</span>,</span>
-<span id="cb24-473"><a href="#cb24-473" aria-hidden="true" tabindex="-1"></a>                              n_pt48_72 <span class="sc">~</span> <span class="st">'PT within 48-72 hours'</span>,</span>
-<span id="cb24-474"><a href="#cb24-474" aria-hidden="true" tabindex="-1"></a>                              n_pt_each <span class="sc">~</span> <span class="st">'Early PT on any 2 days'</span>))</span>
-<span id="cb24-475"><a href="#cb24-475" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-476"><a href="#cb24-476" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-477"><a href="#cb24-477" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb24-478"><a href="#cb24-478" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-479"><a href="#cb24-479" aria-hidden="true" tabindex="-1"></a>Next, display the amount of PT (in hours) that was received.</span>
+<span id="cb24-460"><a href="#cb24-460" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-461"><a href="#cb24-461" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-462"><a href="#cb24-462" aria-hidden="true" tabindex="-1"></a>Now let's display some findings. First, display counts of ICU stays involving PT at varying time points. Note that that the sum of PT in the 0-24, 24-48, and 42-72 hour ranges can sum to more than the number of patients who received early PT (0-72 hours). This is because a patient could receive PT multiple times in the early range, e.g. at 0-24 and 24-48 hours. They would be counted in each range, but only once total for the 0-72 hour range.</span>
+<span id="cb24-463"><a href="#cb24-463" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-466"><a href="#cb24-466" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-467"><a href="#cb24-467" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: display PT counts</span></span>
+<span id="cb24-468"><a href="#cb24-468" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-469"><a href="#cb24-469" aria-hidden="true" tabindex="-1"></a><span class="co"># Now display tables of each.</span></span>
+<span id="cb24-470"><a href="#cb24-470" aria-hidden="true" tabindex="-1"></a>df_pt_counts <span class="sc">%&gt;%</span> </span>
+<span id="cb24-471"><a href="#cb24-471" aria-hidden="true" tabindex="-1"></a>     <span class="fu">tbl_summary</span>(<span class="at">include =</span> <span class="fu">starts_with</span>(<span class="st">'n_'</span>),</span>
+<span id="cb24-472"><a href="#cb24-472" aria-hidden="true" tabindex="-1"></a>                 <span class="at">label =</span> <span class="fu">list</span>(n_early_pt <span class="sc">~</span> <span class="st">'Early PT (within 72 hours)'</span>,</span>
+<span id="cb24-473"><a href="#cb24-473" aria-hidden="true" tabindex="-1"></a>                              n_icu_pt <span class="sc">~</span> <span class="st">'PT any time in the ICU'</span>,</span>
+<span id="cb24-474"><a href="#cb24-474" aria-hidden="true" tabindex="-1"></a>                              n_any_pt <span class="sc">~</span> <span class="st">'PT any time in the hospital'</span>,</span>
+<span id="cb24-475"><a href="#cb24-475" aria-hidden="true" tabindex="-1"></a>                              n_pt0_24 <span class="sc">~</span> <span class="st">'PT within 0-24 hours'</span>,</span>
+<span id="cb24-476"><a href="#cb24-476" aria-hidden="true" tabindex="-1"></a>                              n_pt24_48 <span class="sc">~</span> <span class="st">'PT within 24-48 hours'</span>,</span>
+<span id="cb24-477"><a href="#cb24-477" aria-hidden="true" tabindex="-1"></a>                              n_pt48_72 <span class="sc">~</span> <span class="st">'PT within 48-72 hours'</span>,</span>
+<span id="cb24-478"><a href="#cb24-478" aria-hidden="true" tabindex="-1"></a>                              n_pt_each <span class="sc">~</span> <span class="st">'Early PT on any 2 days'</span>))</span>
+<span id="cb24-479"><a href="#cb24-479" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-480"><a href="#cb24-480" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-483"><a href="#cb24-483" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb24-484"><a href="#cb24-484" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: display PT duration</span></span>
-<span id="cb24-485"><a href="#cb24-485" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-486"><a href="#cb24-486" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-487"><a href="#cb24-487" aria-hidden="true" tabindex="-1"></a>df_pt_timesums <span class="sc">%&gt;%</span> </span>
-<span id="cb24-488"><a href="#cb24-488" aria-hidden="true" tabindex="-1"></a>     <span class="fu">tbl_summary</span>(<span class="at">include =</span> <span class="fu">ends_with</span>(<span class="st">'_time'</span>),</span>
-<span id="cb24-489"><a href="#cb24-489" aria-hidden="true" tabindex="-1"></a>                 <span class="at">label =</span> <span class="fu">list</span>(early_pt_time <span class="sc">~</span> <span class="st">'Duration of PT within first 72 hours, minutes'</span>,</span>
-<span id="cb24-490"><a href="#cb24-490" aria-hidden="true" tabindex="-1"></a>                              icu_pt_time <span class="sc">~</span> <span class="st">'Duration of PT within ICU, minutes'</span>,</span>
-<span id="cb24-491"><a href="#cb24-491" aria-hidden="true" tabindex="-1"></a>                              any_pt_time <span class="sc">~</span> <span class="st">'Duration of PT within the hospital, minutes'</span>),</span>
-<span id="cb24-492"><a href="#cb24-492" aria-hidden="true" tabindex="-1"></a>                 <span class="at">missing =</span> <span class="st">'no'</span>,</span>
-<span id="cb24-493"><a href="#cb24-493" aria-hidden="true" tabindex="-1"></a>                 <span class="at">statistic =</span> <span class="fu">list</span>(<span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="st">'{median} [{p25}-{p75}] - {N_nonmiss} patients'</span>))</span>
-<span id="cb24-494"><a href="#cb24-494" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-495"><a href="#cb24-495" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb24-496"><a href="#cb24-496" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-497"><a href="#cb24-497" aria-hidden="true" tabindex="-1"></a><span class="fu">## IMV within 24 (and 72) hours of PICU hospitalization</span></span>
+<span id="cb24-481"><a href="#cb24-481" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-482"><a href="#cb24-482" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-483"><a href="#cb24-483" aria-hidden="true" tabindex="-1"></a>Next, display the amount of PT (in hours) that was received.</span>
+<span id="cb24-484"><a href="#cb24-484" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-487"><a href="#cb24-487" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-488"><a href="#cb24-488" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: display PT duration</span></span>
+<span id="cb24-489"><a href="#cb24-489" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-490"><a href="#cb24-490" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-491"><a href="#cb24-491" aria-hidden="true" tabindex="-1"></a>df_pt_timesums <span class="sc">%&gt;%</span> </span>
+<span id="cb24-492"><a href="#cb24-492" aria-hidden="true" tabindex="-1"></a>     <span class="fu">tbl_summary</span>(<span class="at">include =</span> <span class="fu">ends_with</span>(<span class="st">'_time'</span>),</span>
+<span id="cb24-493"><a href="#cb24-493" aria-hidden="true" tabindex="-1"></a>                 <span class="at">label =</span> <span class="fu">list</span>(early_pt_time <span class="sc">~</span> <span class="st">'Duration of PT within first 72 hours, minutes'</span>,</span>
+<span id="cb24-494"><a href="#cb24-494" aria-hidden="true" tabindex="-1"></a>                              icu_pt_time <span class="sc">~</span> <span class="st">'Duration of PT within ICU, minutes'</span>,</span>
+<span id="cb24-495"><a href="#cb24-495" aria-hidden="true" tabindex="-1"></a>                              any_pt_time <span class="sc">~</span> <span class="st">'Duration of PT within the hospital, minutes'</span>),</span>
+<span id="cb24-496"><a href="#cb24-496" aria-hidden="true" tabindex="-1"></a>                 <span class="at">missing =</span> <span class="st">'no'</span>,</span>
+<span id="cb24-497"><a href="#cb24-497" aria-hidden="true" tabindex="-1"></a>                 <span class="at">statistic =</span> <span class="fu">list</span>(<span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="st">'{median} [{p25}-{p75}] - {N_nonmiss} patients'</span>))</span>
 <span id="cb24-498"><a href="#cb24-498" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-499"><a href="#cb24-499" aria-hidden="true" tabindex="-1"></a>Since PT is likely less commonly provided to patients during IMV, we should know which patients had IMV early in the PICU hospitalization. We can use the "df_temp" data frame that we created above since this already has 24 and 72 hour computations.</span>
+<span id="cb24-499"><a href="#cb24-499" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb24-500"><a href="#cb24-500" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-503"><a href="#cb24-503" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb24-504"><a href="#cb24-504" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: early imv and PT comparison</span></span>
-<span id="cb24-505"><a href="#cb24-505" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-506"><a href="#cb24-506" aria-hidden="true" tabindex="-1"></a><span class="co"># Get patients who had early (or not early) ventilation in the ICU</span></span>
-<span id="cb24-507"><a href="#cb24-507" aria-hidden="true" tabindex="-1"></a>df_vent_temp <span class="ot">&lt;-</span> df_vent_episodes <span class="sc">%&gt;%</span> </span>
-<span id="cb24-508"><a href="#cb24-508" aria-hidden="true" tabindex="-1"></a>     <span class="fu">select</span>(mrn, enc_id, vent_episode, vent_time_start, vent_time_stop)</span>
+<span id="cb24-501"><a href="#cb24-501" aria-hidden="true" tabindex="-1"></a><span class="fu">## IMV within 24 (and 72) hours of PICU hospitalization</span></span>
+<span id="cb24-502"><a href="#cb24-502" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-503"><a href="#cb24-503" aria-hidden="true" tabindex="-1"></a>Since PT is likely less commonly provided to patients during IMV, we should know which patients had IMV early in the PICU hospitalization. We can use the "df_temp" data frame that we created above since this already has 24 and 72 hour computations.</span>
+<span id="cb24-504"><a href="#cb24-504" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-507"><a href="#cb24-507" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-508"><a href="#cb24-508" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: early imv and PT comparison</span></span>
 <span id="cb24-509"><a href="#cb24-509" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-510"><a href="#cb24-510" aria-hidden="true" tabindex="-1"></a>ventjoinby24 <span class="ot">&lt;-</span> <span class="fu">join_by</span>(mrn, enc_id, <span class="fu">overlaps</span>(x<span class="sc">$</span>icu_start_date, x<span class="sc">$</span>t24,</span>
-<span id="cb24-511"><a href="#cb24-511" aria-hidden="true" tabindex="-1"></a>                                            y<span class="sc">$</span>vent_time_start, y<span class="sc">$</span>vent_time_stop))</span>
-<span id="cb24-512"><a href="#cb24-512" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-513"><a href="#cb24-513" aria-hidden="true" tabindex="-1"></a>ventjoinby72 <span class="ot">&lt;-</span> <span class="fu">join_by</span>(mrn, enc_id, <span class="fu">overlaps</span>(x<span class="sc">$</span>icu_start_date, x<span class="sc">$</span>t72,</span>
-<span id="cb24-514"><a href="#cb24-514" aria-hidden="true" tabindex="-1"></a>                                            y<span class="sc">$</span>vent_time_start, y<span class="sc">$</span>vent_time_stop))</span>
-<span id="cb24-515"><a href="#cb24-515" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-516"><a href="#cb24-516" aria-hidden="true" tabindex="-1"></a>df_vent_temp24 <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(df_temp, df_vent_temp, <span class="at">by =</span> ventjoinby24) <span class="sc">%&gt;%</span> </span>
-<span id="cb24-517"><a href="#cb24-517" aria-hidden="true" tabindex="-1"></a>     <span class="fu">mutate</span>(<span class="at">vent24 =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb24-518"><a href="#cb24-518" aria-hidden="true" tabindex="-1"></a>     <span class="fu">select</span>(mrn, enc_id, icu_start_date, icu_stop_date, vent24, vent_time_start, vent_time_stop) <span class="sc">%&gt;%</span> </span>
-<span id="cb24-519"><a href="#cb24-519" aria-hidden="true" tabindex="-1"></a>     <span class="fu">distinct</span>()</span>
-<span id="cb24-520"><a href="#cb24-520" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-521"><a href="#cb24-521" aria-hidden="true" tabindex="-1"></a>df_vent_temp72 <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(df_temp, df_vent_temp, <span class="at">by =</span> ventjoinby72) <span class="sc">%&gt;%</span> </span>
-<span id="cb24-522"><a href="#cb24-522" aria-hidden="true" tabindex="-1"></a>     <span class="fu">mutate</span>(<span class="at">vent72 =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb24-523"><a href="#cb24-523" aria-hidden="true" tabindex="-1"></a>     <span class="fu">select</span>(mrn, enc_id, icu_start_date, icu_stop_date, vent72, vent_time_start, vent_time_stop)<span class="sc">%&gt;%</span> </span>
-<span id="cb24-524"><a href="#cb24-524" aria-hidden="true" tabindex="-1"></a>     <span class="fu">distinct</span>()</span>
-<span id="cb24-525"><a href="#cb24-525" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-526"><a href="#cb24-526" aria-hidden="true" tabindex="-1"></a>df_early_vent <span class="ot">&lt;-</span> <span class="fu">full_join</span>(df_vent_temp24, df_vent_temp72) <span class="sc">%&gt;%</span> </span>
-<span id="cb24-527"><a href="#cb24-527" aria-hidden="true" tabindex="-1"></a>     <span class="fu">relocate</span>(vent24, vent72, <span class="at">.after =</span> enc_id) </span>
-<span id="cb24-528"><a href="#cb24-528" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-529"><a href="#cb24-529" aria-hidden="true" tabindex="-1"></a><span class="co"># Now add this into the PT record</span></span>
-<span id="cb24-530"><a href="#cb24-530" aria-hidden="true" tabindex="-1"></a>df_pt_counts <span class="ot">&lt;-</span> <span class="fu">left_join</span>(df_pt_counts, df_early_vent)<span class="sc">%&gt;%</span> </span>
-<span id="cb24-531"><a href="#cb24-531" aria-hidden="true" tabindex="-1"></a>     <span class="fu">mutate</span>(<span class="at">vent24 =</span> <span class="fu">replace_na</span>(vent24, <span class="cn">FALSE</span>),</span>
-<span id="cb24-532"><a href="#cb24-532" aria-hidden="true" tabindex="-1"></a>            <span class="at">vent72 =</span> <span class="fu">replace_na</span>(vent72, <span class="cn">FALSE</span>)) </span>
-<span id="cb24-533"><a href="#cb24-533" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-534"><a href="#cb24-534" aria-hidden="true" tabindex="-1"></a><span class="co"># Now display tables of each.</span></span>
-<span id="cb24-535"><a href="#cb24-535" aria-hidden="true" tabindex="-1"></a>df_pt_counts <span class="sc">%&gt;%</span> </span>
-<span id="cb24-536"><a href="#cb24-536" aria-hidden="true" tabindex="-1"></a>     <span class="fu">tbl_summary</span>(<span class="at">include =</span> <span class="fu">c</span>(<span class="st">'vent24'</span>, <span class="fu">starts_with</span>(<span class="st">'n_'</span>)),</span>
-<span id="cb24-537"><a href="#cb24-537" aria-hidden="true" tabindex="-1"></a>                 <span class="at">by =</span> <span class="st">'vent24'</span>,</span>
-<span id="cb24-538"><a href="#cb24-538" aria-hidden="true" tabindex="-1"></a>                 <span class="at">label =</span> <span class="fu">list</span>(n_early_pt <span class="sc">~</span> <span class="st">'Early PT (within 72 hours)'</span>,</span>
-<span id="cb24-539"><a href="#cb24-539" aria-hidden="true" tabindex="-1"></a>                              n_icu_pt <span class="sc">~</span> <span class="st">'PT any time in the ICU'</span>,</span>
-<span id="cb24-540"><a href="#cb24-540" aria-hidden="true" tabindex="-1"></a>                              n_any_pt <span class="sc">~</span> <span class="st">'PT any time in the hospital'</span>,</span>
-<span id="cb24-541"><a href="#cb24-541" aria-hidden="true" tabindex="-1"></a>                              n_pt0_24 <span class="sc">~</span> <span class="st">'PT within 0-24 hours'</span>,</span>
-<span id="cb24-542"><a href="#cb24-542" aria-hidden="true" tabindex="-1"></a>                              n_pt24_48 <span class="sc">~</span> <span class="st">'PT within 24-48 hours'</span>,</span>
-<span id="cb24-543"><a href="#cb24-543" aria-hidden="true" tabindex="-1"></a>                              n_pt48_72 <span class="sc">~</span> <span class="st">'PT within 48-72 hours'</span>,</span>
-<span id="cb24-544"><a href="#cb24-544" aria-hidden="true" tabindex="-1"></a>                              n_pt_each <span class="sc">~</span> <span class="st">'Early PT on any 2 days'</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb24-545"><a href="#cb24-545" aria-hidden="true" tabindex="-1"></a>     <span class="fu">modify_spanning_header</span>(<span class="fu">all_stat_cols</span>() <span class="sc">~</span> <span class="st">'**IMV within first 24 hours of PICU**'</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb24-546"><a href="#cb24-546" aria-hidden="true" tabindex="-1"></a>     <span class="fu">add_p</span>()</span>
-<span id="cb24-547"><a href="#cb24-547" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-548"><a href="#cb24-548" aria-hidden="true" tabindex="-1"></a><span class="co"># Now display tables of each.</span></span>
-<span id="cb24-549"><a href="#cb24-549" aria-hidden="true" tabindex="-1"></a>df_pt_counts <span class="sc">%&gt;%</span> </span>
-<span id="cb24-550"><a href="#cb24-550" aria-hidden="true" tabindex="-1"></a>     <span class="fu">tbl_summary</span>(<span class="at">include =</span> <span class="fu">c</span>(<span class="st">'vent72'</span>, <span class="fu">starts_with</span>(<span class="st">'n_'</span>)),</span>
-<span id="cb24-551"><a href="#cb24-551" aria-hidden="true" tabindex="-1"></a>                 <span class="at">by =</span> <span class="st">'vent72'</span>,</span>
-<span id="cb24-552"><a href="#cb24-552" aria-hidden="true" tabindex="-1"></a>                 <span class="at">label =</span> <span class="fu">list</span>(n_early_pt <span class="sc">~</span> <span class="st">'Early PT (within 72 hours)'</span>,</span>
-<span id="cb24-553"><a href="#cb24-553" aria-hidden="true" tabindex="-1"></a>                              n_icu_pt <span class="sc">~</span> <span class="st">'PT any time in the ICU'</span>,</span>
-<span id="cb24-554"><a href="#cb24-554" aria-hidden="true" tabindex="-1"></a>                              n_any_pt <span class="sc">~</span> <span class="st">'PT any time in the hospital'</span>,</span>
-<span id="cb24-555"><a href="#cb24-555" aria-hidden="true" tabindex="-1"></a>                              n_pt0_24 <span class="sc">~</span> <span class="st">'PT within 0-24 hours'</span>,</span>
-<span id="cb24-556"><a href="#cb24-556" aria-hidden="true" tabindex="-1"></a>                              n_pt24_48 <span class="sc">~</span> <span class="st">'PT within 24-48 hours'</span>,</span>
-<span id="cb24-557"><a href="#cb24-557" aria-hidden="true" tabindex="-1"></a>                              n_pt48_72 <span class="sc">~</span> <span class="st">'PT within 48-72 hours'</span>,</span>
-<span id="cb24-558"><a href="#cb24-558" aria-hidden="true" tabindex="-1"></a>                              n_pt_each <span class="sc">~</span> <span class="st">'Early PT on any 2 days'</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb24-559"><a href="#cb24-559" aria-hidden="true" tabindex="-1"></a>     <span class="fu">modify_spanning_header</span>(<span class="fu">all_stat_cols</span>() <span class="sc">~</span> <span class="st">'**IMV within first 72 hours of PICU**'</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb24-560"><a href="#cb24-560" aria-hidden="true" tabindex="-1"></a>     <span class="fu">add_p</span>()</span>
-<span id="cb24-561"><a href="#cb24-561" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-562"><a href="#cb24-562" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-563"><a href="#cb24-563" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb24-564"><a href="#cb24-564" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-565"><a href="#cb24-565" aria-hidden="true" tabindex="-1"></a>Not used</span>
+<span id="cb24-510"><a href="#cb24-510" aria-hidden="true" tabindex="-1"></a><span class="co"># Get patients who had early (or not early) ventilation in the ICU</span></span>
+<span id="cb24-511"><a href="#cb24-511" aria-hidden="true" tabindex="-1"></a>df_vent_temp <span class="ot">&lt;-</span> df_vent_episodes <span class="sc">%&gt;%</span> </span>
+<span id="cb24-512"><a href="#cb24-512" aria-hidden="true" tabindex="-1"></a>     <span class="fu">select</span>(mrn, enc_id, vent_episode, vent_time_start, vent_time_stop)</span>
+<span id="cb24-513"><a href="#cb24-513" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-514"><a href="#cb24-514" aria-hidden="true" tabindex="-1"></a>ventjoinby24 <span class="ot">&lt;-</span> <span class="fu">join_by</span>(mrn, enc_id, <span class="fu">overlaps</span>(x<span class="sc">$</span>icu_start_date, x<span class="sc">$</span>t24,</span>
+<span id="cb24-515"><a href="#cb24-515" aria-hidden="true" tabindex="-1"></a>                                            y<span class="sc">$</span>vent_time_start, y<span class="sc">$</span>vent_time_stop))</span>
+<span id="cb24-516"><a href="#cb24-516" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-517"><a href="#cb24-517" aria-hidden="true" tabindex="-1"></a>ventjoinby72 <span class="ot">&lt;-</span> <span class="fu">join_by</span>(mrn, enc_id, <span class="fu">overlaps</span>(x<span class="sc">$</span>icu_start_date, x<span class="sc">$</span>t72,</span>
+<span id="cb24-518"><a href="#cb24-518" aria-hidden="true" tabindex="-1"></a>                                            y<span class="sc">$</span>vent_time_start, y<span class="sc">$</span>vent_time_stop))</span>
+<span id="cb24-519"><a href="#cb24-519" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-520"><a href="#cb24-520" aria-hidden="true" tabindex="-1"></a>df_vent_temp24 <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(df_temp, df_vent_temp, <span class="at">by =</span> ventjoinby24) <span class="sc">%&gt;%</span> </span>
+<span id="cb24-521"><a href="#cb24-521" aria-hidden="true" tabindex="-1"></a>     <span class="fu">mutate</span>(<span class="at">vent24 =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb24-522"><a href="#cb24-522" aria-hidden="true" tabindex="-1"></a>     <span class="fu">select</span>(mrn, enc_id, icu_start_date, icu_stop_date, vent24, vent_time_start, vent_time_stop) <span class="sc">%&gt;%</span> </span>
+<span id="cb24-523"><a href="#cb24-523" aria-hidden="true" tabindex="-1"></a>     <span class="fu">distinct</span>()</span>
+<span id="cb24-524"><a href="#cb24-524" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-525"><a href="#cb24-525" aria-hidden="true" tabindex="-1"></a>df_vent_temp72 <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(df_temp, df_vent_temp, <span class="at">by =</span> ventjoinby72) <span class="sc">%&gt;%</span> </span>
+<span id="cb24-526"><a href="#cb24-526" aria-hidden="true" tabindex="-1"></a>     <span class="fu">mutate</span>(<span class="at">vent72 =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb24-527"><a href="#cb24-527" aria-hidden="true" tabindex="-1"></a>     <span class="fu">select</span>(mrn, enc_id, icu_start_date, icu_stop_date, vent72, vent_time_start, vent_time_stop)<span class="sc">%&gt;%</span> </span>
+<span id="cb24-528"><a href="#cb24-528" aria-hidden="true" tabindex="-1"></a>     <span class="fu">distinct</span>()</span>
+<span id="cb24-529"><a href="#cb24-529" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-530"><a href="#cb24-530" aria-hidden="true" tabindex="-1"></a>df_early_vent <span class="ot">&lt;-</span> <span class="fu">full_join</span>(df_vent_temp24, df_vent_temp72) <span class="sc">%&gt;%</span> </span>
+<span id="cb24-531"><a href="#cb24-531" aria-hidden="true" tabindex="-1"></a>     <span class="fu">relocate</span>(vent24, vent72, <span class="at">.after =</span> enc_id) </span>
+<span id="cb24-532"><a href="#cb24-532" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-533"><a href="#cb24-533" aria-hidden="true" tabindex="-1"></a><span class="co"># Now add this into the PT record</span></span>
+<span id="cb24-534"><a href="#cb24-534" aria-hidden="true" tabindex="-1"></a>df_pt_counts <span class="ot">&lt;-</span> <span class="fu">left_join</span>(df_pt_counts, df_early_vent)<span class="sc">%&gt;%</span> </span>
+<span id="cb24-535"><a href="#cb24-535" aria-hidden="true" tabindex="-1"></a>     <span class="fu">mutate</span>(<span class="at">vent24 =</span> <span class="fu">replace_na</span>(vent24, <span class="cn">FALSE</span>),</span>
+<span id="cb24-536"><a href="#cb24-536" aria-hidden="true" tabindex="-1"></a>            <span class="at">vent72 =</span> <span class="fu">replace_na</span>(vent72, <span class="cn">FALSE</span>)) </span>
+<span id="cb24-537"><a href="#cb24-537" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-538"><a href="#cb24-538" aria-hidden="true" tabindex="-1"></a><span class="co"># Now display tables of each.</span></span>
+<span id="cb24-539"><a href="#cb24-539" aria-hidden="true" tabindex="-1"></a>df_pt_counts <span class="sc">%&gt;%</span> </span>
+<span id="cb24-540"><a href="#cb24-540" aria-hidden="true" tabindex="-1"></a>     <span class="fu">tbl_summary</span>(<span class="at">include =</span> <span class="fu">c</span>(<span class="st">'vent24'</span>, <span class="fu">starts_with</span>(<span class="st">'n_'</span>)),</span>
+<span id="cb24-541"><a href="#cb24-541" aria-hidden="true" tabindex="-1"></a>                 <span class="at">by =</span> <span class="st">'vent24'</span>,</span>
+<span id="cb24-542"><a href="#cb24-542" aria-hidden="true" tabindex="-1"></a>                 <span class="at">label =</span> <span class="fu">list</span>(n_early_pt <span class="sc">~</span> <span class="st">'Early PT (within 72 hours)'</span>,</span>
+<span id="cb24-543"><a href="#cb24-543" aria-hidden="true" tabindex="-1"></a>                              n_icu_pt <span class="sc">~</span> <span class="st">'PT any time in the ICU'</span>,</span>
+<span id="cb24-544"><a href="#cb24-544" aria-hidden="true" tabindex="-1"></a>                              n_any_pt <span class="sc">~</span> <span class="st">'PT any time in the hospital'</span>,</span>
+<span id="cb24-545"><a href="#cb24-545" aria-hidden="true" tabindex="-1"></a>                              n_pt0_24 <span class="sc">~</span> <span class="st">'PT within 0-24 hours'</span>,</span>
+<span id="cb24-546"><a href="#cb24-546" aria-hidden="true" tabindex="-1"></a>                              n_pt24_48 <span class="sc">~</span> <span class="st">'PT within 24-48 hours'</span>,</span>
+<span id="cb24-547"><a href="#cb24-547" aria-hidden="true" tabindex="-1"></a>                              n_pt48_72 <span class="sc">~</span> <span class="st">'PT within 48-72 hours'</span>,</span>
+<span id="cb24-548"><a href="#cb24-548" aria-hidden="true" tabindex="-1"></a>                              n_pt_each <span class="sc">~</span> <span class="st">'Early PT on any 2 days'</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb24-549"><a href="#cb24-549" aria-hidden="true" tabindex="-1"></a>     <span class="fu">modify_spanning_header</span>(<span class="fu">all_stat_cols</span>() <span class="sc">~</span> <span class="st">'**IMV within first 24 hours of PICU**'</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb24-550"><a href="#cb24-550" aria-hidden="true" tabindex="-1"></a>     <span class="fu">add_p</span>()</span>
+<span id="cb24-551"><a href="#cb24-551" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-552"><a href="#cb24-552" aria-hidden="true" tabindex="-1"></a><span class="co"># Now display tables of each.</span></span>
+<span id="cb24-553"><a href="#cb24-553" aria-hidden="true" tabindex="-1"></a>df_pt_counts <span class="sc">%&gt;%</span> </span>
+<span id="cb24-554"><a href="#cb24-554" aria-hidden="true" tabindex="-1"></a>     <span class="fu">tbl_summary</span>(<span class="at">include =</span> <span class="fu">c</span>(<span class="st">'vent72'</span>, <span class="fu">starts_with</span>(<span class="st">'n_'</span>)),</span>
+<span id="cb24-555"><a href="#cb24-555" aria-hidden="true" tabindex="-1"></a>                 <span class="at">by =</span> <span class="st">'vent72'</span>,</span>
+<span id="cb24-556"><a href="#cb24-556" aria-hidden="true" tabindex="-1"></a>                 <span class="at">label =</span> <span class="fu">list</span>(n_early_pt <span class="sc">~</span> <span class="st">'Early PT (within 72 hours)'</span>,</span>
+<span id="cb24-557"><a href="#cb24-557" aria-hidden="true" tabindex="-1"></a>                              n_icu_pt <span class="sc">~</span> <span class="st">'PT any time in the ICU'</span>,</span>
+<span id="cb24-558"><a href="#cb24-558" aria-hidden="true" tabindex="-1"></a>                              n_any_pt <span class="sc">~</span> <span class="st">'PT any time in the hospital'</span>,</span>
+<span id="cb24-559"><a href="#cb24-559" aria-hidden="true" tabindex="-1"></a>                              n_pt0_24 <span class="sc">~</span> <span class="st">'PT within 0-24 hours'</span>,</span>
+<span id="cb24-560"><a href="#cb24-560" aria-hidden="true" tabindex="-1"></a>                              n_pt24_48 <span class="sc">~</span> <span class="st">'PT within 24-48 hours'</span>,</span>
+<span id="cb24-561"><a href="#cb24-561" aria-hidden="true" tabindex="-1"></a>                              n_pt48_72 <span class="sc">~</span> <span class="st">'PT within 48-72 hours'</span>,</span>
+<span id="cb24-562"><a href="#cb24-562" aria-hidden="true" tabindex="-1"></a>                              n_pt_each <span class="sc">~</span> <span class="st">'Early PT on any 2 days'</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb24-563"><a href="#cb24-563" aria-hidden="true" tabindex="-1"></a>     <span class="fu">modify_spanning_header</span>(<span class="fu">all_stat_cols</span>() <span class="sc">~</span> <span class="st">'**IMV within first 72 hours of PICU**'</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb24-564"><a href="#cb24-564" aria-hidden="true" tabindex="-1"></a>     <span class="fu">add_p</span>()</span>
+<span id="cb24-565"><a href="#cb24-565" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-566"><a href="#cb24-566" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-569"><a href="#cb24-569" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb24-570"><a href="#cb24-570" aria-hidden="true" tabindex="-1"></a><span class="co"># tabyl(df_early_pt_firstpicu, early_pt)</span></span>
-<span id="cb24-571"><a href="#cb24-571" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb24-572"><a href="#cb24-572" aria-hidden="true" tabindex="-1"></a><span class="co"># # Now try to sum all the active types of PT</span></span>
-<span id="cb24-573"><a href="#cb24-573" aria-hidden="true" tabindex="-1"></a><span class="co"># df_pt_active &lt;- df_pt_wide %&gt;%</span></span>
-<span id="cb24-574"><a href="#cb24-574" aria-hidden="true" tabindex="-1"></a><span class="co">#      mutate(across(where(is.numeric), ~ replace_na(.x, 0))) %&gt;%</span></span>
-<span id="cb24-575"><a href="#cb24-575" aria-hidden="true" tabindex="-1"></a><span class="co">#      mutate(pt_active_time = gait_training_time_entry + therapeutic_exercise_time_entry + wheelchair_management_time_entry +</span></span>
-<span id="cb24-576"><a href="#cb24-576" aria-hidden="true" tabindex="-1"></a><span class="co">#                  neuromuscular_re_education_time_entry + therapeutic_exercise_comments + gait_training_comments +</span></span>
-<span id="cb24-577"><a href="#cb24-577" aria-hidden="true" tabindex="-1"></a><span class="co">#                  orthotic_prosthetic_management_and_or_training_time_entry + prosthetic_training_time_entry) %&gt;%</span></span>
-<span id="cb24-578"><a href="#cb24-578" aria-hidden="true" tabindex="-1"></a><span class="co">#      ungroup() %&gt;%</span></span>
-<span id="cb24-579"><a href="#cb24-579" aria-hidden="true" tabindex="-1"></a><span class="co">#      select(mrn, enc_id, recorded_time, pt_active_time) %&gt;%</span></span>
-<span id="cb24-580"><a href="#cb24-580" aria-hidden="true" tabindex="-1"></a><span class="co">#      filter(pt_active_time &gt; 0)</span></span>
-<span id="cb24-581"><a href="#cb24-581" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb24-582"><a href="#cb24-582" aria-hidden="true" tabindex="-1"></a><span class="co"># # Do the same kind of inequality join as before, ensuring the PT is after PICU start</span></span>
-<span id="cb24-583"><a href="#cb24-583" aria-hidden="true" tabindex="-1"></a><span class="co"># df_pt_active_picu &lt;- left_join(df_temp, df_pt_active, by = pt_join_by, relationship = "many-to-many")</span></span>
-<span id="cb24-584"><a href="#cb24-584" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb24-585"><a href="#cb24-585" aria-hidden="true" tabindex="-1"></a><span class="co"># # Determine whether patients had PT in each of the intervals</span></span>
-<span id="cb24-586"><a href="#cb24-586" aria-hidden="true" tabindex="-1"></a><span class="co"># df_early_pt_active &lt;- df_pt_active_picu %&gt;%</span></span>
-<span id="cb24-587"><a href="#cb24-587" aria-hidden="true" tabindex="-1"></a><span class="co">#      mutate(early_pt_active = if_else(recorded_time %within% int0_72, TRUE, FALSE)) %&gt;%</span></span>
-<span id="cb24-588"><a href="#cb24-588" aria-hidden="true" tabindex="-1"></a><span class="co">#      group_by(mrn, enc_id, icu_start_date) %&gt;%</span></span>
-<span id="cb24-589"><a href="#cb24-589" aria-hidden="true" tabindex="-1"></a><span class="co">#      filter(early_pt_active == max(early_pt_active)) %&gt;%</span></span>
-<span id="cb24-590"><a href="#cb24-590" aria-hidden="true" tabindex="-1"></a><span class="co">#      ungroup() %&gt;%</span></span>
-<span id="cb24-591"><a href="#cb24-591" aria-hidden="true" tabindex="-1"></a><span class="co">#      distinct(mrn, enc_id, icu_start_date, early_pt_active)</span></span>
+<span id="cb24-567"><a href="#cb24-567" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-568"><a href="#cb24-568" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-569"><a href="#cb24-569" aria-hidden="true" tabindex="-1"></a><span class="fu"># Table 1</span></span>
+<span id="cb24-570"><a href="#cb24-570" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-571"><a href="#cb24-571" aria-hidden="true" tabindex="-1"></a>We will now begin generating some basic tables</span>
+<span id="cb24-572"><a href="#cb24-572" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-573"><a href="#cb24-573" aria-hidden="true" tabindex="-1"></a>Not used</span>
+<span id="cb24-574"><a href="#cb24-574" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-577"><a href="#cb24-577" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb24-578"><a href="#cb24-578" aria-hidden="true" tabindex="-1"></a><span class="co"># tabyl(df_early_pt_firstpicu, early_pt)</span></span>
+<span id="cb24-579"><a href="#cb24-579" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb24-580"><a href="#cb24-580" aria-hidden="true" tabindex="-1"></a><span class="co"># # Now try to sum all the active types of PT</span></span>
+<span id="cb24-581"><a href="#cb24-581" aria-hidden="true" tabindex="-1"></a><span class="co"># df_pt_active &lt;- df_pt_wide %&gt;%</span></span>
+<span id="cb24-582"><a href="#cb24-582" aria-hidden="true" tabindex="-1"></a><span class="co">#      mutate(across(where(is.numeric), ~ replace_na(.x, 0))) %&gt;%</span></span>
+<span id="cb24-583"><a href="#cb24-583" aria-hidden="true" tabindex="-1"></a><span class="co">#      mutate(pt_active_time = gait_training_time_entry + therapeutic_exercise_time_entry + wheelchair_management_time_entry +</span></span>
+<span id="cb24-584"><a href="#cb24-584" aria-hidden="true" tabindex="-1"></a><span class="co">#                  neuromuscular_re_education_time_entry + therapeutic_exercise_comments + gait_training_comments +</span></span>
+<span id="cb24-585"><a href="#cb24-585" aria-hidden="true" tabindex="-1"></a><span class="co">#                  orthotic_prosthetic_management_and_or_training_time_entry + prosthetic_training_time_entry) %&gt;%</span></span>
+<span id="cb24-586"><a href="#cb24-586" aria-hidden="true" tabindex="-1"></a><span class="co">#      ungroup() %&gt;%</span></span>
+<span id="cb24-587"><a href="#cb24-587" aria-hidden="true" tabindex="-1"></a><span class="co">#      select(mrn, enc_id, recorded_time, pt_active_time) %&gt;%</span></span>
+<span id="cb24-588"><a href="#cb24-588" aria-hidden="true" tabindex="-1"></a><span class="co">#      filter(pt_active_time &gt; 0)</span></span>
+<span id="cb24-589"><a href="#cb24-589" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb24-590"><a href="#cb24-590" aria-hidden="true" tabindex="-1"></a><span class="co"># # Do the same kind of inequality join as before, ensuring the PT is after PICU start</span></span>
+<span id="cb24-591"><a href="#cb24-591" aria-hidden="true" tabindex="-1"></a><span class="co"># df_pt_active_picu &lt;- left_join(df_temp, df_pt_active, by = pt_join_by, relationship = "many-to-many")</span></span>
 <span id="cb24-592"><a href="#cb24-592" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb24-593"><a href="#cb24-593" aria-hidden="true" tabindex="-1"></a><span class="co"># tabyl(df_early_pt_active, early_pt_active)</span></span>
-<span id="cb24-594"><a href="#cb24-594" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-595"><a href="#cb24-595" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb24-593"><a href="#cb24-593" aria-hidden="true" tabindex="-1"></a><span class="co"># # Determine whether patients had PT in each of the intervals</span></span>
+<span id="cb24-594"><a href="#cb24-594" aria-hidden="true" tabindex="-1"></a><span class="co"># df_early_pt_active &lt;- df_pt_active_picu %&gt;%</span></span>
+<span id="cb24-595"><a href="#cb24-595" aria-hidden="true" tabindex="-1"></a><span class="co">#      mutate(early_pt_active = if_else(recorded_time %within% int0_72, TRUE, FALSE)) %&gt;%</span></span>
+<span id="cb24-596"><a href="#cb24-596" aria-hidden="true" tabindex="-1"></a><span class="co">#      group_by(mrn, enc_id, icu_start_date) %&gt;%</span></span>
+<span id="cb24-597"><a href="#cb24-597" aria-hidden="true" tabindex="-1"></a><span class="co">#      filter(early_pt_active == max(early_pt_active)) %&gt;%</span></span>
+<span id="cb24-598"><a href="#cb24-598" aria-hidden="true" tabindex="-1"></a><span class="co">#      ungroup() %&gt;%</span></span>
+<span id="cb24-599"><a href="#cb24-599" aria-hidden="true" tabindex="-1"></a><span class="co">#      distinct(mrn, enc_id, icu_start_date, early_pt_active)</span></span>
+<span id="cb24-600"><a href="#cb24-600" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb24-601"><a href="#cb24-601" aria-hidden="true" tabindex="-1"></a><span class="co"># tabyl(df_early_pt_active, early_pt_active)</span></span>
+<span id="cb24-602"><a href="#cb24-602" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-603"><a href="#cb24-603" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

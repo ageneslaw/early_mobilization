@@ -47,13 +47,13 @@ editor_options:
 engine: knitr
 ---
 
-# *Early mobilization retrospective analysis*
+# Early mobilization retrospective analysis
 
-*This project will assess the delivery of physical therapy to critically ill children at the Morgan Stanley Children's Hospital in New York City. We are interested in whether physical therapy is being delivered within 72 hours of admission to the PICU. Physical therapy within 72 hours will be referred to from here out as "Early mobilization" or EM.*
+This project will assess the delivery of physical therapy to critically ill children at the Morgan Stanley Children's Hospital in New York City. We are interested in whether physical therapy is being delivered within 72 hours of admission to the PICU. Physical therapy within 72 hours will be referred to from here out as "Early mobilization" or EM.
 
-# *Initial setup*
+# Initial setup
 
-## *Loading libraries and data paths*
+## Loading libraries and data paths
 
 ```{r}
 #| label: setup
@@ -75,15 +75,15 @@ data_path <- data_path_chony
 
 ```
 
-## *Loading patients, encounters and PICU start/stop times*
+## Loading patients, encounters and PICU start/stop times
 
-*A patient has a medical record number (MRN) which is persistent across time.*
+A patient has a medical record number (MRN) which is persistent across time.
 
-*A unique patient MRN can have multiple encounters. An encounter is defined by the variable* \code{PAT_ENC_CSN_ID}*, which has been renamed* \code{PAT_ENC} *for easier typing throughout this project. A patient encounter is a distinct encounter with the CHONY hospital system. An encounter can be inpatient, outpatient, ED, virtual, or not even involve patient contact (such as an attempt to call a patient that fails). For the purposes of this project, all encounters are an inpatient hospitalization. All encounters will have a start and stop date.*
+A unique patient MRN can have multiple encounters. An encounter is defined by the variable \code{PAT_ENC_CSN_ID}, which has been renamed \code{PAT_ENC} for easier typing throughout this project. A patient encounter is a distinct encounter with the CHONY hospital system. An encounter can be inpatient, outpatient, ED, virtual, or not even involve patient contact (such as an attempt to call a patient that fails). For the purposes of this project, all encounters are an inpatient hospitalization. All encounters will have a start and stop date.
 
-*During a given hospital encounter ("admission"), a patient may move between multiple inpatient locations. These involve floor locations, PICUs, and operative areas. It also includes "virtual" areas, such as changing locations to a radiology area during a portable x-ray. The patient does not physically move in these circumstances and so we will mostly ignore them.*
+During a given hospital encounter ("admission"), a patient may move between multiple inpatient locations. These involve floor locations, PICUs, and operative areas. It also includes "virtual" areas, such as changing locations to a radiology area during a portable x-ray. The patient does not physically move in these circumstances and so we will mostly ignore them.
 
-*Because a patient can move multiple times between floor and PICU locations, a given hospital encounter might have multiple PICU admissions. We will break hospital encounters into individual PICU encounters, and each get a unique ID.*
+Because a patient can move multiple times between floor and PICU locations, a given hospital encounter might have multiple PICU admissions. We will break hospital encounters into individual PICU encounters, and each get a unique ID.
 
 ```{r}
 #| label: load-data
@@ -115,11 +115,11 @@ n_picu <- distinct(df_picu_startstop, mrn, icu_start_date) %>% nrow()
 
 ```
 
-|         | *PICU*       | *Encounters*       | *Patients*  |
-|---------|--------------|--------------------|-------------|
-| ***n*** | *`r n_picu`* | *`r n_encounters`* | *`r n_mrn`* |
+|       | PICU       | Encounters       | Patients  |
+|-------|------------|------------------|-----------|
+| **n** | `r n_picu` | `r n_encounters` | `r n_mrn` |
 
-*Since we are interested primarily in mobilization within the first 72 hours of ICU hospitalization, we should determine how many patients stayed for this long.*
+Since we are interested primarily in mobilization within the first 72 hours of ICU hospitalization, we should determine how many patients stayed for this long.
 
 ```{r}
 #| label: 72 hour LOS
@@ -160,11 +160,11 @@ kable(tabyl(df_encounter_stats, los_hosp_3days),
 
 ```
 
-## *Invasive mechanical ventilation (IMV)*
+## Invasive mechanical ventilation (IMV)
 
-*Understanding the numbers of patients receiving IMV, and the timing of IMV, is essential to the study.*
+Understanding the numbers of patients receiving IMV, and the timing of IMV, is essential to the study.
 
-*First we will load data. This takes time, so we will separate it from other processing so it can be cached.*
+First we will load data. This takes time, so we will separate it from other processing so it can be cached.
 
 ```{r}
 #| label: load respiratory support
@@ -176,7 +176,7 @@ df_resp_episodes <- classify_resp_support(df_vent_wide)
 
 ```
 
-*Now, we will get some counts.*
+Now, we will get some counts.
 
 ```{r}
 #| label: count IMV
@@ -223,9 +223,9 @@ kable(display_array,
       col.names = 'N')
 ```
 
-## *Physical therapy*
+## Physical therapy
 
-*Physical therapy is logged in flowsheets. For the most part, the physical therapists log the total amount of time they worked. Some physical therapists also log the specific activities they performed (such as gait training, wheel chair training, etc). This may or may not be consistent and will need some QAing.*
+Physical therapy is logged in flowsheets. For the most part, the physical therapists log the total amount of time they worked. Some physical therapists also log the specific activities they performed (such as gait training, wheel chair training, etc). This may or may not be consistent and will need some QAing.
 
 ```{r}
 #| label: load PT
@@ -248,13 +248,13 @@ df_pt <- read_delim(paste0(data_path, '/Report 8F - Physical Therapy.txt'),
 
 ```
 
-*There is a kind of variable called "PT received on" which is where the PT entered the date they supposedly provided PT. However, they always log PT when provided and there are multiple instances of the incorrect date being logged (such as a date in the future). Because of this, we will only use the date at the time PT was logged, rather than what the therapist manually entered. If we do need to use it, the date is recorded as the number of days after 12/31/1840 (unclear why). To convert this to a date, you can use:*
+There is a kind of variable called "PT received on" which is where the PT entered the date they supposedly provided PT. However, they always log PT when provided and there are multiple instances of the incorrect date being logged (such as a date in the future). Because of this, we will only use the date at the time PT was logged, rather than what the therapist manually entered. If we do need to use it, the date is recorded as the number of days after 12/31/1840 (unclear why). To convert this to a date, you can use:
 
 ``` r
 mutate(pt_received_on = days(pt_received_on) + ymd('1840-12-31'))
 ```
 
-*There are also many kinds flowsheet rows being documented on. Not all are really relevant to our purposes. They are:*
+There are also many kinds flowsheet rows being documented on. Not all are really relevant to our purposes. They are:
 
 ```{r}
 #| label: PT flowsheet types
@@ -266,45 +266,45 @@ df_pt %>% distinct(flowsheet_name) %>% print(n=Inf) %>%
 
 ```
 
-*Most of these differentiate the amount of time spent on a given task. It's not always clear which of these are active versus passive in terms of participation of the patient. Some also seem irrelevant. We will dictate all of the relevant ones as:*
+Most of these differentiate the amount of time spent on a given task. It's not always clear which of these are active versus passive in terms of participation of the patient. Some also seem irrelevant. We will dictate all of the relevant ones as:
 
--   *therapeutic activity time entry*
+-   therapeutic activity time entry
 
--   *ip pt time calculation*
+-   ip pt time calculation
 
--   *pt re-evaluation time entry*
+-   pt re-evaluation time entry
 
--   *gait training time entry*
+-   gait training time entry
 
--   *neuromuscular re-education time entry*
+-   neuromuscular re-education time entry
 
--   *self care/home management (adls) time entry*
+-   self care/home management (adls) time entry
 
--   *therapeutic exercise time entry*
+-   therapeutic exercise time entry
 
--   *therapeutic activity comments*
+-   therapeutic activity comments
 
--   *therapeutic exercise comments*
+-   therapeutic exercise comments
 
--   *gait training comments*
+-   gait training comments
 
--   *manual therapy time entry*
+-   manual therapy time entry
 
--   *orthotic/prosthetic management and/or training time entry*
+-   orthotic/prosthetic management and/or training time entry
 
--   *wheelchair management time entry*
+-   wheelchair management time entry
 
--   *pt eval treat tolerance*
+-   pt eval treat tolerance
 
--   *prosthetic training time entry*
+-   prosthetic training time entry
 
--   *therapeutic massage time entry*
+-   therapeutic massage time entry
 
-*(It might seem odd that we are keeping "comments." The reason is that in a subsequentstep, we enforce that only numeric values are retained. Often the amount of time spent is erroneously entered as a "comment" so we will keep these.)*
+(It might seem odd that we are keeping "comments." The reason is that in a subsequentstep, we enforce that only numeric values are retained. Often the amount of time spent is erroneously entered as a "comment" so we will keep these.)
 
-*In the next step, we save all of these types of PT as a wide format data frame. Now we have access to each type of PT in case we need it for later.*
+In the next step, we save all of these types of PT as a wide format data frame. Now we have access to each type of PT in case we need it for later.
 
-*The variable `ip_pt_time_calculation` appears to be the total of all other types of PT being provided. The other units specify the PT being provided, which all sum to this variable. Therefore `ip_pt_time_calculation` is the most important variable here and the one we will use as the basis for how much PT is provided.*
+The variable `ip_pt_time_calculation` appears to be the total of all other types of PT being provided. The other units specify the PT being provided, which all sum to this variable. Therefore `ip_pt_time_calculation` is the most important variable here and the one we will use as the basis for how much PT is provided.
 
 ```{r}
 #| label: PT types
@@ -352,44 +352,56 @@ df_pt_wide <- df_pt %>%
 
 # Just keep a version with total time
 df_pt_total <- df_pt_wide %>%
-     select(mrn, enc_id, recorded_time, pt_time = ip_pt_time_calculation)
+     select(mrn, enc_id, recorded_time, pt_time = ip_pt_time_calculation) %>% 
+     distinct()
 
 ```
 
-### *Amount of PT*
+### Amount of PT
 
-*First we will describe, in general, how much PT is being delivered. We need to make sure that we only sum up PT that was delivered after the start of a PICU stay. To do this we take the `df_picu_startstop` data frame, which contains ICU admit and discharge times. Create a few windows of time spanning 0-24 hours, 24-48 hours, and 48-72 hours. Also create an interval that spans 0-72 hours.*
+First we will describe, in general, how much PT is being delivered. We need to make sure that we only sum up PT that was delivered after the start of a PICU stay. To do this we take the `df_picu_startstop` data frame, which contains ICU admit and discharge times. Create a few windows of time spanning 0-24 hours, 24-48 hours, and 48-72 hours. Also create an interval that spans 0-72 hours.
 
 ```{r}
-#| label: PT / PICU time joins
+#| label: PT and PICU time joins
 
 # Update the PICU start/stop so that it has a timestamp and intervals
 # for 24, 48, and 72 hours
 df_temp <- df_picu_startstop %>%
      mutate(t24 = icu_start_date + hours(24),
-            int0_24 = interval(icu_start_date, t24),
             t48 = icu_start_date + hours(48),
-            int24_48 = interval(t24 + minutes(1), t48),
             t72 = icu_start_date + hours(72),
-            int48_72 = interval(t48 + minutes(1), t72),
-            int0_72 = interval(icu_start_date, t72)
+            int0_72 = interval(icu_start_date, t72),
+            int0_24 = interval(icu_start_date, t24),
+            int24_48 = interval(t24, t48),
+            int48_72 = interval(t48, t72)
             )
+
+# Label the 1st hospitalization
+df_temp <- df_temp %>% 
+     group_by(mrn, enc_id) %>% 
+     arrange(mrn, enc_id, icu_start_date) %>% 
+     mutate(icu_stay = row_number()) %>% 
+     ungroup()
 
 # Create an inequality join so we make sure to only match PT that occurred after
 # the PICU start
-pt_join_by <- join_by(mrn, enc_id, y$recorded_time > x$icu_start_date)
-df_pt_picu <- left_join(df_temp, df_pt_total, by = pt_join_by, relationship = "many-to-many")
+pt_join_by <- join_by(mrn, enc_id, x$icu_start_date < y$recorded_time)
+df_pt_picu <- left_join(df_temp, df_pt_total, by = pt_join_by, relationship = "many-to-many") %>% 
+     relocate(mrn, enc_id, icu_stay, icu_start_date, icu_stop_date, recorded_time, pt_time)
+
+# Only keep 1st hospitalization
+# df_pt_picu <- df_pt_picu %>% filter(icu_stay == 1)
 
 # Determine whether each episode of PT fell in a given interval
 df_pt_timing <- df_pt_picu %>%
-     mutate(early_pt = if_else(recorded_time %within% int0_72 & pt_time > 0, TRUE, FALSE, FALSE),
-            any_pt = if_else(recorded_time > icu_start_date & pt_time > 0, TRUE, FALSE, FALSE),
-            icu_pt = if_else(recorded_time %within% interval(icu_start_date, icu_stop_date) & pt_time > 0, TRUE, FALSE, FALSE),
-            pt0_24 = if_else(recorded_time  %within% int0_24 & pt_time > 0, TRUE, FALSE, FALSE),
-            pt24_48 = if_else(recorded_time %within% int24_48 & pt_time > 0, TRUE, FALSE, FALSE),
-            pt48_72 = if_else(recorded_time  %within% int48_72 & pt_time > 0, TRUE, FALSE, FALSE),)
+     mutate(early_pt = if_else(recorded_time %within% int0_72, TRUE, FALSE, FALSE),
+            any_pt = if_else(recorded_time > icu_start_date, TRUE, FALSE, FALSE),
+            icu_pt = if_else(recorded_time %within% interval(icu_start_date, icu_stop_date), TRUE, FALSE, FALSE),
+            pt0_24 = if_else(recorded_time  %within% int0_24, TRUE, FALSE, FALSE),
+            pt24_48 = if_else(recorded_time %within% int24_48, TRUE, FALSE, FALSE),
+            pt48_72 = if_else(recorded_time %within% int48_72, TRUE, FALSE, FALSE))
 
-# Get counts of PT in each interval
+# Get counts of PT in each interval.
 df_pt_counts <- df_pt_timing %>%  
      group_by(mrn, enc_id, icu_start_date) %>% 
      summarize(n_early_pt = sum(early_pt), 
@@ -397,10 +409,8 @@ df_pt_counts <- df_pt_timing %>%
                n_any_pt = sum(any_pt), 
                n_pt0_24 = sum(pt0_24), 
                n_pt24_48 = sum(pt24_48), 
-               n_pt48_72 = sum(pt48_72), 
-               early_pt_time = sum(if_else(early_pt, pt_time, 0, 0)),
-               icu_pt_time = sum(if_else(icu_pt, pt_time, 0, 0)),
-               any_pt_time = sum(if_else(any_pt, pt_time, 0, 0)),
+               n_pt48_72 = sum(pt48_72),
+               n_pt_each = sum(if_else((pt0_24 & pt24_48) | (pt0_24 & pt48_72) | (pt24_48 & pt48_72), TRUE, FALSE)),
                .groups = 'drop') %>% 
      mutate(across(starts_with('n_'), ~ if_else(.x > 0, TRUE, FALSE)))
 
@@ -425,43 +435,136 @@ df_pt_timesums <- full_join(df_early_pt_timesum, df_icu_pt_timesum) %>%
      full_join(df_any_pt_timesum)
 
 
+```
+
+Now let's display some findings. First, display counts of ICU stays involving PT at varying time points. Note that that the sum of PT in the 0-24, 24-48, and 42-72 hour ranges can sum to more than the number of patients who received early PT (0-72 hours). This is because a patient could receive PT multiple times in the early range, e.g. at 0-24 and 24-48 hours. They would be counted in each range, but only once total for the 0-72 hour range.
+
+```{r}
+#| label: display PT counts
+
 # Now display tables of each.
-tbl_summary(df_pt_counts,
-            include = starts_with('n_'),
-            label = list(n_early_pt ~ 'Early PT (within 72 hours)',
-                         n_icu_pt ~ 'PT any time in the ICU',
-                         n_any_pt ~ 'PT any time in the hospital'))
+df_pt_counts %>% 
+     tbl_summary(include = starts_with('n_'),
+                 label = list(n_early_pt ~ 'Early PT (within 72 hours)',
+                              n_icu_pt ~ 'PT any time in the ICU',
+                              n_any_pt ~ 'PT any time in the hospital',
+                              n_pt0_24 ~ 'PT within 0-24 hours',
+                              n_pt24_48 ~ 'PT within 24-48 hours',
+                              n_pt48_72 ~ 'PT within 48-72 hours',
+                              n_pt_each ~ 'Early PT on any 2 days'))
+
+
+```
+
+Next, display the amount of PT (in hours) that was received.
+
+```{r}
+#| label: display PT duration
+
 
 df_pt_timesums %>% 
      tbl_summary(include = ends_with('_time'),
                  label = list(early_pt_time ~ 'Duration of PT within first 72 hours, minutes',
                               icu_pt_time ~ 'Duration of PT within ICU, minutes',
                               any_pt_time ~ 'Duration of PT within the hospital, minutes'),
-                 missing = 'no')
+                 missing = 'no',
+                 statistic = list(all_continuous() ~ '{median} [{p25}-{p75}] - {N_nonmiss} patients'))
 
-tabyl(df_early_pt_firstpicu, early_pt)
+```
 
-# Now try to sum all the active types of PT
-df_pt_active <- df_pt_wide %>%
-     mutate(across(where(is.numeric), ~ replace_na(.x, 0))) %>%
-     mutate(pt_active_time = gait_training_time_entry + therapeutic_exercise_time_entry + wheelchair_management_time_entry +
-                 neuromuscular_re_education_time_entry + therapeutic_exercise_comments + gait_training_comments +
-                 orthotic_prosthetic_management_and_or_training_time_entry + prosthetic_training_time_entry) %>%
-     ungroup() %>%
-     select(mrn, enc_id, recorded_time, pt_active_time) %>%
-     filter(pt_active_time > 0)
+## IMV within 24 (and 72) hours of PICU hospitalization
 
-# Do the same kind of inequality join as before, ensuring the PT is after PICU start
-df_pt_active_picu <- left_join(df_temp, df_pt_active, by = pt_join_by, relationship = "many-to-many")
+Since PT is likely less commonly provided to patients during IMV, we should know which patients had IMV early in the PICU hospitalization. We can use the "df_temp" data frame that we created above since this already has 24 and 72 hour computations.
 
-# Determine whether patients had PT in each of the intervals
-df_early_pt_active <- df_pt_active_picu %>%
-     mutate(early_pt_active = if_else(recorded_time %within% int0_72, TRUE, FALSE)) %>%
-     group_by(mrn, enc_id, icu_start_date) %>%
-     filter(early_pt_active == max(early_pt_active)) %>%
-     ungroup() %>%
-     distinct(mrn, enc_id, icu_start_date, early_pt_active)
+```{r}
 
-tabyl(df_early_pt_active, early_pt_active)
+#| label: early imv and PT comparison
+
+# Get patients who had early (or not early) ventilation in the ICU
+df_vent_temp <- df_vent_episodes %>% 
+     select(mrn, enc_id, vent_episode, vent_time_start, vent_time_stop)
+
+ventjoinby24 <- join_by(mrn, enc_id, overlaps(x$icu_start_date, x$t24,
+                                            y$vent_time_start, y$vent_time_stop))
+
+ventjoinby72 <- join_by(mrn, enc_id, overlaps(x$icu_start_date, x$t72,
+                                            y$vent_time_start, y$vent_time_stop))
+
+df_vent_temp24 <- inner_join(df_temp, df_vent_temp, by = ventjoinby24) %>% 
+     mutate(vent24 = TRUE) %>% 
+     select(mrn, enc_id, icu_start_date, icu_stop_date, vent24, vent_time_start, vent_time_stop) %>% 
+     distinct()
+
+df_vent_temp72 <- inner_join(df_temp, df_vent_temp, by = ventjoinby72) %>% 
+     mutate(vent72 = TRUE) %>% 
+     select(mrn, enc_id, icu_start_date, icu_stop_date, vent72, vent_time_start, vent_time_stop)%>% 
+     distinct()
+
+df_early_vent <- full_join(df_vent_temp24, df_vent_temp72) %>% 
+     relocate(vent24, vent72, .after = enc_id) 
+
+# Now add this into the PT record
+df_pt_counts <- left_join(df_pt_counts, df_early_vent)%>% 
+     mutate(vent24 = replace_na(vent24, FALSE),
+            vent72 = replace_na(vent72, FALSE)) 
+
+# Now display tables of each.
+df_pt_counts %>% 
+     tbl_summary(include = c('vent24', starts_with('n_')),
+                 by = 'vent24',
+                 label = list(n_early_pt ~ 'Early PT (within 72 hours)',
+                              n_icu_pt ~ 'PT any time in the ICU',
+                              n_any_pt ~ 'PT any time in the hospital',
+                              n_pt0_24 ~ 'PT within 0-24 hours',
+                              n_pt24_48 ~ 'PT within 24-48 hours',
+                              n_pt48_72 ~ 'PT within 48-72 hours',
+                              n_pt_each ~ 'Early PT on any 2 days')) %>% 
+     modify_spanning_header(all_stat_cols() ~ '**IMV within first 24 hours of PICU**') %>% 
+     add_p()
+
+# Now display tables of each.
+df_pt_counts %>% 
+     tbl_summary(include = c('vent72', starts_with('n_')),
+                 by = 'vent72',
+                 label = list(n_early_pt ~ 'Early PT (within 72 hours)',
+                              n_icu_pt ~ 'PT any time in the ICU',
+                              n_any_pt ~ 'PT any time in the hospital',
+                              n_pt0_24 ~ 'PT within 0-24 hours',
+                              n_pt24_48 ~ 'PT within 24-48 hours',
+                              n_pt48_72 ~ 'PT within 48-72 hours',
+                              n_pt_each ~ 'Early PT on any 2 days')) %>% 
+     modify_spanning_header(all_stat_cols() ~ '**IMV within first 72 hours of PICU**') %>% 
+     add_p()
+
+
+```
+
+Not used
+
+```{r}
+# tabyl(df_early_pt_firstpicu, early_pt)
+# 
+# # Now try to sum all the active types of PT
+# df_pt_active <- df_pt_wide %>%
+#      mutate(across(where(is.numeric), ~ replace_na(.x, 0))) %>%
+#      mutate(pt_active_time = gait_training_time_entry + therapeutic_exercise_time_entry + wheelchair_management_time_entry +
+#                  neuromuscular_re_education_time_entry + therapeutic_exercise_comments + gait_training_comments +
+#                  orthotic_prosthetic_management_and_or_training_time_entry + prosthetic_training_time_entry) %>%
+#      ungroup() %>%
+#      select(mrn, enc_id, recorded_time, pt_active_time) %>%
+#      filter(pt_active_time > 0)
+# 
+# # Do the same kind of inequality join as before, ensuring the PT is after PICU start
+# df_pt_active_picu <- left_join(df_temp, df_pt_active, by = pt_join_by, relationship = "many-to-many")
+# 
+# # Determine whether patients had PT in each of the intervals
+# df_early_pt_active <- df_pt_active_picu %>%
+#      mutate(early_pt_active = if_else(recorded_time %within% int0_72, TRUE, FALSE)) %>%
+#      group_by(mrn, enc_id, icu_start_date) %>%
+#      filter(early_pt_active == max(early_pt_active)) %>%
+#      ungroup() %>%
+#      distinct(mrn, enc_id, icu_start_date, early_pt_active)
+# 
+# tabyl(df_early_pt_active, early_pt_active)
 
 ```

@@ -539,6 +539,10 @@ df_pt_counts %>%
 
 ```
 
+# Table 1
+
+We will now begin generating some basic tables
+
 Not used
 
 ```{r}

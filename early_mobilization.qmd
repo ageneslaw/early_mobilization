@@ -74,7 +74,7 @@ options(scipen = 3)
 # Load configuration files. You may need to edit the file (located in a config folder) with your own filepath.
 # Alternately you can just send in the correct filename.
 load_config(yml_path = 'config/config.yml', useglobal = TRUE)
-data_path <- data_path_chony
+# data_path <- data_path_chony
 
 ```
 
@@ -112,15 +112,76 @@ df_picu_startstop <- df_picu_startstop %>%
 df_picu_startstop <- df_picu_startstop %>% 
      filter((icu_stop_date - icu_start_date)/ddays(1) >= 1)
 
-n_mrn <- distinct(df_encounters, mrn) %>% nrow()
-n_encounters <- distinct(df_encounters, enc_id) %>% nrow()
+# Only keep encounters with a PICU stay
+picu_enc_id <- df_picu_startstop %>% pull(enc_id)
+df_encounters <- df_encounters %>% filter(enc_id %in% picu_enc_id)
+
+n_mrn <- distinct(df_picu_startstop, mrn) %>% nrow()
+n_encounters <- distinct(df_picu_startstop, enc_id) %>% nrow()
 n_picu <- distinct(df_picu_startstop, mrn, icu_start_date) %>% nrow() 
 
 ```
 
-|       | PICU       | Encounters       | Patients  |
-|-------|------------|------------------|-----------|
-| **n** | `r n_picu` | `r n_encounters` | `r n_mrn` |
+|     | PICU       | Encounters       | Patients  |
+|-----|------------|------------------|-----------|
+|     | `r n_picu` | `r n_encounters` | `r n_mrn` |
+
+### Find CTICU patients
+
+We will use admission to 9 Tower as a surrogate for cardiac ICU. There are better ways to do this using OR locations within 24 hours of admission but,in the meantime, this is the best we can do.
+
+```{r}
+#| label: determine CTICU
+
+df_cardiac <- load_generic_flowsheet_rows(paste0(data_path, fname_adt),
+                                          time_col = 'EFFECTIVE_TIME',
+                                          var_col = 'DEPARTMENT_NAME',
+                                          measure_col = 'EVENT_TYPE',
+                                          varnames = 'MSCH 9 TOWER',
+                                          rename_vars = 'cticu_event') %>%
+     filter(cticu_event %in% c('admission', 'transfer in', 'transfer out', 'discharge')) %>%
+     rename(enc_id = pat_enc_csn_id, adt_time = effective_time) %>%
+     arrange(enc_id, adt_time) %>%
+     distinct()
+
+df_cardiac <- df_cardiac %>%
+     mutate(cticu_start = if_else(cticu_event %in% c('admission', 'transfer in'), TRUE, FALSE),
+            cticu_stop = if_else(cticu_event %in% c('discharge', 'transfer out'), TRUE, FALSE)) %>%
+     group_by(enc_id) %>%
+     mutate(cticu_start_date = if_else(cticu_start, adt_time, lag(adt_time)),
+            cticu_stop_date = if_else(cticu_start, lead(adt_time), adt_time)) %>%
+     ungroup() %>%
+     distinct(enc_id, cticu_start_date, cticu_stop_date)
+
+# Identify CTICU patients based on whether they overlapped with 9 Tower during the ICU admission. 
+df_cticu_id <- inner_join(
+     df_picu_startstop, df_cardiac,
+     by = join_by(enc_id, overlaps(x$icu_start_date, x$icu_stop_date,
+                                   y$cticu_start_date, y$cticu_stop_date))
+     ) %>% 
+     mutate(cticu = if_else(is.na(cticu_start_date), FALSE, TRUE)) %>% 
+     select(enc_id, icu_start_date, cticu) %>% 
+     distinct()
+
+df_picu_startstop <- df_picu_startstop %>% 
+     left_join(df_cticu_id) %>% 
+     mutate(cticu = replace_na(cticu, FALSE)) 
+                                    
+display_tab1 <- tabyl(df_picu_startstop, cticu)
+display_tab2 <- tabyl(distinct(df_picu_startstop, mrn, .keep_all = TRUE), cticu)
+
+kable(display_tab1, 
+      format = "markdown", 
+      align = "c",
+      caption = 'Total CTICU stays')
+
+kable(display_tab2, 
+      format = "markdown", 
+      align = "c",
+      caption = 'Total CTICU stays (unique patients)')
+```
+
+### Length of stay
 
 Since we are interested primarily in mobilization within the first 72 hours of ICU hospitalization, we should determine how many patients stayed for this long.
 
@@ -135,31 +196,47 @@ df_encounter_stats <- df_encounters %>%
      mutate(los_hosp = (hospital_discharge_date - hospital_admission_date)/ddays(1),
             los_hosp_3days = if_else(los_hosp >=3, TRUE, FALSE))
 
-df_picu_stats %>% ggplot(aes(x = los_picu)) + 
+df_picu_stats %>% ggplot(aes(x = los_picu, fill = cticu)) + 
      geom_histogram() + 
      scale_x_log10(n.breaks = 8) + 
      labs(x = 'Days (log10 axis)',
           y = 'N',
           title = 'PICU LOS')
 
-df_encounter_stats %>% ggplot(aes(x = los_hosp)) + 
+df_temp_join <- df_picu_startstop %>% 
+     group_by(enc_id) %>% filter(cticu == max(cticu)) %>% ungroup() %>% 
+     distinct(enc_id, cticu)
+
+df_encounter_stats %>% left_join(df_temp_join) %>% 
+     ggplot(aes(x = los_hosp, fill = cticu)) + 
      geom_histogram() + 
      scale_x_log10(n.breaks = 8) + 
      labs(x = 'Days (log10 axis)',
           y = 'N',
           title = 'Hospital LOS')
 
-kable(tabyl(df_picu_stats, los_picu_3days),
-      format = "markdown", 
-      align = "c",
-      caption = "PICU admissions with PICU LOS at least 72 hours")
+df_picu_stats %>% tbl_summary(
+     by = 'cticu',
+     include = c('los_picu', 'los_picu_3days', 'cticu'),
+     label = list(los_picu ~ 'PICU LOS (days), median [IQR]',
+                  los_picu_3days ~ 'PICU LOS at least 3 days, n (%)'),
+     digits = list(all_continuous() ~ 1),
+     statistic = list(all_continuous() ~ '{median} [{p25}-{p75}]')) %>% 
+     modify_spanning_header(all_stat_cols() ~ '**CTICU Admission**') %>% 
+     add_p()
 
-kable(tabyl(df_encounter_stats, los_hosp_3days), 
-      format = "markdown", 
-      align = "c",
-      caption = "Encounters with hospital LOS at least 72 hours")
+df_encounter_stats %>% left_join(df_temp_join) %>% 
+     tbl_summary(
+     by = 'cticu',
+     include = c('los_hosp', 'los_hosp_3days', 'cticu'),
+     label = list(los_hosp ~ 'Hospital LOS (days), median [IQR]',
+                  los_hosp_3days ~ 'Hospital LOS at least 3 days, n (%)'),
+     digits = list(all_continuous() ~ 1),
+     statistic = list(all_continuous() ~ '{median} [{p25}-{p75}]')) %>% 
+     modify_spanning_header(all_stat_cols() ~ '**CTICU Admission**') %>% 
+     add_p()
+     
 
-# df_stats <- left_join(df_picu_stats, df_encounter_stats)
 
 ```
 
@@ -224,6 +301,31 @@ kable(display_array,
       align = "c",
       caption = NULL,
       col.names = 'N')
+```
+
+### How is IMV different in the cardiac ICU?
+
+The duration and initiation of IMV may be very different within the cardiac ICU. We should explore this.
+
+```{r}
+#| label: imv in the cardiac ICU
+
+df_picu_startstop %>% left_join(df_vent_episodes) %>% 
+     group_by(enc_id, icu_start_date) %>% 
+     mutate(any_vent = if_else(any(!is.na(vent_time_start)), TRUE, FALSE)) %>% 
+     ungroup() %>% 
+     mutate(timediff = timediff/ddays(1)) %>% 
+     tbl_summary(by = 'cticu',
+                 include = c('cticu', 'any_vent', 'timediff'),
+                 label = list(timediff ~ 'Duration of IMV (days)',
+                              any_vent ~ 'Any IMV'),
+                 statistic = all_continuous() ~ '{median} [{p25}-{p75}]',
+                 digits = all_continuous() ~ 1,
+                 missing = 'no') %>% 
+     modify_spanning_header(all_stat_cols() ~ '**CTICU Admission**') %>% 
+     add_p()
+     
+
 ```
 
 ## Physical therapy

@@ -590,10 +590,10 @@ df_vent_temp <- df_vent_episodes %>%
      select(mrn, enc_id, vent_episode, vent_time_start, vent_time_stop)
 
 ventjoinby24 <- join_by(mrn, enc_id, overlaps(x$icu_start_date, x$t24,
-                                            y$vent_time_start, y$vent_time_stop))
+                                              y$vent_time_start, y$vent_time_stop))
 
 ventjoinby72 <- join_by(mrn, enc_id, overlaps(x$icu_start_date, x$t72,
-                                            y$vent_time_start, y$vent_time_stop))
+                                              y$vent_time_start, y$vent_time_stop))
 
 df_vent_temp24 <- inner_join(df_temp, df_vent_temp, by = ventjoinby24) %>% 
      mutate(vent24 = TRUE) %>% 
@@ -602,7 +602,7 @@ df_vent_temp24 <- inner_join(df_temp, df_vent_temp, by = ventjoinby24) %>%
 
 df_vent_temp72 <- inner_join(df_temp, df_vent_temp, by = ventjoinby72) %>% 
      mutate(vent72 = TRUE) %>% 
-     select(mrn, enc_id, icu_start_date, icu_stop_date, vent72, vent_time_start, vent_time_stop)%>% 
+     select(mrn, enc_id, icu_start_date, icu_stop_date, vent72, vent_time_start, vent_time_stop) %>% 
      distinct()
 
 df_early_vent <- full_join(df_vent_temp24, df_vent_temp72) %>% 

@@ -656,9 +656,33 @@ df_pt_counts %>%
 
 ```
 
+### PT during IMV
+
+How often was PT provided at any time during IMV?
+
+```{r}
+#| label: any PT during IMV
+
+# Join vent timing to PT data
+ventjoinwithimv <- join_by(mrn, enc_id, between(y$recorded_time, x$vent_time_start, x$vent_time_stop))
+df_vent_pt_any <- left_join(df_vent_temp, df_pt_total, by = ventjoinwithimv) %>%
+     select(mrn, enc_id, vent_time_start, vent_time_stop, vent_episode, recorded_time, pt_time) %>% 
+     mutate(pt_time = replace_na(pt_time, 0)) %>% 
+     group_by(mrn, enc_id, vent_episode) %>% 
+     filter(pt_time == max(pt_time)) %>% 
+     mutate(any_pt = if_else(pt_time > 0, TRUE, FALSE))
+
+# Now display tables of each.
+df_vent_pt_any %>% 
+     tbl_summary(include = 'any_pt',
+                 label = list(any_pt ~ 'Any PT delivered during IMV')) %>% 
+     modify_header(label = '**Patients requiring IMV**')
+
+```
+
 # Sedation, coma, and delirium
 
-Patients who are deeply sedated, comatose, or very delirious are less able to participate in PT. As such these are important
+Patients who are deeply sedated, comatose, or very delirious are less able to participate in PT. As such these are important metrics to understand. PT is probably not possible while a patient is receiving paralytic, as well.
 
 # Table 1
 
@@ -667,29 +691,40 @@ We will now begin generating some basic tables
 Not used
 
 ```{r}
-# tabyl(df_early_pt_firstpicu, early_pt)
-# 
-# # Now try to sum all the active types of PT
-# df_pt_active <- df_pt_wide %>%
-#      mutate(across(where(is.numeric), ~ replace_na(.x, 0))) %>%
-#      mutate(pt_active_time = gait_training_time_entry + therapeutic_exercise_time_entry + wheelchair_management_time_entry +
-#                  neuromuscular_re_education_time_entry + therapeutic_exercise_comments + gait_training_comments +
-#                  orthotic_prosthetic_management_and_or_training_time_entry + prosthetic_training_time_entry) %>%
-#      ungroup() %>%
-#      select(mrn, enc_id, recorded_time, pt_active_time) %>%
-#      filter(pt_active_time > 0)
-# 
-# # Do the same kind of inequality join as before, ensuring the PT is after PICU start
-# df_pt_active_picu <- left_join(df_temp, df_pt_active, by = pt_join_by, relationship = "many-to-many")
-# 
-# # Determine whether patients had PT in each of the intervals
-# df_early_pt_active <- df_pt_active_picu %>%
-#      mutate(early_pt_active = if_else(recorded_time %within% int0_72, TRUE, FALSE)) %>%
-#      group_by(mrn, enc_id, icu_start_date) %>%
-#      filter(early_pt_active == max(early_pt_active)) %>%
-#      ungroup() %>%
-#      distinct(mrn, enc_id, icu_start_date, early_pt_active)
-# 
-# tabyl(df_early_pt_active, early_pt_active)
+#| label: table 1
 
+early_pt_id <- df_pt_counts %>% 
+     mutate(early_pt = n_early_pt) %>% 
+     select(mrn, enc_id, icu_start_date, early_pt)
+
+df_tab1 <- df_picu_startstop %>% 
+     left_join(early_pt_id) 
+
+df_tab1 <- df_tab1 %>% 
+     left_join(df_encounters)
+
+df_temp <- df_vent_temp24 %>% 
+     group_by(mrn, enc_id, icu_start_date) %>% 
+     filter(vent_time_start == min(vent_time_start)) %>% 
+     ungroup()
+
+df_tab1 <- df_tab1 %>% left_join(df_temp) %>% 
+     mutate(vent24 = replace_na(vent24, FALSE))
+
+df_tab1 <- df_tab1 %>% 
+     mutate(iculos = (icu_stop_date - icu_start_date)/ddays(1),
+            hospitallos = (hospital_discharge_date - hospital_admission_date)/ddays(1),
+            venttime = (vent_time_stop - vent_time_start)/ddays(1),
+            agem = (hospital_admission_date - as.POSIXct(dob))/dmonths(1),
+            female_sex = if_else(sex == 'male', TRUE, FALSE)) %>% 
+     group_by(mrn) %>% 
+     arrange(mrn, icu_start_date) %>% 
+     mutate(icu_n = row_number(),
+            multi_icu = if_else(any(icu_n > 1), TRUE, FALSE)) %>% 
+     ungroup()
+
+tbl_vars <- c('agem', 'female_sex', 'vent24', 'early_pt', 'multi_icu', 'cticu')
+
+df_tab1 %>% tbl_summary(by = early_pt,
+                        include = tbl_vars)
 ```

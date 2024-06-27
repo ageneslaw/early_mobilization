@@ -74,7 +74,7 @@ options(scipen = 3)
 # Load configuration files. You may need to edit the file (located in a config folder) with your own filepath.
 # Alternately you can just send in the correct filename.
 load_config(yml_path = 'config/config.yml', useglobal = TRUE)
-# data_path <- data_path_chony
+data_path <- data_path_chony
 
 ```
 
@@ -181,7 +181,36 @@ kable(display_tab2,
       caption = 'Total CTICU stays (unique patients)')
 ```
 
-### Length of stay
+## Labeling important times
+
+Most analyses will be based on whether therapies were delivered within various time intervals, such as the first 24 hours, the first 72 hours, within the ICU, etc. We can use the \code{df_picu_startstop} data frame to define all of these intervals, to be used later in a variety of joins.
+
+```{r}
+#| label: picu intervals
+
+
+# Update the PICU start/stop so that it has a timestamp and intervals
+# for 24, 48, and 72 hours
+df_picu_intervals <- df_picu_startstop %>%
+     mutate(t24 = icu_start_date + hours(24),
+            t48 = icu_start_date + hours(48),
+            t72 = icu_start_date + hours(72),
+            int0_72 = interval(icu_start_date, t72),
+            int0_24 = interval(icu_start_date, t24),
+            int24_48 = interval(t24, t48),
+            int48_72 = interval(t48, t72)
+            )
+
+# Label the 1st hospitalization
+df_picu_intervals <- df_picu_intervals %>% 
+     group_by(mrn, enc_id) %>% 
+     arrange(mrn, enc_id, icu_start_date) %>% 
+     mutate(icu_stay = row_number()) %>% 
+     ungroup()
+
+```
+
+# Length of stay
 
 Since we are interested primarily in mobilization within the first 72 hours of ICU hospitalization, we should determine how many patients stayed for this long.
 
@@ -240,7 +269,7 @@ df_encounter_stats %>% left_join(df_temp_join) %>%
 
 ```
 
-## Invasive mechanical ventilation (IMV)
+# Invasive mechanical ventilation (IMV)
 
 Understanding the numbers of patients receiving IMV, and the timing of IMV, is essential to the study.
 
@@ -303,7 +332,7 @@ kable(display_array,
       col.names = 'N')
 ```
 
-### How is IMV different in the cardiac ICU?
+## How is IMV different in the cardiac ICU?
 
 The duration and initiation of IMV may be very different within the cardiac ICU. We should explore this.
 
@@ -328,9 +357,11 @@ df_picu_startstop %>% left_join(df_vent_episodes) %>%
 
 ```
 
-## Physical therapy
+# Physical therapy
 
 Physical therapy is logged in flowsheets. For the most part, the physical therapists log the total amount of time they worked. Some physical therapists also log the specific activities they performed (such as gait training, wheel chair training, etc). This may or may not be consistent and will need some QAing.
+
+## Loading physical therapy
 
 ```{r}
 #| label: load PT
@@ -462,36 +493,17 @@ df_pt_total <- df_pt_wide %>%
 
 ```
 
-### Amount of PT
+## Amount of PT
 
 First we will describe, in general, how much PT is being delivered. We need to make sure that we only sum up PT that was delivered after the start of a PICU stay. To do this we take the `df_picu_startstop` data frame, which contains ICU admit and discharge times. Create a few windows of time spanning 0-24 hours, 24-48 hours, and 48-72 hours. Also create an interval that spans 0-72 hours.
 
 ```{r}
 #| label: PT and PICU time joins
 
-# Update the PICU start/stop so that it has a timestamp and intervals
-# for 24, 48, and 72 hours
-df_temp <- df_picu_startstop %>%
-     mutate(t24 = icu_start_date + hours(24),
-            t48 = icu_start_date + hours(48),
-            t72 = icu_start_date + hours(72),
-            int0_72 = interval(icu_start_date, t72),
-            int0_24 = interval(icu_start_date, t24),
-            int24_48 = interval(t24, t48),
-            int48_72 = interval(t48, t72)
-            )
-
-# Label the 1st hospitalization
-df_temp <- df_temp %>% 
-     group_by(mrn, enc_id) %>% 
-     arrange(mrn, enc_id, icu_start_date) %>% 
-     mutate(icu_stay = row_number()) %>% 
-     ungroup()
-
 # Create an inequality join so we make sure to only match PT that occurred after
 # the PICU start
 pt_join_by <- join_by(mrn, enc_id, x$icu_start_date < y$recorded_time)
-df_pt_picu <- left_join(df_temp, df_pt_total, by = pt_join_by, relationship = "many-to-many") %>% 
+df_pt_picu <- left_join(df_picu_intervals, df_pt_total, by = pt_join_by, relationship = "many-to-many") %>% 
      relocate(mrn, enc_id, icu_stay, icu_start_date, icu_stop_date, recorded_time, pt_time)
 
 # Only keep 1st hospitalization
@@ -595,12 +607,12 @@ ventjoinby24 <- join_by(mrn, enc_id, overlaps(x$icu_start_date, x$t24,
 ventjoinby72 <- join_by(mrn, enc_id, overlaps(x$icu_start_date, x$t72,
                                               y$vent_time_start, y$vent_time_stop))
 
-df_vent_temp24 <- inner_join(df_temp, df_vent_temp, by = ventjoinby24) %>% 
+df_vent_temp24 <- inner_join(df_picu_intervals, df_vent_temp, by = ventjoinby24) %>% 
      mutate(vent24 = TRUE) %>% 
      select(mrn, enc_id, icu_start_date, icu_stop_date, vent24, vent_time_start, vent_time_stop) %>% 
      distinct()
 
-df_vent_temp72 <- inner_join(df_temp, df_vent_temp, by = ventjoinby72) %>% 
+df_vent_temp72 <- inner_join(df_picu_intervals, df_vent_temp, by = ventjoinby72) %>% 
      mutate(vent72 = TRUE) %>% 
      select(mrn, enc_id, icu_start_date, icu_stop_date, vent72, vent_time_start, vent_time_stop) %>% 
      distinct()
@@ -643,6 +655,10 @@ df_pt_counts %>%
 
 
 ```
+
+# Sedation, coma, and delirium
+
+Patients who are deeply sedated, comatose, or very delirious are less able to participate in PT. As such these are important
 
 # Table 1
 

@@ -1,10 +1,11 @@
 ---
 data_path: C:/Users/Andy/OneDrive - Columbia University Irving Medical Center/Research/data/early_mobilization/
 data_path_chony: C:/Users/asg2195/OneDrive - cumc.columbia.edu/Research/data/early_mobilization/
-fname_encounter: Report 1 - Hospital Encounters_nodispo.txt
-fname_race:
+fname_encounter: Report 1A - Hospital Encounters.txt
+fname_dispo: Report 1B - Discharge Dispositions.txt
+fname_race: Report 1D - Patient Race.txt
 fname_address:
-fname_insurance:
+fname_insurance: Report 1C - Patient Insurance.txt
 fname_adt: Report 2 - ADT Events.txt
 fname_icd_dx: Report 3 - ICD-10-CM Diagnosis Codes.txt
 fname_vitals:
@@ -22,6 +23,6 @@ fname_op_notes:
 fname_op_diagnoses:
 fname_op_meds:
 fname_pt: Report 8F - Physical Therapy.txt
-fname_cpb: Report 9 - CPB On and Off Times.txt
+fname_anesthesia: Report 9 - Anesthesia Timing Events.txt
 fname_mortality:
 ---

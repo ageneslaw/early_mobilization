@@ -74,7 +74,7 @@ options(scipen = 3)
 # Load configuration files. You may need to edit the file (located in a config folder) with your own filepath.
 # Alternately you can just send in the correct filename.
 load_config(yml_path = 'config/config.yml', useglobal = TRUE)
-data_path <- data_path_chony
+# data_path <- data_path_chony
 
 ```
 
@@ -125,6 +125,31 @@ n_picu <- distinct(df_picu_startstop, mrn, icu_start_date) %>% nrow()
 |     | PICU       | Encounters       | Patients  |
 |-----|------------|------------------|-----------|
 |     | `r n_picu` | `r n_encounters` | `r n_mrn` |
+
+### Race
+
+```{r}
+#| label: load race
+
+df_race <- read_delim(paste0(data_path, fname_race), delim = '|',
+                      col_types = list(col_character(),
+                                       col_number(),
+                                       col_character())) %>% 
+     clean_names() %>% 
+     mutate(patient_race = str_to_lower(patient_race)) %>% 
+     mutate(patient_race = if_else(patient_race == 'nat.hawaiian/oth.pacific island', 
+                                   'native hawaiian or pacific islander', patient_race),
+            patient_race = factor(patient_race),
+            patient_race = fct_na_value_to_level(patient_race))
+
+# Make into a wide dataset, as some patients have multiple races recorded
+df_race <- df_race %>% 
+     pivot_wider(id_cols = 'mrn',
+                 names_from = 'line',
+                 values_from = 'patient_race',
+                 names_prefix = 'race')
+
+```
 
 ### Find CTICU patients
 
@@ -316,10 +341,11 @@ df_vent_episodes <- inner_join(df_vent_episodes, df_picu_startstop, by) %>%
 # How many ventilator episodes, encounters, and among unique patients?
 n_vent_ep <- df_vent_episodes %>% nrow()
 n_vent_picu <- df_vent_episodes %>% distinct(icu_start_date) %>% nrow()
+n_vent_enc <- df_vent_episodes %>% distinct(enc_id) %>% nrow()
 n_vent_mrn <- df_vent_episodes %>% distinct(mrn) %>% nrow()
 
-display_array <- c(n_vent_ep, n_vent_picu, n_vent_mrn)
-names(display_array) <- c('Episodes of IMV', 'PICU stays with IMV', 'Unique patients requiring IMV')
+display_array <- c(n_vent_ep, n_vent_picu, n_vent_enc, n_vent_mrn)
+names(display_array) <- c('Episodes of IMV', 'PICU stays with IMV', 'Hospitalizations with IMV', 'Unique patients requiring IMV')
 
 # display_table <- tibble(`Episodes of IMV` = n_vent_ep, 
        # `PICU stays with IMV` = n_vent_picu,
@@ -342,6 +368,8 @@ The duration and initiation of IMV may be very different within the cardiac ICU.
 df_picu_startstop %>% left_join(df_vent_episodes) %>% 
      group_by(enc_id, icu_start_date) %>% 
      mutate(any_vent = if_else(any(!is.na(vent_time_start)), TRUE, FALSE)) %>% 
+     filter(any_vent == max(any_vent)) %>% 
+     filter(vent_episode == min(vent_episode) | is.na(vent_episode)) %>% 
      ungroup() %>% 
      mutate(timediff = timediff/ddays(1)) %>% 
      tbl_summary(by = 'cticu',
@@ -479,6 +507,9 @@ df_pt <- df_pt %>% mutate(measure_value = as.numeric(measure_value))
 # Remove any 0-time units
 df_pt <- df_pt %>% filter(measure_value > 0)
 
+# Remove any PT that lasted more than 2 hours (would never happen)
+df_pt <- df_pt %>% filter(measure_value <= 120)
+
 # Convert to wide format
 df_pt_wide <- df_pt %>%
      pivot_wider(id_cols = c('mrn', 'enc_id', 'recorded_time'),
@@ -511,12 +542,12 @@ df_pt_picu <- left_join(df_picu_intervals, df_pt_total, by = pt_join_by, relatio
 
 # Determine whether each episode of PT fell in a given interval
 df_pt_timing <- df_pt_picu %>%
-     mutate(early_pt = if_else(recorded_time %within% int0_72, TRUE, FALSE, FALSE),
-            any_pt = if_else(recorded_time > icu_start_date, TRUE, FALSE, FALSE),
-            icu_pt = if_else(recorded_time %within% interval(icu_start_date, icu_stop_date), TRUE, FALSE, FALSE),
-            pt0_24 = if_else(recorded_time  %within% int0_24, TRUE, FALSE, FALSE),
-            pt24_48 = if_else(recorded_time %within% int24_48, TRUE, FALSE, FALSE),
-            pt48_72 = if_else(recorded_time %within% int48_72, TRUE, FALSE, FALSE))
+     mutate(early_pt = if_else(recorded_time %within% int0_72 & !is.na(pt_time), TRUE, FALSE, FALSE),
+            any_pt = if_else(recorded_time > icu_start_date & !is.na(pt_time), TRUE, FALSE, FALSE),
+            icu_pt = if_else(recorded_time %within% interval(icu_start_date, icu_stop_date) & !is.na(pt_time), TRUE, FALSE, FALSE),
+            pt0_24 = if_else(recorded_time  %within% int0_24 & !is.na(pt_time), TRUE, FALSE, FALSE),
+            pt24_48 = if_else(recorded_time %within% int24_48 & !is.na(pt_time), TRUE, FALSE, FALSE),
+            pt48_72 = if_else(recorded_time %within% int48_72 & !is.na(pt_time), TRUE, FALSE, FALSE))
 
 # Get counts of PT in each interval.
 df_pt_counts <- df_pt_timing %>%  
@@ -578,7 +609,6 @@ Next, display the amount of PT (in hours) that was received.
 ```{r}
 #| label: display PT duration
 
-
 df_pt_timesums %>% 
      tbl_summary(include = ends_with('_time'),
                  label = list(early_pt_time ~ 'Duration of PT within first 72 hours, minutes',
@@ -610,12 +640,12 @@ ventjoinby72 <- join_by(mrn, enc_id, overlaps(x$icu_start_date, x$t72,
 df_vent_temp24 <- inner_join(df_picu_intervals, df_vent_temp, by = ventjoinby24) %>% 
      mutate(vent24 = TRUE) %>% 
      select(mrn, enc_id, icu_start_date, icu_stop_date, vent24, vent_time_start, vent_time_stop) %>% 
-     distinct()
+     distinct(mrn, enc_id, icu_start_date, .keep_all = TRUE)
 
 df_vent_temp72 <- inner_join(df_picu_intervals, df_vent_temp, by = ventjoinby72) %>% 
      mutate(vent72 = TRUE) %>% 
      select(mrn, enc_id, icu_start_date, icu_stop_date, vent72, vent_time_start, vent_time_stop) %>% 
-     distinct()
+     distinct(mrn, icu_start_date, .keep_all = TRUE)
 
 df_early_vent <- full_join(df_vent_temp24, df_vent_temp72) %>% 
      relocate(vent24, vent72, .after = enc_id) 
@@ -625,7 +655,7 @@ df_pt_counts <- left_join(df_pt_counts, df_early_vent)%>%
      mutate(vent24 = replace_na(vent24, FALSE),
             vent72 = replace_na(vent72, FALSE)) 
 
-# Now display tables of each.
+# Ventilation within first 24 hours
 df_pt_counts %>% 
      tbl_summary(include = c('vent24', starts_with('n_')),
                  by = 'vent24',
@@ -639,7 +669,7 @@ df_pt_counts %>%
      modify_spanning_header(all_stat_cols() ~ '**IMV within first 24 hours of PICU**') %>% 
      add_p()
 
-# Now display tables of each.
+# ventilation within first 72 hours
 df_pt_counts %>% 
      tbl_summary(include = c('vent72', starts_with('n_')),
                  by = 'vent72',
@@ -663,6 +693,10 @@ How often was PT provided at any time during IMV?
 ```{r}
 #| label: any PT during IMV
 
+# Get patients who had early (or not early) ventilation in the ICU
+df_vent_temp <- df_vent_episodes %>% 
+     select(mrn, enc_id, icu_start_date, icu_stop_date, vent_episode, vent_time_start, vent_time_stop)
+
 # Join vent timing to PT data
 ventjoinwithimv <- join_by(mrn, enc_id, between(y$recorded_time, x$vent_time_start, x$vent_time_stop))
 df_vent_pt_any <- left_join(df_vent_temp, df_pt_total, by = ventjoinwithimv) %>%
@@ -676,7 +710,17 @@ df_vent_pt_any <- left_join(df_vent_temp, df_pt_total, by = ventjoinwithimv) %>%
 df_vent_pt_any %>% 
      tbl_summary(include = 'any_pt',
                  label = list(any_pt ~ 'Any PT delivered during IMV')) %>% 
-     modify_header(label = '**Patients requiring IMV**')
+     modify_header(label = '**Episodes of IMV**')
+
+# Now display tables of each.
+df_vent_pt_any %>% 
+     group_by(mrn) %>% 
+     filter(any_pt == max(any_pt)) %>%
+     distinct(mrn, any_pt) %>% 
+     ungroup() %>% 
+     tbl_summary(include = 'any_pt',
+                 label = list(any_pt ~ 'Any PT delivered during IMV')) %>% 
+     modify_header(label = '**Unique patients**')
 
 ```
 
@@ -684,47 +728,233 @@ df_vent_pt_any %>%
 
 Patients who are deeply sedated, comatose, or very delirious are less able to participate in PT. As such these are important metrics to understand. PT is probably not possible while a patient is receiving paralytic, as well.
 
-# Table 1
+## Medications
 
-We will now begin generating some basic tables
+First, we need to load medications. We will use the \code{chonyepicdata} package for this. For now we will just focus on which medications were used at what time, and not on things like cumulative doses.
 
-Not used
+```{r}
+#| label: load meds
+
+# Load med raw data
+df_meds <- load_meds(paste0(data_path, fname_ip_meds))
+
+# Make sure that we only look in the first 72 hours
+time_limits <- df_picu_intervals %>% 
+     select(enc_id, int0_72)
+
+# Clean meds to only look at ones we want
+df_meds_clean <- clean_meds(df_meds, medlist = c('midazolam', 'lorazepam', 'diazepam', 'clonazepam', 'morphine', 'fentanyl', 'hydromorphone', 'oxycodone', 'clonidine', 'dexmedetomidine', 'rocuronium', 'vecuronium', 'cisatracurium'),
+                      time_limits = time_limits)
+
+# Add back the PICU stay IDs, because clean_meds() adds a # to each enc_id if there are multiple intervals per encouner
+picu_stay_ids <- df_picu_intervals %>% 
+     group_by(enc_id) %>% 
+     arrange(enc_id, icu_start_date) %>% 
+     mutate(n_icu = row_number()) %>% 
+     ungroup() %>% 
+     select(enc_id, icu_start_date, n_icu)
+
+# Reset encounter IDs to the usual format, and specify the number of the encounter. This will bind back the ICU start and stop dates
+df_meds_clean_id <- df_meds_clean %>% 
+     separate_wider_delim(cols = enc_id, delim = '#', names = c('enc_id', 'n_icu'),
+                          cols_remove = TRUE) %>% 
+     mutate(n_icu = as.numeric(n_icu)) %>% 
+     relocate(enc_id, n_icu) %>% 
+     left_join(picu_stay_ids)
+
+# Convert any 0 values to NA
+df_meds_clean_id <- df_meds_clean_id %>% 
+     mutate(across(where(is.numeric), ~ na_if(.x, 0)))
+
+# Create strings for the meds we are interested in
+opioid_strings <- c('oxycodone','morphine','fentanyl','hydromorphone') 
+benzo_strings <- c('midazolam', 'lorazepam', 'diazepam', 'clonazepam') 
+paral_strings <- c('rocuronium', 'vecuronium', 'cisatracurium') 
+
+# Nest columns containing meds of each type
+df_meds_clean_id <- df_meds_clean_id %>% 
+     nest(opioid_data = contains(opioid_strings)) %>% 
+     nest(benzo_data = contains(benzo_strings)) %>% 
+     nest(paral_data = contains(paral_strings)) %>% 
+     nest(dexmed_data = contains('dexmed')) %>% 
+     nest(clonidine_data = contains('clonidine'))
+
+# Create a function that will return TRUE if at least one value sent to it is not NA
+has_non_na <- function(nested_df) {
+     any(!is.na(nested_df))
+}
+
+# Now check if each medication category was ever received (in the first 72 hours)
+df_meds_category <- df_meds_clean_id %>% 
+     mutate(across(where(is.list), ~ map_lgl(.x, has_non_na)))
+
+# Plot all medications (each PICU stay)
+df_picu_startstop %>% left_join(df_meds_category) %>% 
+     mutate(across(ends_with('_data'), ~ replace_na(.x, FALSE))) %>% 
+     tbl_summary(include = ends_with('_data'),
+                 label = list(opioid_data ~ 'Opioid',
+                               benzo_data ~ 'Benzodiazepine',
+                               paral_data ~ 'Neuromuscular blocker',
+                               dexmed_data ~ 'Dexmedetomidine',
+                               clonidine_data ~ 'Clonidine')) %>% 
+     modify_header(label = '') %>% 
+     modify_caption('**Medications used in first 72 hours of PICU admission**')
+
+# Plot all medications (first PICU stay only)
+df_picu_startstop %>% left_join(df_meds_category) %>% 
+     group_by(mrn) %>% 
+     filter(icu_start_date == min(icu_start_date)) %>% 
+     ungroup() %>% 
+     mutate(across(ends_with('_data'), ~ replace_na(.x, FALSE))) %>% 
+     tbl_summary(include = ends_with('_data'),
+                 label = list(opioid_data ~ 'Opioid',
+                               benzo_data ~ 'Benzodiazepine',
+                               paral_data ~ 'Neuromuscular blocker',
+                               dexmed_data ~ 'Dexmedetomidine',
+                               clonidine_data ~ 'Clonidine')) %>% 
+     modify_header(label = '') %>% 
+     modify_caption('**Medications used in first 72 hours of PICU admission**')
+
+```
+
+## Level of sedation
+
+Patient sedation is routinely measured via the Richmond Agitation Sedation Scale (RASS). RASS ranges from -5 to +4:
+
+| RASS level | Meaning           | Interpretation                                                                        |
+|------------|------------------|-------------------------------------------|
+| +4         | Combative         | Violent, immediate danger to staff or self                                            |
+| +3         | Very agitated     | Aggressive, attempts to remove tubs or equipment                                      |
+| +2         | Agitated          | Frequent non-purposeful movements, fighting the ventilator                            |
+| +1         | Restless          | Anxious, apprehensive, but movements are not aggressive or vigorous                   |
+| 0          | Alert and Calm    |                                                                                       |
+| -1         | Drowsy            | Not fully alert, but has sustained awakening to voice, makes eye contact \>10 seconds |
+| -2         | Light sedation    | Briefly awakens to voice, eye contact \<10 seconds                                    |
+| -3         | Moderate sedation | Eyes open or moves to voice, but no eye contact                                       |
+| -4         | Deep sedation     | No response to voice, but will awaken or move to physical stimulation                 |
+| -5         | Unarousable       | No response to voice or physical stimulation                                          |
+
+Patients who are deeply sedated are less likely to be able to participate in active PT, or receive passive PT.
+
+```{r}
+#| label: sedation
+
+df_rass <- load_rass(paste0(data_path, fname_sedation_delirium))
+
+```
+
+# Tables
+
+We will now begin generating some basic tables.
+
+## Table 1
 
 ```{r}
 #| label: table 1
 
+# Gather the various elements necessary for table 1
+# First get stratification variable for early PT for each ICU stay
 early_pt_id <- df_pt_counts %>% 
      mutate(early_pt = n_early_pt) %>% 
      select(mrn, enc_id, icu_start_date, early_pt)
 
+# Join early PT variable to ICU stay dates
 df_tab1 <- df_picu_startstop %>% 
      left_join(early_pt_id) 
 
+# Join to encounter table so we also have hospitalization dates, sex, and age
 df_tab1 <- df_tab1 %>% 
      left_join(df_encounters)
 
+# Take ventilator data for patients who were vented in the 1st 24 hours. In case there were multiple episodes (unlikely), just keep the first one
 df_temp <- df_vent_temp24 %>% 
      group_by(mrn, enc_id, icu_start_date) %>% 
      filter(vent_time_start == min(vent_time_start)) %>% 
      ungroup()
 
+# Join this to the table1 data frame
 df_tab1 <- df_tab1 %>% left_join(df_temp) %>% 
      mutate(vent24 = replace_na(vent24, FALSE))
 
+# Calculate LOS variables, age, and a few other tweaks for dispaly purposes
+# Also calculate whether patients had a single or multiple ICU stays
 df_tab1 <- df_tab1 %>% 
      mutate(iculos = (icu_stop_date - icu_start_date)/ddays(1),
             hospitallos = (hospital_discharge_date - hospital_admission_date)/ddays(1),
             venttime = (vent_time_stop - vent_time_start)/ddays(1),
             agem = (hospital_admission_date - as.POSIXct(dob))/dmonths(1),
             female_sex = if_else(sex == 'male', TRUE, FALSE)) %>% 
-     group_by(mrn) %>% 
-     arrange(mrn, icu_start_date) %>% 
-     mutate(icu_n = row_number(),
-            multi_icu = if_else(any(icu_n > 1), TRUE, FALSE)) %>% 
-     ungroup()
+     add_count(mrn, name = 'icu_count') %>% 
+     mutate(multi_icu = if_else(icu_count > 1, TRUE, FALSE),
+            early_pt = factor(early_pt, 
+                              levels = c(TRUE, FALSE), 
+                              labels = c('Early physical therapy',
+                                         'Late or no physical therapy'),
+                              ordered = TRUE))
 
-tbl_vars <- c('agem', 'female_sex', 'vent24', 'early_pt', 'multi_icu', 'cticu')
+# Join up the medication data. Since some patients did not have any meds given, also need to add FALSE to some if they weren't in the df_meds_category data frame.
+df_tab1 <- df_tab1 %>% 
+     left_join(df_meds_category) %>% 
+     mutate(across(ends_with('_data'), ~ replace_na(.x, FALSE))) %>% 
+     rename_with(~ str_remove_all(., '_data'), ends_with('_data') )
+
+# Display table 1
+tbl_vars <- c('agem', 'female_sex', 'vent24', 'early_pt', 'multi_icu', 'cticu', 'iculos', 'hospitallos', 'venttime', 'opioid', 'benzo', 'paral', 'dexmed', 'clonidine')
 
 df_tab1 %>% tbl_summary(by = early_pt,
-                        include = tbl_vars)
+                        include = tbl_vars,
+                        missing = 'no',
+                        digits = list(iculos ~ 1,
+                                      hospitallos ~ 1,
+                                      venttime ~ 1),
+                        label = list(agem ~ 'Age (months)',
+                                     female_sex ~ 'Female biological sex',
+                                     vent24 ~ 'IMV in first 24 hours of ICU',
+                                     multi_icu ~ 'More than 1 ICU admission',
+                                     cticu ~ 'CT surgical ICU',
+                                     iculos ~ 'ICU LOS, days',
+                                     hospitallos ~ 'Hospital LOS, days',
+                                     venttime ~ 'IMV duration, days',
+                                     opioid ~ 'Opioid',
+                                     benzo ~ 'Benzodiazepine',
+                                     paral ~ 'Neuromuscular blocker',
+                                     dexmed ~ 'Dexmedetomidine',
+                                     clonidine ~ 'Clonidine'),
+                        statistic = all_continuous() ~ '{median} [{p25}-{p75}]') %>% 
+     modify_caption("**Table 1.** Patient characteristics based upon early physical therapy") %>% 
+     modify_header(label = '',
+                   all_stat_cols() ~ '**{level}**<br>N={n} ({style_percent(p)}%)') %>% 
+     add_p() 
+
+# Display supplemental table 1 (only 1 ICU stay per patient)
+tbl_vars <- c('agem', 'female_sex', 'vent24', 'early_pt', 'multi_icu', 'cticu', 'iculos', 'hospitallos', 'venttime', 'opioid', 'benzo', 'paral', 'dexmed', 'clonidine')
+
+df_tab1 %>% 
+     group_by(mrn) %>% 
+     filter(icu_start_date == min(icu_start_date)) %>% 
+     tbl_summary(by = early_pt,
+                        include = tbl_vars,
+                        missing = 'no',
+                        digits = list(iculos ~ 1,
+                                      hospitallos ~ 1,
+                                      venttime ~ 1),
+                        label = list(agem ~ 'Age (months)',
+                                     female_sex ~ 'Female biological sex',
+                                     vent24 ~ 'IMV in first 24 hours of ICU',
+                                     multi_icu ~ 'Subsequent ICU admission',
+                                     cticu ~ 'CT surgical ICU',
+                                     iculos ~ 'ICU LOS, days',
+                                     hospitallos ~ 'Hospital LOS, days',
+                                     venttime ~ 'IMV duration, days',
+                                     opioid ~ 'Opioid',
+                                     benzo ~ 'Benzodiazepine',
+                                     paral ~ 'Neuromuscular blocker',
+                                     dexmed ~ 'Dexmedetomidine',
+                                     clonidine ~ 'Clonidine'),
+                        statistic = all_continuous() ~ '{median} [{p25}-{p75}]') %>% 
+     modify_caption("**Supplemental Table 1.** Patient characteristics based upon early physical therapy (first ICU stay only)") %>% 
+     modify_header(label = '',
+                   all_stat_cols() ~ '**{level}**<br>N={n} ({style_percent(p)}%)') %>% 
+     add_p()
+     
 ```
